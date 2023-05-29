@@ -2,6 +2,9 @@
 #define TB_LIB_OPTS
 #define TB_OPT_TRUECOLOR
 
+#define UI_FG 0x808080
+#define UI_BG 0x101010
+
 #include "term.h"
 
 int main(int argc, char **argv) {
@@ -32,7 +35,6 @@ int main(int argc, char **argv) {
   struct tb_event ev;
   const uint16_t* c = &st->full;
   const uint8_t slotSize = sizeof(slot.arr) / sizeof(slot.arr[0])-1;
-  //uint32_t color = 0x00808080;
   Color color = { .rgb = 0x00808080 };
 
   tb_init();
@@ -72,18 +74,22 @@ int main(int argc, char **argv) {
         default : break;
       }
       switch (ev.ch) {
-        case 'w': tb_set_cursor(statX, --statY);
-                  tb_set_cell(  statX, statY, *  c, color.rgb, 0x20000000);
-                  goto draw;
-        case 's': tb_set_cursor(statX, ++statY);
-                  tb_set_cell(  statX, statY,   *c, color.rgb, 0x20000000);
-                  goto draw;
-        case 'a': tb_set_cursor(--statX, statY);
-                  tb_set_cell(  statX,   statY, *c, color.rgb, 0x20000000);
-                  goto draw;
-        case 'd': tb_set_cursor(++statX, statY);
-                  tb_set_cell(  statX,   statY, *c, color.rgb, 0x20000000);
-                  goto draw;
+	      case 'w': statY = (statY > 0) ? statY - 1 : 0;
+			tb_set_cursor(statX, statY);
+			tb_set_cell(  statX, statY, *  c, color.rgb, 0x20000000);
+			goto draw;
+	      case 's': statY = (statY < tb_height()-2) ? statY + 1 : statY;
+			tb_set_cursor(statX, statY);
+			tb_set_cell(  statX, statY,   *c, color.rgb, 0x20000000);
+			goto draw;
+	      case 'a': statX = (statX > 0) ? statX - 1 : 0;
+			tb_set_cursor(statX, statY);
+			tb_set_cell(  statX,   statY, *c, color.rgb, 0x20000000);
+			goto draw;
+	      case 'd': statX = (statX < tb_width()-1) ? statX + 1 : statX;
+			tb_set_cursor(statX, statY);
+			tb_set_cell(  statX,   statY, *c, color.rgb, 0x20000000);
+			goto draw;
       }
       switch (ev.ch) {
         case 'z' : setColor(&color, ev.ch);
@@ -104,31 +110,15 @@ int main(int argc, char **argv) {
     }
 draw:
     drawPalette(slot.arr, slotSize, c);
-    tb_printf(
-	tb_width()-17, tb_height()-1, 
-        0x808080, 0x101010,
-	"x %d    y %d",
-	statX, statY);
+    tb_printf(tb_width()-9, tb_height()-1, UI_FG, UI_BG, "%d, %d", statX, statY);
+
     for (uint8_t i = 1;  i < 5; i++) {
-      tb_set_cell(
-	tb_width()-34+i,
-	tb_height()-1,
-	slot.arr[i],
-	color.rgb,
-	0x101010);
+      tb_set_cell(tb_width()-23+i, tb_height()-1, slot.arr[i], color.rgb, UI_BG);
     }
-    tb_printf(
-	tb_width()-27, tb_height()-1, 
-        0xc0c0c0, 0x401010,
-	"%02X", color.r);
-    tb_printf(
-	tb_width()-25, tb_height()-1, 
-        0xc0c0c0, 0x104010,
-	"%02X", color.g);
-    tb_printf(
-	tb_width()-23, tb_height()-1, 
-        0xc0c0c0, 0x101040,
-	"%02X", color.b);
+    tb_printf(tb_width()-17, tb_height()-1, 0xc0c0c0, 0x401010, "%02X", color.r);
+    tb_printf(tb_width()-15, tb_height()-1, 0xc0c0c0, 0x104010, "%02X", color.g);
+    tb_printf(tb_width()-13, tb_height()-1, 0xc0c0c0, 0x101040, "%02X", color.b);
+    
     tb_present();
     keyTest = ev.ch;
   }
