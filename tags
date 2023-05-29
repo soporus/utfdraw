@@ -1,0 +1,424 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	Makefile	/^CC = gcc$/;"	m
+HEADERS	Makefile	/^HEADERS = $(shell find . -name '.ccls-cache' -type d -prune -o -type f -name '*.h' -print)$/;"	m
+LDGFLAGS	Makefile	/^LDGFLAGS = $(CFLAGS)$/;"	m
+SRCS	Makefile	/^SRCS = $(shell find . -name '.ccls-cache' -type d -prune -o -type f -name '*.c' -print)$/;"	m
+TB_256_BLACK	termbox2.h	213;"	d
+TB_BLACK	termbox2.h	200;"	d
+TB_BLINK	termbox2.h	212;"	d
+TB_BLUE	termbox2.h	204;"	d
+TB_BOLD	termbox2.h	208;"	d
+TB_CAP_ARROW_DOWN	termbox2.h	173;"	d
+TB_CAP_ARROW_LEFT	termbox2.h	174;"	d
+TB_CAP_ARROW_RIGHT	termbox2.h	175;"	d
+TB_CAP_ARROW_UP	termbox2.h	172;"	d
+TB_CAP_BACK_TAB	termbox2.h	176;"	d
+TB_CAP_BLINK	termbox2.h	186;"	d
+TB_CAP_BOLD	termbox2.h	185;"	d
+TB_CAP_CLEAR_SCREEN	termbox2.h	182;"	d
+TB_CAP_DELETE	termbox2.h	167;"	d
+TB_CAP_END	termbox2.h	169;"	d
+TB_CAP_ENTER_CA	termbox2.h	178;"	d
+TB_CAP_ENTER_KEYPAD	termbox2.h	189;"	d
+TB_CAP_EXIT_CA	termbox2.h	179;"	d
+TB_CAP_EXIT_KEYPAD	termbox2.h	190;"	d
+TB_CAP_F1	termbox2.h	154;"	d
+TB_CAP_F10	termbox2.h	163;"	d
+TB_CAP_F11	termbox2.h	164;"	d
+TB_CAP_F12	termbox2.h	165;"	d
+TB_CAP_F2	termbox2.h	155;"	d
+TB_CAP_F3	termbox2.h	156;"	d
+TB_CAP_F4	termbox2.h	157;"	d
+TB_CAP_F5	termbox2.h	158;"	d
+TB_CAP_F6	termbox2.h	159;"	d
+TB_CAP_F7	termbox2.h	160;"	d
+TB_CAP_F8	termbox2.h	161;"	d
+TB_CAP_F9	termbox2.h	162;"	d
+TB_CAP_HIDE_CURSOR	termbox2.h	181;"	d
+TB_CAP_HOME	termbox2.h	168;"	d
+TB_CAP_INSERT	termbox2.h	166;"	d
+TB_CAP_ITALIC	termbox2.h	187;"	d
+TB_CAP_PGDN	termbox2.h	171;"	d
+TB_CAP_PGUP	termbox2.h	170;"	d
+TB_CAP_REVERSE	termbox2.h	188;"	d
+TB_CAP_SGR0	termbox2.h	183;"	d
+TB_CAP_SHOW_CURSOR	termbox2.h	180;"	d
+TB_CAP_UNDERLINE	termbox2.h	184;"	d
+TB_CAP__COUNT	termbox2.h	191;"	d
+TB_CAP__COUNT_KEYS	termbox2.h	177;"	d
+TB_CYAN	termbox2.h	206;"	d
+TB_DEFAULT	termbox2.h	199;"	d
+TB_ERR	termbox2.h	257;"	d
+TB_ERR_CAP_COLLISION	termbox2.h	278;"	d
+TB_ERR_INIT_ALREADY	termbox2.h	259;"	d
+TB_ERR_INIT_OPEN	termbox2.h	260;"	d
+TB_ERR_MEM	termbox2.h	261;"	d
+TB_ERR_NEED_MORE	termbox2.h	258;"	d
+TB_ERR_NOT_INIT	termbox2.h	264;"	d
+TB_ERR_NO_EVENT	termbox2.h	262;"	d
+TB_ERR_NO_TERM	termbox2.h	263;"	d
+TB_ERR_OUT_OF_BOUNDS	termbox2.h	265;"	d
+TB_ERR_POLL	termbox2.h	270;"	d
+TB_ERR_READ	termbox2.h	266;"	d
+TB_ERR_RESIZE_IOCTL	termbox2.h	267;"	d
+TB_ERR_RESIZE_PIPE	termbox2.h	268;"	d
+TB_ERR_RESIZE_POLL	termbox2.h	275;"	d
+TB_ERR_RESIZE_READ	termbox2.h	276;"	d
+TB_ERR_RESIZE_SELECT	termbox2.h	281;"	d
+TB_ERR_RESIZE_SIGACTION	termbox2.h	269;"	d
+TB_ERR_RESIZE_SSCANF	termbox2.h	277;"	d
+TB_ERR_RESIZE_WRITE	termbox2.h	274;"	d
+TB_ERR_SELECT	termbox2.h	280;"	d
+TB_ERR_TCGETATTR	termbox2.h	271;"	d
+TB_ERR_TCSETATTR	termbox2.h	272;"	d
+TB_ERR_UNSUPPORTED_TERM	termbox2.h	273;"	d
+TB_EVENT_KEY	termbox2.h	224;"	d
+TB_EVENT_MOUSE	termbox2.h	226;"	d
+TB_EVENT_RESIZE	termbox2.h	225;"	d
+TB_FUNC_EXTRACT_POST	termbox2.h	285;"	d
+TB_FUNC_EXTRACT_PRE	termbox2.h	284;"	d
+TB_GREEN	termbox2.h	202;"	d
+TB_HARDCAP_ENTER_MOUSE	termbox2.h	195;"	d
+TB_HARDCAP_EXIT_MOUSE	termbox2.h	196;"	d
+TB_IMPL	main.c	1;"	d	file:
+TB_INPUT_ALT	termbox2.h	237;"	d
+TB_INPUT_CURRENT	termbox2.h	235;"	d
+TB_INPUT_ESC	termbox2.h	236;"	d
+TB_INPUT_MOUSE	termbox2.h	238;"	d
+TB_ITALIC	termbox2.h	211;"	d
+TB_KEY_ARROW_DOWN	termbox2.h	143;"	d
+TB_KEY_ARROW_LEFT	termbox2.h	144;"	d
+TB_KEY_ARROW_RIGHT	termbox2.h	145;"	d
+TB_KEY_ARROW_UP	termbox2.h	142;"	d
+TB_KEY_BACKSPACE	termbox2.h	83;"	d
+TB_KEY_BACKSPACE2	termbox2.h	117;"	d
+TB_KEY_BACK_TAB	termbox2.h	146;"	d
+TB_KEY_CTRL_2	termbox2.h	75;"	d
+TB_KEY_CTRL_3	termbox2.h	107;"	d
+TB_KEY_CTRL_4	termbox2.h	108;"	d
+TB_KEY_CTRL_5	termbox2.h	110;"	d
+TB_KEY_CTRL_6	termbox2.h	112;"	d
+TB_KEY_CTRL_7	termbox2.h	113;"	d
+TB_KEY_CTRL_8	termbox2.h	118;"	d
+TB_KEY_CTRL_A	termbox2.h	76;"	d
+TB_KEY_CTRL_B	termbox2.h	77;"	d
+TB_KEY_CTRL_BACKSLASH	termbox2.h	109;"	d
+TB_KEY_CTRL_C	termbox2.h	78;"	d
+TB_KEY_CTRL_D	termbox2.h	79;"	d
+TB_KEY_CTRL_E	termbox2.h	80;"	d
+TB_KEY_CTRL_F	termbox2.h	81;"	d
+TB_KEY_CTRL_G	termbox2.h	82;"	d
+TB_KEY_CTRL_H	termbox2.h	84;"	d
+TB_KEY_CTRL_I	termbox2.h	86;"	d
+TB_KEY_CTRL_J	termbox2.h	87;"	d
+TB_KEY_CTRL_K	termbox2.h	88;"	d
+TB_KEY_CTRL_L	termbox2.h	89;"	d
+TB_KEY_CTRL_LSQ_BRACKET	termbox2.h	106;"	d
+TB_KEY_CTRL_M	termbox2.h	91;"	d
+TB_KEY_CTRL_N	termbox2.h	92;"	d
+TB_KEY_CTRL_O	termbox2.h	93;"	d
+TB_KEY_CTRL_P	termbox2.h	94;"	d
+TB_KEY_CTRL_Q	termbox2.h	95;"	d
+TB_KEY_CTRL_R	termbox2.h	96;"	d
+TB_KEY_CTRL_RSQ_BRACKET	termbox2.h	111;"	d
+TB_KEY_CTRL_S	termbox2.h	97;"	d
+TB_KEY_CTRL_SLASH	termbox2.h	114;"	d
+TB_KEY_CTRL_T	termbox2.h	98;"	d
+TB_KEY_CTRL_TILDE	termbox2.h	74;"	d
+TB_KEY_CTRL_U	termbox2.h	99;"	d
+TB_KEY_CTRL_UNDERSCORE	termbox2.h	115;"	d
+TB_KEY_CTRL_V	termbox2.h	100;"	d
+TB_KEY_CTRL_W	termbox2.h	101;"	d
+TB_KEY_CTRL_X	termbox2.h	102;"	d
+TB_KEY_CTRL_Y	termbox2.h	103;"	d
+TB_KEY_CTRL_Z	termbox2.h	104;"	d
+TB_KEY_DELETE	termbox2.h	137;"	d
+TB_KEY_END	termbox2.h	139;"	d
+TB_KEY_ENTER	termbox2.h	90;"	d
+TB_KEY_ESC	termbox2.h	105;"	d
+TB_KEY_F1	termbox2.h	124;"	d
+TB_KEY_F10	termbox2.h	133;"	d
+TB_KEY_F11	termbox2.h	134;"	d
+TB_KEY_F12	termbox2.h	135;"	d
+TB_KEY_F2	termbox2.h	125;"	d
+TB_KEY_F3	termbox2.h	126;"	d
+TB_KEY_F4	termbox2.h	127;"	d
+TB_KEY_F5	termbox2.h	128;"	d
+TB_KEY_F6	termbox2.h	129;"	d
+TB_KEY_F7	termbox2.h	130;"	d
+TB_KEY_F8	termbox2.h	131;"	d
+TB_KEY_F9	termbox2.h	132;"	d
+TB_KEY_HOME	termbox2.h	138;"	d
+TB_KEY_INSERT	termbox2.h	136;"	d
+TB_KEY_MOUSE_LEFT	termbox2.h	147;"	d
+TB_KEY_MOUSE_MIDDLE	termbox2.h	149;"	d
+TB_KEY_MOUSE_RELEASE	termbox2.h	150;"	d
+TB_KEY_MOUSE_RIGHT	termbox2.h	148;"	d
+TB_KEY_MOUSE_WHEEL_DOWN	termbox2.h	152;"	d
+TB_KEY_MOUSE_WHEEL_UP	termbox2.h	151;"	d
+TB_KEY_PGDN	termbox2.h	141;"	d
+TB_KEY_PGUP	termbox2.h	140;"	d
+TB_KEY_SPACE	termbox2.h	116;"	d
+TB_KEY_TAB	termbox2.h	85;"	d
+TB_LIB_OPTS	main.c	2;"	d	file:
+TB_MAGENTA	termbox2.h	205;"	d
+TB_MOD_ALT	termbox2.h	229;"	d
+TB_MOD_CTRL	termbox2.h	230;"	d
+TB_MOD_MOTION	termbox2.h	232;"	d
+TB_MOD_SHIFT	termbox2.h	231;"	d
+TB_OK	termbox2.h	256;"	d
+TB_OPT_EGC	termbox2.h	66;"	d
+TB_OPT_EGC	termbox2.h	70;"	d
+TB_OPT_PRINTF_BUF	termbox2.h	291;"	d
+TB_OPT_PRINTF_BUF	termbox2.h	67;"	d
+TB_OPT_READ_BUF	termbox2.h	298;"	d
+TB_OPT_READ_BUF	termbox2.h	68;"	d
+TB_OPT_TRUECOLOR	main.c	3;"	d	file:
+TB_OPT_TRUECOLOR	termbox2.h	65;"	d
+TB_OPT_TRUECOLOR	termbox2.h	69;"	d
+TB_OUTPUT_216	termbox2.h	244;"	d
+TB_OUTPUT_256	termbox2.h	243;"	d
+TB_OUTPUT_CURRENT	termbox2.h	241;"	d
+TB_OUTPUT_GRAYSCALE	termbox2.h	245;"	d
+TB_OUTPUT_NORMAL	termbox2.h	242;"	d
+TB_OUTPUT_TRUECOLOR	termbox2.h	247;"	d
+TB_RED	termbox2.h	201;"	d
+TB_RESIZE_FALLBACK_MS	termbox2.h	2175;"	d
+TB_REVERSE	termbox2.h	210;"	d
+TB_TRUECOLOR_BLACK	termbox2.h	220;"	d
+TB_TRUECOLOR_BLINK	termbox2.h	219;"	d
+TB_TRUECOLOR_BOLD	termbox2.h	215;"	d
+TB_TRUECOLOR_ITALIC	termbox2.h	218;"	d
+TB_TRUECOLOR_REVERSE	termbox2.h	217;"	d
+TB_TRUECOLOR_UNDERLINE	termbox2.h	216;"	d
+TB_UNDERLINE	termbox2.h	209;"	d
+TB_VERSION_STR	termbox2.h	61;"	d
+TB_WHITE	termbox2.h	207;"	d
+TB_YELLOW	termbox2.h	203;"	d
+_DEFAULT_SOURCE	termbox2.h	34;"	d
+_XOPEN_SOURCE	termbox2.h	30;"	d
+__TERMBOX_H	termbox2.h	27;"	d
+alias	termbox2.h	/^    const char *alias;$/;"	m	struct:__anon1
+arr	term.h	/^  const uint16_t arr[18];$/;"	m	union:__anon4
+back	termbox2.h	/^    struct cellbuf_t back;$/;"	m	struct:tb_global_t	typeref:struct:tb_global_t::cellbuf_t
+bg	termbox2.h	/^    uintattr_t bg; \/* bitwise background attributes *\/$/;"	m	struct:tb_cell
+bg	termbox2.h	/^    uintattr_t bg;$/;"	m	struct:tb_global_t
+blockBtm	term.h	/^  const uint16_t blockBtm   ;$/;"	m	struct:__anon3
+blockHiThin	term.h	/^  const uint16_t blockHiThin;$/;"	m	struct:__anon3
+blockLoThin	term.h	/^  const uint16_t blockLoThin;$/;"	m	struct:__anon3
+blockTop	term.h	/^  const uint16_t blockTop   ;$/;"	m	struct:__anon3
+blockstruct	term.h	/^} const blockstruct;$/;"	t
+boxFill	term.c	/^void boxFill(uint16_t x, uint16_t y, uint16_t c, $/;"	f
+buf	termbox2.h	/^    char *buf;$/;"	m	struct:bytebuf_t
+builtin_mod_caps	termbox2.h	/^} builtin_mod_caps[] = {$/;"	v	typeref:struct:__anon2
+builtin_terms	termbox2.h	/^} builtin_terms[] = {$/;"	v	typeref:struct:__anon1
+bytebuf_flush	termbox2.h	/^static int bytebuf_flush(struct bytebuf_t *b, int fd) {$/;"	f
+bytebuf_free	termbox2.h	/^static int bytebuf_free(struct bytebuf_t *b) {$/;"	f
+bytebuf_nputs	termbox2.h	/^static int bytebuf_nputs(struct bytebuf_t *b, const char *str, size_t nstr) {$/;"	f
+bytebuf_puts	termbox2.h	/^static int bytebuf_puts(struct bytebuf_t *b, const char *str) {$/;"	f
+bytebuf_reserve	termbox2.h	/^static int bytebuf_reserve(struct bytebuf_t *b, size_t sz) {$/;"	f
+bytebuf_shift	termbox2.h	/^static int bytebuf_shift(struct bytebuf_t *b, size_t n) {$/;"	f
+bytebuf_t	termbox2.h	/^struct bytebuf_t {$/;"	s
+c	termbox2.h	/^    char c;$/;"	m	struct:cap_trie_t
+cap	termbox2.h	/^    const char *cap;$/;"	m	struct:__anon2
+cap	termbox2.h	/^    size_t cap;$/;"	m	struct:bytebuf_t
+cap_trie	termbox2.h	/^    struct cap_trie_t cap_trie;$/;"	m	struct:tb_global_t	typeref:struct:tb_global_t::cap_trie_t
+cap_trie_add	termbox2.h	/^static int cap_trie_add(const char *cap, uint16_t key, uint8_t mod) {$/;"	f
+cap_trie_deinit	termbox2.h	/^static int cap_trie_deinit(struct cap_trie_t *node) {$/;"	f
+cap_trie_find	termbox2.h	/^static int cap_trie_find(const char *buf, size_t nbuf, struct cap_trie_t **last,$/;"	f
+cap_trie_t	termbox2.h	/^struct cap_trie_t {$/;"	s
+caps	termbox2.h	/^    const char **caps;$/;"	m	struct:__anon1
+caps	termbox2.h	/^    const char *caps[TB_CAP__COUNT];$/;"	m	struct:tb_global_t
+cech	termbox2.h	/^    size_t cech;   \/* capacity in bytes of ech *\/$/;"	m	struct:tb_cell
+cell_cmp	termbox2.h	/^static int cell_cmp(struct tb_cell *a, struct tb_cell *b) {$/;"	f
+cell_copy	termbox2.h	/^static int cell_copy(struct tb_cell *dst, struct tb_cell *src) {$/;"	f
+cell_free	termbox2.h	/^static int cell_free(struct tb_cell *cell) {$/;"	f
+cell_reserve_ech	termbox2.h	/^static int cell_reserve_ech(struct tb_cell *cell, size_t n) {$/;"	f
+cell_set	termbox2.h	/^static int cell_set(struct tb_cell *cell, uint32_t *ch, size_t nch,$/;"	f
+cellbuf_clear	termbox2.h	/^static int cellbuf_clear(struct cellbuf_t *c) {$/;"	f
+cellbuf_free	termbox2.h	/^static int cellbuf_free(struct cellbuf_t *c) {$/;"	f
+cellbuf_get	termbox2.h	/^static int cellbuf_get(struct cellbuf_t *c, int x, int y,$/;"	f
+cellbuf_init	termbox2.h	/^static int cellbuf_init(struct cellbuf_t *c, int w, int h) {$/;"	f
+cellbuf_resize	termbox2.h	/^static int cellbuf_resize(struct cellbuf_t *c, int w, int h) {$/;"	f
+cellbuf_t	termbox2.h	/^struct cellbuf_t {$/;"	s
+cells	termbox2.h	/^    struct tb_cell *cells;$/;"	m	struct:cellbuf_t	typeref:struct:cellbuf_t::tb_cell
+ch	termbox2.h	/^    uint32_t ch;   \/* a Unicode character *\/$/;"	m	struct:tb_cell
+ch	termbox2.h	/^    uint32_t ch;  \/* a Unicode code point *\/$/;"	m	struct:tb_event
+children	termbox2.h	/^    struct cap_trie_t *children;$/;"	m	struct:cap_trie_t	typeref:struct:cap_trie_t::cap_trie_t
+convert_num	termbox2.h	/^static int convert_num(uint32_t num, char *buf) {$/;"	f
+cursor_x	termbox2.h	/^    int cursor_x;$/;"	m	struct:tb_global_t
+cursor_y	termbox2.h	/^    int cursor_y;$/;"	m	struct:tb_global_t
+drawPalette	term.c	/^void drawPalette($/;"	f
+ech	termbox2.h	/^    uint32_t *ech; \/* a grapheme cluster of Unicode code points *\/$/;"	m	struct:tb_cell
+errbuf	termbox2.h	/^    char errbuf[1024];$/;"	m	struct:tb_global_t
+eterm_caps	termbox2.h	/^static const char *eterm_caps[] = {$/;"	v
+extract_esc	termbox2.h	/^static int extract_esc(struct tb_event *event) {$/;"	f
+extract_esc_cap	termbox2.h	/^static int extract_esc_cap(struct tb_event *event) {$/;"	f
+extract_esc_mouse	termbox2.h	/^static int extract_esc_mouse(struct tb_event *event) {$/;"	f
+extract_esc_user	termbox2.h	/^static int extract_esc_user(struct tb_event *event, int is_post) {$/;"	f
+extract_event	termbox2.h	/^static int extract_event(struct tb_event *event) {$/;"	f
+fg	termbox2.h	/^    uintattr_t fg; \/* bitwise foreground attributes *\/$/;"	m	struct:tb_cell
+fg	termbox2.h	/^    uintattr_t fg;$/;"	m	struct:tb_global_t
+fn_extract_esc_post	termbox2.h	/^    int (*fn_extract_esc_post)(struct tb_event *, size_t *);$/;"	m	struct:tb_global_t
+fn_extract_esc_pre	termbox2.h	/^    int (*fn_extract_esc_pre)(struct tb_event *, size_t *);$/;"	m	struct:tb_global_t
+front	termbox2.h	/^    struct cellbuf_t front;$/;"	m	struct:tb_global_t	typeref:struct:tb_global_t::cellbuf_t
+full	term.h	/^  const uint16_t full       ;$/;"	m	struct:__anon3
+get_terminfo_string	termbox2.h	/^static const char *get_terminfo_string(int16_t str_offsets_pos,$/;"	f
+global	termbox2.h	/^static struct tb_global_t global = {0};$/;"	v	typeref:struct:tb_global_t
+h	termbox2.h	/^    int32_t h;    \/* resize height *\/$/;"	m	struct:tb_event
+hLine	term.c	/^void hLine(uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c) {$/;"	f
+handle_resize	termbox2.h	/^static void handle_resize(int sig) {$/;"	f
+has_orig_tios	termbox2.h	/^    int has_orig_tios;$/;"	m	struct:tb_global_t
+height	termbox2.h	/^    int height;$/;"	m	struct:cellbuf_t
+height	termbox2.h	/^    int height;$/;"	m	struct:tb_global_t
+if_err_break	termbox2.h	605;"	d
+if_err_return	termbox2.h	602;"	d
+if_not_init_return	termbox2.h	629;"	d
+if_ok_or_need_more_return	termbox2.h	611;"	d
+if_ok_return	termbox2.h	608;"	d
+in	termbox2.h	/^    struct bytebuf_t in;$/;"	m	struct:tb_global_t	typeref:struct:tb_global_t::bytebuf_t
+init_cap_trie	termbox2.h	/^static int init_cap_trie(void) {$/;"	f
+init_cellbuf	termbox2.h	/^static int init_cellbuf(void) {$/;"	f
+init_resize_handler	termbox2.h	/^static int init_resize_handler(void) {$/;"	f
+init_term_attrs	termbox2.h	/^static int init_term_attrs(void) {$/;"	f
+init_term_caps	termbox2.h	/^static int init_term_caps(void) {$/;"	f
+initialized	termbox2.h	/^    int initialized;$/;"	m	struct:tb_global_t
+input_mode	termbox2.h	/^    int input_mode;$/;"	m	struct:tb_global_t
+is_leaf	termbox2.h	/^    int is_leaf;$/;"	m	struct:cap_trie_t
+key	termbox2.h	/^    const uint16_t key;$/;"	m	struct:__anon2
+key	termbox2.h	/^    uint16_t key; \/* one of TB_KEY_* constants *\/$/;"	m	struct:tb_event
+key	termbox2.h	/^    uint16_t key;$/;"	m	struct:cap_trie_t
+last_bg	termbox2.h	/^    uintattr_t last_bg;$/;"	m	struct:tb_global_t
+last_errno	termbox2.h	/^    int last_errno;$/;"	m	struct:tb_global_t
+last_fg	termbox2.h	/^    uintattr_t last_fg;$/;"	m	struct:tb_global_t
+last_x	termbox2.h	/^    int last_x;$/;"	m	struct:tb_global_t
+last_y	termbox2.h	/^    int last_y;$/;"	m	struct:tb_global_t
+len	termbox2.h	/^    size_t len;$/;"	m	struct:bytebuf_t
+linux_caps	termbox2.h	/^static const char *linux_caps[] = {$/;"	v
+load_builtin_caps	termbox2.h	/^static int load_builtin_caps(void) {$/;"	f
+load_terminfo	termbox2.h	/^static int load_terminfo(void) {$/;"	f
+load_terminfo_from_path	termbox2.h	/^static int load_terminfo_from_path(const char *path, const char *term) {$/;"	f
+main	main.c	/^int main(int argc, char **argv) {$/;"	f
+midBlock	term.h	/^  const uint16_t midBlock   ;$/;"	m	struct:__anon3
+mod	termbox2.h	/^    const uint8_t mod;$/;"	m	struct:__anon2
+mod	termbox2.h	/^    uint8_t mod;  \/* bitwise TB_MOD_* constants *\/$/;"	m	struct:tb_event
+mod	termbox2.h	/^    uint8_t mod;$/;"	m	struct:cap_trie_t
+name	termbox2.h	/^    const char *name;$/;"	m	struct:__anon1
+nchildren	termbox2.h	/^    size_t nchildren;$/;"	m	struct:cap_trie_t
+nech	termbox2.h	/^    size_t nech;   \/* length in bytes of ech, 0 means use ch instead of ech *\/$/;"	m	struct:tb_cell
+nterminfo	termbox2.h	/^    size_t nterminfo;$/;"	m	struct:tb_global_t
+orig_tios	termbox2.h	/^    struct termios orig_tios;$/;"	m	struct:tb_global_t	typeref:struct:tb_global_t::termios
+out	termbox2.h	/^    struct bytebuf_t out;$/;"	m	struct:tb_global_t	typeref:struct:tb_global_t::bytebuf_t
+output_mode	termbox2.h	/^    int output_mode;$/;"	m	struct:tb_global_t
+parse_terminfo_caps	termbox2.h	/^static int parse_terminfo_caps(void) {$/;"	f
+randCell	term.c	/^void randCell(const uint16_t quant, const uint16_t size, uint16_t c) {$/;"	f
+randLine	term.c	/^void randLine(void) {$/;"	f
+randRange	term.c	/^const uint32_t randRange(const uint32_t min, const uint32_t max) {$/;"	f
+read_terminfo_path	termbox2.h	/^static int read_terminfo_path(const char *path) {$/;"	f
+resize_cellbufs	termbox2.h	/^static int resize_cellbufs(void) {$/;"	f
+resize_pipefd	termbox2.h	/^    int resize_pipefd[2];$/;"	m	struct:tb_global_t
+rfd	termbox2.h	/^    int rfd;$/;"	m	struct:tb_global_t
+rxvt_256color_caps	termbox2.h	/^static const char *rxvt_256color_caps[] = {$/;"	v
+rxvt_unicode_caps	termbox2.h	/^static const char *rxvt_unicode_caps[] = {$/;"	v
+screen_caps	termbox2.h	/^static const char *screen_caps[] = {$/;"	v
+send_attr	termbox2.h	/^static int send_attr(uintattr_t fg, uintattr_t bg) {$/;"	f
+send_char	termbox2.h	/^static int send_char(int x, int y, uint32_t ch) {$/;"	f
+send_clear	termbox2.h	/^static int send_clear(void) {$/;"	f
+send_cluster	termbox2.h	/^static int send_cluster(int x, int y, uint32_t *ch, size_t nch) {$/;"	f
+send_cursor_if	termbox2.h	/^static int send_cursor_if(int x, int y) {$/;"	f
+send_init_escape_codes	termbox2.h	/^static int send_init_escape_codes(void) {$/;"	f
+send_literal	termbox2.h	615;"	d
+send_num	termbox2.h	618;"	d
+send_sgr	termbox2.h	/^static int send_sgr(uintattr_t cfg, uintattr_t cbg, int fg_is_default,$/;"	f
+setColor	term.c	/^uint32_t setColor(uint32_t *color, uint32_t ch) {$/;"	f
+shadeHi	term.h	/^  const uint16_t shadeHi    ;$/;"	m	struct:__anon3
+shadeLo	term.h	/^  const uint16_t shadeLo    ;$/;"	m	struct:__anon3
+shadeMed	term.h	/^  const uint16_t shadeMed   ;$/;"	m	struct:__anon3
+slots	term.h	/^} const slots;$/;"	t
+smLoL	term.h	/^  const uint16_t smLoL      ;$/;"	m	struct:__anon3
+smLoR	term.h	/^  const uint16_t smLoR      ;$/;"	m	struct:__anon3
+smUpperL	term.h	/^  const uint16_t smUpperL   ;$/;"	m	struct:__anon3
+smUpperR	term.h	/^  const uint16_t smUpperR   ;$/;"	m	struct:__anon3
+snprintf_or_return	termbox2.h	622;"	d
+spaceblock	term.h	/^  const uint16_t spaceblock ;$/;"	m	struct:__anon3
+stp	term.h	/^  const blockstruct stp;$/;"	m	union:__anon4
+tallHalfL	term.h	/^  const uint16_t tallHalfL  ;$/;"	m	struct:__anon3
+tallHalfR	term.h	/^  const uint16_t tallHalfR  ;$/;"	m	struct:__anon3
+tallThinL	term.h	/^  const uint16_t tallThinL  ;$/;"	m	struct:__anon3
+tallThinR	term.h	/^  const uint16_t tallThinR  ;$/;"	m	struct:__anon3
+tb_cell	termbox2.h	/^struct tb_cell {$/;"	s
+tb_cell_buffer	termbox2.h	/^struct tb_cell *tb_cell_buffer(void) {$/;"	f
+tb_change_cell	termbox2.h	303;"	d
+tb_clear	termbox2.h	/^int tb_clear(void) {$/;"	f
+tb_deinit	termbox2.h	/^static int tb_deinit(void) {$/;"	f
+tb_event	termbox2.h	/^struct tb_event {$/;"	s
+tb_extend_cell	termbox2.h	/^int tb_extend_cell(int x, int y, uint32_t ch) {$/;"	f
+tb_free	termbox2.h	314;"	d
+tb_get_fds	termbox2.h	/^int tb_get_fds(int *ttyfd, int *resizefd) {$/;"	f
+tb_global_t	termbox2.h	/^struct tb_global_t {$/;"	s
+tb_has_egc	termbox2.h	/^int tb_has_egc(void) {$/;"	f
+tb_has_truecolor	termbox2.h	/^int tb_has_truecolor(void) {$/;"	f
+tb_height	termbox2.h	/^int tb_height(void) {$/;"	f
+tb_hide_cursor	termbox2.h	/^int tb_hide_cursor(void) {$/;"	f
+tb_init	termbox2.h	/^int tb_init(void) {$/;"	f
+tb_init_fd	termbox2.h	/^int tb_init_fd(int ttyfd) {$/;"	f
+tb_init_file	termbox2.h	/^int tb_init_file(const char *path) {$/;"	f
+tb_init_rwfd	termbox2.h	/^int tb_init_rwfd(int rfd, int wfd) {$/;"	f
+tb_invalidate	termbox2.h	/^int tb_invalidate(void) {$/;"	f
+tb_key_i	termbox2.h	120;"	d
+tb_last_errno	termbox2.h	/^int tb_last_errno(void) {$/;"	f
+tb_malloc	termbox2.h	312;"	d
+tb_peek_event	termbox2.h	/^int tb_peek_event(struct tb_event *event, int timeout_ms) {$/;"	f
+tb_poll_event	termbox2.h	/^int tb_poll_event(struct tb_event *event) {$/;"	f
+tb_present	termbox2.h	/^int tb_present(void) {$/;"	f
+tb_print	termbox2.h	/^int tb_print(int x, int y, uintattr_t fg, uintattr_t bg, const char *str) {$/;"	f
+tb_print_ex	termbox2.h	/^int tb_print_ex(int x, int y, uintattr_t fg, uintattr_t bg, size_t *out_w,$/;"	f
+tb_printf	termbox2.h	/^int tb_printf(int x, int y, uintattr_t fg, uintattr_t bg, const char *fmt,$/;"	f
+tb_printf_ex	termbox2.h	/^int tb_printf_ex(int x, int y, uintattr_t fg, uintattr_t bg, size_t *out_w,$/;"	f
+tb_printf_inner	termbox2.h	/^int tb_printf_inner(int x, int y, uintattr_t fg, uintattr_t bg, size_t *out_w,$/;"	f
+tb_put_cell	termbox2.h	304;"	d
+tb_realloc	termbox2.h	313;"	d
+tb_reset	termbox2.h	/^static int tb_reset(void) {$/;"	f
+tb_select_input_mode	termbox2.h	306;"	d
+tb_select_output_mode	termbox2.h	307;"	d
+tb_send	termbox2.h	/^int tb_send(const char *buf, size_t nbuf) {$/;"	f
+tb_sendf	termbox2.h	/^int tb_sendf(const char *fmt, ...) {$/;"	f
+tb_set_cell	termbox2.h	/^int tb_set_cell(int x, int y, uint32_t ch, uintattr_t fg, uintattr_t bg) {$/;"	f
+tb_set_cell_ex	termbox2.h	/^int tb_set_cell_ex(int x, int y, uint32_t *ch, size_t nch, uintattr_t fg,$/;"	f
+tb_set_clear_attributes	termbox2.h	305;"	d
+tb_set_clear_attrs	termbox2.h	/^int tb_set_clear_attrs(uintattr_t fg, uintattr_t bg) {$/;"	f
+tb_set_cursor	termbox2.h	/^int tb_set_cursor(int cx, int cy) {$/;"	f
+tb_set_func	termbox2.h	/^int tb_set_func(int fn_type, int (*fn)(struct tb_event *, size_t *)) {$/;"	f
+tb_set_input_mode	termbox2.h	/^int tb_set_input_mode(int mode) {$/;"	f
+tb_set_output_mode	termbox2.h	/^int tb_set_output_mode(int mode) {$/;"	f
+tb_shutdown	termbox2.h	/^int tb_shutdown(void) {$/;"	f
+tb_strerror	termbox2.h	/^const char *tb_strerror(int err) {$/;"	f
+tb_utf8_char_length	termbox2.h	/^int tb_utf8_char_length(char c) {$/;"	f
+tb_utf8_char_to_unicode	termbox2.h	/^int tb_utf8_char_to_unicode(uint32_t *out, const char *c) {$/;"	f
+tb_utf8_unicode_to_char	termbox2.h	/^int tb_utf8_unicode_to_char(char *out, uint32_t c) {$/;"	f
+tb_version	termbox2.h	/^const char *tb_version(void) {$/;"	f
+tb_width	termbox2.h	/^int tb_width(void) {$/;"	f
+terminfo	termbox2.h	/^    char *terminfo;$/;"	m	struct:tb_global_t
+terminfo_cap_indexes	termbox2.h	/^static const int16_t terminfo_cap_indexes[] = {$/;"	v
+ttyfd	termbox2.h	/^    int ttyfd;$/;"	m	struct:tb_global_t
+ttyfd_open	termbox2.h	/^    int ttyfd_open;$/;"	m	struct:tb_global_t
+type	termbox2.h	/^    uint8_t type; \/* one of TB_EVENT_* constants *\/$/;"	m	struct:tb_event
+uintattr_t	termbox2.h	/^typedef uint32_t uintattr_t;$/;"	t
+update_term_size	termbox2.h	/^static int update_term_size(void) {$/;"	f
+update_term_size_via_esc	termbox2.h	/^static int update_term_size_via_esc(void) {$/;"	f
+utf8_length	termbox2.h	/^static const unsigned char utf8_length[256] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,$/;"	v
+utf8_mask	termbox2.h	/^static const unsigned char utf8_mask[6] = {0x7f, 0x1f, 0x0f, 0x07, 0x03, 0x01};$/;"	v
+vLine	term.c	/^void vLine(uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c) {$/;"	f
+w	termbox2.h	/^    int32_t w;    \/* resize width *\/$/;"	m	struct:tb_event
+wait_event	termbox2.h	/^static int wait_event(struct tb_event *event, int timeout) {$/;"	f
+wfd	termbox2.h	/^    int wfd;$/;"	m	struct:tb_global_t
+width	termbox2.h	/^    int width;$/;"	m	struct:cellbuf_t
+width	termbox2.h	/^    int width;$/;"	m	struct:tb_global_t
+x	termbox2.h	/^    int32_t x;    \/* mouse x *\/$/;"	m	struct:tb_event
+xterm_caps	termbox2.h	/^static const char *xterm_caps[] = {$/;"	v
+y	termbox2.h	/^    int32_t y;    \/* mouse y *\/$/;"	m	struct:tb_event

@@ -1,0 +1,12 @@
+total 1.7M
+drwxrwxr-x 2 soporus soporus 4.0K May 11 15:38 .
+drwxrwxr-x 4 soporus soporus 4.0K May  8 00:16 ..
+-rwxrwxr-x 1 soporus soporus 1.6M May 11 13:07 main
+-rw-rw-r-- 1 soporus soporus  485 May 11 03:58 Makefile
+-rw-rw-r-- 1 soporus soporus  427 May  8 00:35 Makefile.txt
+-rw-rw-r-- 1 soporus soporus    0 May 11 15:39 size.txt
+-rw-rw-r-- 1 soporus soporus 117K May  8 00:34 termbox2.h
+-rw-rw-r-- 1 soporus soporus 2.8K May  7 23:27 termbox.md
+-rw-rw-r-- 1 soporus soporus 1.3K May 11 02:10 term.c
+-rw-rw-r-- 1 soporus soporus 3.2K May 11 13:06 term.h
+-rw-r--r-- 1 soporus soporus  12K May 11 13:06 .term.h.swp
