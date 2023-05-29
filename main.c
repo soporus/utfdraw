@@ -4,6 +4,7 @@
 
 #define UI_FG 0x808080
 #define UI_BG 0x101010
+#define BLACK 0x20000000           // true color black
 
 #include "term.h"
 
@@ -76,19 +77,19 @@ int main(int argc, char **argv) {
       switch (ev.ch) {
 	      case 'w': statY = (statY > 0) ? statY - 1 : 0;
 			tb_set_cursor(statX, statY);
-			tb_set_cell(  statX, statY, *  c, color.rgb, 0x20000000);
+			tb_set_cell(  statX, statY, *  c, color.rgb, BLACK);
 			goto draw;
 	      case 's': statY = (statY < tb_height()-2) ? statY + 1 : statY;
 			tb_set_cursor(statX, statY);
-			tb_set_cell(  statX, statY,   *c, color.rgb, 0x20000000);
+			tb_set_cell(  statX, statY,   *c, color.rgb, BLACK);
 			goto draw;
 	      case 'a': statX = (statX > 0) ? statX - 1 : 0;
 			tb_set_cursor(statX, statY);
-			tb_set_cell(  statX,   statY, *c, color.rgb, 0x20000000);
+			tb_set_cell(  statX,   statY, *c, color.rgb, BLACK);
 			goto draw;
 	      case 'd': statX = (statX < tb_width()-1) ? statX + 1 : statX;
 			tb_set_cursor(statX, statY);
-			tb_set_cell(  statX,   statY, *c, color.rgb, 0x20000000);
+			tb_set_cell(  statX,   statY, *c, color.rgb, BLACK);
 			goto draw;
       }
       switch (ev.ch) {
@@ -103,7 +104,7 @@ int main(int argc, char **argv) {
     }
     if(ev.key == TB_KEY_MOUSE_LEFT) {
       tb_set_cursor(ev.x, ev.y);
-      tb_set_cell(  ev.x, ev.y, *c, color.rgb, 0x20000000);
+      tb_set_cell(  ev.x, ev.y, *c, color.rgb, BLACK);
       statX =   (uint8_t) ev.x;
       statY =   (uint8_t) ev.y;
       goto draw;
