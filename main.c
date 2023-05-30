@@ -105,12 +105,10 @@ int main( int argc, char **argv ) {
     }
   draw:
     drawPalette( slot.arr, slotSize, c );
-    tb_printf( tb_width() - 9, tb_height() - 1, UI_FG, UI_BG, "%d, %d", statX,
-               statY );
+    tb_printf( tb_width() - 9, tb_height() - 1, UI_FG, UI_BG, "%d, %d", statX, statY );
 
     for ( uint8_t i = 1; i < 5; i++ ) {
-      tb_set_cell( tb_width() - 23 + i, tb_height() - 1, slot.arr[i], color.rgb,
-                   UI_BG );
+      tb_set_cell( tb_width() - 23 + i, tb_height() - 1, slot.arr[i], color.rgb, UI_BG );
     }
     tb_printf( tb_width() - 17, tb_height() - 1, RGBFG, RGBr, "%02X", color.r );
     tb_printf( tb_width() - 15, tb_height() - 1, RGBFG, RGBg, "%02X", color.g );
