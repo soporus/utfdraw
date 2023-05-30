@@ -5,6 +5,10 @@
 #define UI_FG 0x808080
 #define UI_BG 0x101010
 #define BLACK 0x20000000 // true color black
+#define RGBFG 0xC0C0C0   // RGB status foreground color
+#define RGBr  0x401010   // RGB status foreground color
+#define RGBg  0x104010   // RGB status foreground color
+#define RGBb  0x101040   // RGB status foreground color
 
 #include "term.h"
 
@@ -108,12 +112,9 @@ int main( int argc, char **argv ) {
       tb_set_cell( tb_width() - 23 + i, tb_height() - 1, slot.arr[i], color.rgb,
                    UI_BG );
     }
-    tb_printf( tb_width() - 17, tb_height() - 1, 0xc0c0c0, 0x401010, "%02X",
-               color.r );
-    tb_printf( tb_width() - 15, tb_height() - 1, 0xc0c0c0, 0x104010, "%02X",
-               color.g );
-    tb_printf( tb_width() - 13, tb_height() - 1, 0xc0c0c0, 0x101040, "%02X",
-               color.b );
+    tb_printf( tb_width() - 17, tb_height() - 1, RGBFG, RGBr, "%02X", color.r );
+    tb_printf( tb_width() - 15, tb_height() - 1, RGBFG, RGBg, "%02X", color.g );
+    tb_printf( tb_width() - 13, tb_height() - 1, RGBFG, RGBb, "%02X", color.b );
 
     tb_present();
     keyTest = ev.ch;
