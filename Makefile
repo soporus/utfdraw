@@ -1,7 +1,7 @@
 all: main
 
 CC = gcc
-override CFLAGS += -std=gnu17 -o0 -Wconversion -Wno-sign-conversion -Wdouble-promotion -ffunction-sections --warn-function-elimination -flto -v -march=native
+override CFLAGS += -std=gnu17 -o0 -Wconversion -Wno-sign-conversion -Wdouble-promotion -ffunction-sections --warn-function-elimination -flto -v -march=native -fwhole-program
 
 LDGFLAGS = $(CFLAGS)
 
@@ -12,7 +12,7 @@ main: $(SRCS) $(HEADERS)
 	$(CC) $(CFLAGS) $(SRCS) $(LDFLAGS) -o  "$@"
 
 main-debug: $(SRCS) $(HEADERS)
-	$(CC) -std=gnu17 -fsanitize=address -ggdb3 -v -Og $(SRCS) -o "$@"
+	$(CC) -std=gnu17 -fvar-tracking -fsanitize=address -ggdb3 -v $(SRCS) -o "$@"
 
 strip: $(SRCS) $(HEADERS)
 	$(CC) $(CFLAGS) $(SRCS) -o  main && strip --strip-all --verbose main

@@ -95,6 +95,10 @@ int main( int argc, char **argv ) {
       case 'c': setColor( &color, ev.ch ); goto draw;
       default: break;
       }
+      if ( ev.key == 65517 ) {
+        statY = ( statY > 0 ) ? statY - 1 : 0;
+        tb_set_cursor( statX, statY );
+      }
     }
     if ( ev.key == TB_KEY_MOUSE_LEFT ) {
       tb_set_cursor( ev.x, ev.y );
@@ -113,7 +117,8 @@ int main( int argc, char **argv ) {
     tb_printf( tb_width() - 17, tb_height() - 1, RGBFG, RGBr, "%02X", color.r );
     tb_printf( tb_width() - 15, tb_height() - 1, RGBFG, RGBg, "%02X", color.g );
     tb_printf( tb_width() - 13, tb_height() - 1, RGBFG, RGBb, "%02X", color.b );
-
+    // struct tb_cell *cell;
+    // cellbuf_get(&global.back, x, y, &cell));
     tb_present();
     keyTest = ev.ch;
   }
