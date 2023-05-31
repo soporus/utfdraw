@@ -1,7 +1,7 @@
 all: main
 
 CC = gcc
-override CFLAGS += -std=gnu17 -o0 -Wconversion -Wno-sign-conversion -Wdouble-promotion -ffunction-sections --warn-function-elimination -flto -v -march=native -fwhole-program
+override CFLAGS += -std=gnu17 -oS -Wconversion -Wno-sign-conversion -Wdouble-promotion -ffunction-sections --warn-function-elimination -flto -v -march=native -fwhole-program
 
 LDGFLAGS = $(CFLAGS)
 

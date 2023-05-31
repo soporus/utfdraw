@@ -11,9 +11,7 @@ void setColor( Color *color, uint32_t ch ) {
 }
 
 // draw palette characters at screen bottom
-void drawPalette( const uint16_t arr[],
-                  const uint16_t len,
-                  const uint16_t *c ) {
+void drawPalette( const uint16_t arr[], const uint16_t len, const uint16_t *c ) {
   hLine( 0, (uint16_t) tb_height() - 1, 0, 0x101010, ' ' );
   const uint16_t y = (uint16_t) tb_height() - 1;
   uint32_t cfg     = 0x20000000;
@@ -31,16 +29,14 @@ const uint32_t randRange( const uint32_t min, const uint32_t max ) {
 }
 
 // draw a horizontal line
-void hLine(
-    uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c ) {
+void hLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c ) {
   for ( ; x < tb_width(); ++x ) {
     tb_set_cell( x, y, c, fgCol, bgCol );
   }
 }
 
 // draw a vertical line
-void vLine(
-    uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c ) {
+void vLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c ) {
   for ( ; y < tb_height(); ++y ) {
     tb_set_cell( x, y, ' ', fgCol, bgCol );
   }
