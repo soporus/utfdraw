@@ -36,6 +36,7 @@ typedef union {
   };
 } Color;
 
+// increment value of RGB color channels until wrap to 0
 void setColor( Color *color, uint32_t ch );
 
 // draw a horizontal line
