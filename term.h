@@ -19,10 +19,10 @@ typedef struct {
   const uint16_t smUpperL;
   const uint16_t tallThinR;
   const uint16_t tallHalfR;
-} const blockstruct;
+} const blocks;
 
 typedef union {
-  const blockstruct stp;
+  const blocks stp;
   const uint16_t arr[18];
 } const slots;
 
@@ -39,12 +39,10 @@ typedef union {
 void setColor( Color *color, uint32_t ch );
 
 // draw a horizontal line
-void hLine(
-    uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c );
+void hLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c );
 
 // draw a vertical line
-void vLine(
-    uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c );
+void vLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c );
 
 // draw palette characters at screen bottom
 void drawPalette( const uint16_t array[], uint16_t len, const uint16_t *c );
