@@ -62,7 +62,7 @@ int main( int argc, char **argv ) {
       goto draw;
     }
     if ( keyTest != ev.ch ) { // check only if a key was pressed
-      switch ( ev.ch ) {      // then check which key to change char
+      switch ( ev.ch ) {
       // block select
       case '1': c = &st->spaceblock; goto draw;
       case '2': c = &st->shadeLo; goto draw;
