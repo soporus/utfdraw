@@ -28,7 +28,7 @@ void drawPalette( const uint16_t arr[], const uint16_t len, const uint16_t *c ) 
   uint32_t cfg     = fg_UI;
   uint32_t cbg     = bg_UI;
   for ( uint16_t i = 0; i <= len; ++i ) {
-    cfg = ( ( arr[i] == *c ) ? 0xF0F0F0 : fg_UI );
+    cfg = ( ( arr[i] == *c ) ? WHITE : fg_UI );
     cbg = ( ( arr[i] == *c ) ? BLACK : bg_UI );
     tb_set_cell( i, y, arr[i], cfg, cbg );
   }
