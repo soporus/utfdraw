@@ -10,29 +10,21 @@
 #define bg_B   0x101040   // RGB status foreground color
 
 typedef struct {
-  const uint16_t spaceblock;
-  const uint16_t shadeLo;
-  const uint16_t shadeMed;
-  const uint16_t shadeHi;
-  const uint16_t full;
-  const uint16_t blockTop;
-  const uint16_t blockHiThin;
-  const uint16_t blockLoThin;
-  const uint16_t blockBtm;
-  const uint16_t midBlock;
-  const uint16_t tallHalfL;
-  const uint16_t tallThinL;
-  const uint16_t smUpperR;
-  const uint16_t smLoL;
-  const uint16_t smLoR;
-  const uint16_t smUpperL;
-  const uint16_t tallThinR;
-  const uint16_t tallHalfR;
+  const uint16_t space;
+  const uint16_t shadL;
+  const uint16_t shadM;
+  const uint16_t shadH;
+  const uint16_t fullH;
+  const uint16_t blkTp;
+  const uint16_t blkHi;
+  const uint16_t blkLo;
+  const uint16_t blkBt;
+  const uint16_t blkMd;
 } const blocks;
 
 typedef union {
   const blocks stp;
-  const uint16_t arr[18];
+  const uint16_t arr[10];
 } const slots;
 
 typedef union {
