@@ -62,15 +62,14 @@ int main( int argc, char **argv ) {
       case '9': c = &st->blkBt; goto draw;
       case '0': c = &st->blkMd; goto draw;
       // colors
-      case 'z': setColor( &color, ev->ch ); goto draw;
-      case 'x': setColor( &color, ev->ch ); goto draw;
-      case 'c': setColor( &color, ev->ch ); goto draw;
+      case 'z': setColor( &color, &ev->ch ); goto draw;
+      case 'x': setColor( &color, &ev->ch ); goto draw;
+      case 'c': setColor( &color, &ev->ch ); goto draw;
       // directional draw
       case 'w': sY = ( sY > 0 ) ? sY - ( ++wasd ) : 0; break;
       case 'a': sX = ( sX > 0 ) ? sX - ( ++wasd ) : 0; break;
       case 's': sY = ( sY < tb_height() - 2 ) ? sY + ( ++wasd ) : sY; break;
       case 'd': sX = ( sX < tb_width() - 1 ) ? sX + ( ++wasd ) : sX; break;
-      default: break;
       }
       switch ( ev->key ) {
         // directional no draw
@@ -78,7 +77,6 @@ int main( int argc, char **argv ) {
       case TB_KEY_ARROW_LEFT: sX = ( sX > 0 ) ? sX - ( ++wasd ) : 0; break;
       case TB_KEY_ARROW_DOWN: sY = ( sY < tb_height() - 2 ) ? sY + ( ++wasd ) : sY; break;
       case TB_KEY_ARROW_RIGHT: sX = ( sX < tb_width() - 1 ) ? sX + ( ++wasd ) : sX; break;
-      default: break;
       }
       if ( wasd == 1 ) {
         tb_set_cursor( sX, sY );

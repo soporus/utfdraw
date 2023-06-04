@@ -38,7 +38,10 @@ typedef union {
 } Color;
 
 // increment value of RGB color channels until wrap to 0
-void setColor( Color *color, uint32_t ch );
+// void setColor( Color *color, uint32_t ch );
+
+// increment value of RGB color channels until wrap to 0
+void setColor( Color *color, uint32_t *c );
 
 // draw a horizontal line
 void hLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c );
@@ -47,10 +50,10 @@ void hLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c )
 void vLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c );
 
 // draw palette characters at screen bottom
-void drawPalette( const uint16_t array[], uint16_t len, const uint16_t *c );
+void drawPalette( const uint16_t *array, const uint8_t len, const uint16_t *c );
 
 // draw current color settings
-void drawColorStatus( const Color *color, const uint16_t array[] );
+void drawColorStatus( const Color *color, const uint16_t *array );
 
 // rand uint16_t in range
 const uint32_t randRange( const uint32_t min, const uint32_t max );

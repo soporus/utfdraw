@@ -1,8 +1,8 @@
 #include "term.h"
 
 // increment value of RGB color channels until wrap to 0
-void setColor( Color *color, uint32_t ch ) {
-  switch ( ch ) {
+void setColor( Color *color, uint32_t *c ) {
+  switch ( *c ) {
   case 'z': color->r += 8; break;
   case 'x': color->g += 8; break;
   case 'c': color->b += 8; break;
@@ -18,11 +18,11 @@ void hLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c )
 // draw a vertical line
 void vLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c ) {
   for ( ; y < tb_height(); ++y ) {
-    tb_set_cell( x, y, ' ', fgCol, bgCol );
+    tb_set_cell( x, y, c, fgCol, bgCol );
   }
 }
 // draw palette characters at screen bottom
-void drawPalette( const uint16_t arr[], const uint16_t len, const uint16_t *c ) {
+void drawPalette( const uint16_t *arr, const uint8_t len, const uint16_t *c ) {
   hLine( 0, (uint16_t) tb_height() - 1, 0, bg_UI, ' ' );
   const uint16_t y = (uint16_t) tb_height() - 1;
   uint32_t cfg     = fg_UI;
@@ -34,7 +34,7 @@ void drawPalette( const uint16_t arr[], const uint16_t len, const uint16_t *c ) 
   }
 }
 // draw current color settings
-void drawColorStatus( const Color *color, const uint16_t array[] ) {
+void drawColorStatus( const Color *color, const uint16_t *array ) {
   for ( uint8_t i = 1; i < 5; i++ ) {
     tb_set_cell( tb_width() - 23 + i, tb_height() - 1, array[i], color->rgb, bg_UI );
   }
