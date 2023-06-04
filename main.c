@@ -38,6 +38,7 @@ int main( int argc, char **argv ) {
     static uint8_t sY = 0;
 
     uint8_t wasd = 0;
+    uint8_t hjkl = 0;
     // listen (non blocking)
     tb_peek_event( ev, 17 );
     if ( ev->key == TB_KEY_MOUSE_LEFT ) {
@@ -70,18 +71,17 @@ int main( int argc, char **argv ) {
       case 'a': sX = ( sX > 0 ) ? sX - ( ++wasd ) : 0; break;
       case 's': sY = ( sY < tb_height() - 2 ) ? sY + ( ++wasd ) : sY; break;
       case 'd': sX = ( sX < tb_width() - 1 ) ? sX + ( ++wasd ) : sX; break;
-      }
-      switch ( ev->key ) {
-        // directional no draw
-      case TB_KEY_ARROW_UP: sY = ( sY > 0 ) ? sY - ( ++wasd ) : 0; break;
-      case TB_KEY_ARROW_LEFT: sX = ( sX > 0 ) ? sX - ( ++wasd ) : 0; break;
-      case TB_KEY_ARROW_DOWN: sY = ( sY < tb_height() - 2 ) ? sY + ( ++wasd ) : sY; break;
-      case TB_KEY_ARROW_RIGHT: sX = ( sX < tb_width() - 1 ) ? sX + ( ++wasd ) : sX; break;
+      // directional no draw
+      case 'k': sY = ( sY > 0 ) ? sY - ( ++hjkl ) : 0; break;
+      case 'h': sX = ( sX > 0 ) ? sX - ( ++hjkl ) : 0; break;
+      case 'j': sY = ( sY < tb_height() - 2 ) ? sY + ( ++hjkl ) : sY; break;
+      case 'l': sX = ( sX < tb_width() - 1 ) ? sX + ( ++hjkl ) : sX; break;
       }
       if ( wasd == 1 ) {
         tb_set_cursor( sX, sY );
         tb_set_cell( sX, sY, *c, color.rgb, BLACK );
       }
+      if ( hjkl == 1 ) { tb_set_cursor( sX, sY ); }
     }
   draw:
     drawPalette( slot.arr, slotSize, c );
