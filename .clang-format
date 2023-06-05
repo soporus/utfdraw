@@ -1,4 +1,5 @@
 ﻿---
+Language: Cpp
 BasedOnStyle: LLVM
 AlignAfterOpenBracket: Align
 AlignConsecutiveMacros: 'true'
@@ -16,8 +17,8 @@ AlwaysBreakAfterDefinitionReturnType: None
 AlwaysBreakAfterReturnType: None
 AlwaysBreakBeforeMultilineStrings: 'true'
 BinPackArguments: 'true'
-BinPackParameters: 'false'
-IndentCaseLabels: 'false'
+BinPackParameters: 'true'
+IndentCaseLabels: 'true'
 IndentWidth: '2'
 MaxEmptyLinesToKeep: '1'
 ReflowComments: 'true'
@@ -27,10 +28,16 @@ SpaceBeforeAssignmentOperators: 'true'
 SpaceBeforeCpp11BracedList: 'true'
 SpaceBeforeCtorInitializerColon: 'true'
 SpaceBeforeParens: ControlStatements
+SpaceBeforeCaseColon: 'true'
 SpacesInCStyleCastParentheses: 'false'
 SpacesInParentheses: 'true'
+SpaceInEmptyBlock: 'true'
+SpacesBeforeTrailingComments: '2'
+SpacesInLineCommentPrefix:
+  Minimum: '1'
+  Maximum: '2'
 TabWidth: '2'
-ColumnLimit: '90'
+ColumnLimit: '100'
 UseTab: Never
 
 ...

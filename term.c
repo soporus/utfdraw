@@ -1,7 +1,7 @@
 #include "term.h"
 
 // increment value of RGB color channels until wrap to 0
-void setColor( Color *color, uint32_t *c ) {
+void setColor( Color *restrict color, uint32_t *restrict c ) {
   switch ( *c ) {
   case 'z': color->r += 8; break;
   case 'x': color->g += 8; break;
@@ -22,7 +22,7 @@ void vLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c )
   }
 }
 // draw palette characters at screen bottom
-void drawPalette( const uint16_t *arr, const uint8_t len, const uint16_t *c ) {
+void drawPalette( const uint16_t *restrict arr, const uint8_t len, const uint16_t *restrict c ) {
   hLine( 0, (uint16_t) tb_height() - 1, 0, bg_UI, ' ' );
   const uint16_t y = (uint16_t) tb_height() - 1;
   uint32_t cfg     = fg_UI;
@@ -34,7 +34,7 @@ void drawPalette( const uint16_t *arr, const uint8_t len, const uint16_t *c ) {
   }
 }
 // draw current color settings
-void drawColorStatus( const Color *color, const uint16_t *array ) {
+void drawColorStatus( const Color *restrict color, const uint16_t *restrict array ) {
   for ( uint8_t i = 1; i < 5; i++ ) {
     tb_set_cell( tb_width() - 23 + i, tb_height() - 1, array[i], color->rgb, bg_UI );
   }

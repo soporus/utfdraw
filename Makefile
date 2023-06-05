@@ -12,7 +12,7 @@ main: $(SRCS) $(HEADERS)
 	$(CC) $(CFLAGS) $(SRCS) $(LDFLAGS) -o  "$@"
 
 main-debug: $(SRCS) $(HEADERS)
-	$(CC) -std=gnu17 -fvar-tracking -ggdb3 -fanalyzer -v $(SRCS) -o "$@"
+	$(CC) -std=gnu17 -fvar-tracking -ggdb3 -fsanitize=address -fanalyzer -v $(SRCS) -o "$@"
 
 strip: $(SRCS) $(HEADERS)
 	$(CC) $(CFLAGS) $(SRCS) -o  main && strip --strip-all --verbose main
