@@ -2966,6 +2966,7 @@ static int cell_reserve_ech( struct tb_cell *cell, size_t n ) {
   } else {
     cell->ech = tmp;
     free( tmp );
+    tmp = NULL;
   }
   cell->cech = n;
   return TB_OK;
