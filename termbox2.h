@@ -1763,7 +1763,7 @@ int tb_utf8_char_to_unicode( uint32_t *out, const char *c ) {
   if ( *c == 0 ) { return TB_ERR; }
 
   int i;
-  unsigned char len  = tb_utf8_char_length( *c );
+  unsigned char len  = (unsigned char) tb_utf8_char_length( *c );
   unsigned char mask = utf8_mask[len - 1];
   uint32_t result    = c[0] & mask;
   for ( i = 1; i < len; ++i ) {
@@ -1804,7 +1804,7 @@ int tb_utf8_unicode_to_char( char *out, uint32_t c ) {
     out[i] = ( c & 0x3f ) | 0x80;
     c >>= 6;
   }
-  out[0] = c | first;
+  out[0] = (char) ( c | first );
 
   return len;
 }
@@ -1933,7 +1933,7 @@ static int init_cap_trie( void ) {
 
   // Add caps from terminfo or built-in
   for ( i = 0; i < TB_CAP__COUNT_KEYS; i++ ) {
-    if_err_return( rv, cap_trie_add( global.caps[i], tb_key_i( i ), 0 ) );
+    if_err_return( rv, cap_trie_add( global.caps[i], tb_key_i( (uint16_t) i ), 0 ) );
   }
 
   // Add built-in mod caps
@@ -2296,20 +2296,20 @@ static int parse_terminfo_caps( void ) {
   // > even byte
   const int align_offset = ( header[1] + header[2] ) % 2 != 0 ? 1 : 0;
 
-  const int pos_str_offsets = ( 6 * sizeof( int16_t ) )  // header (12 bytes)
-                              + header[1]                // length of names section
-                              + header[2]                // length of boolean section
+  const int pos_str_offsets = (int) ( 6 * sizeof( int16_t ) )  // header (12 bytes)
+                              + header[1]                      // length of names section
+                              + header[2]                      // length of boolean section
                               + align_offset +
                               ( header[3] * bytes_per_int );  // length of numbers section
 
   const int pos_str_table =
-      pos_str_offsets + ( header[4] * sizeof( int16_t ) );  // length of string offsets table
+      pos_str_offsets + (int) ( header[4] * sizeof( int16_t ) );  // length of string offsets table
 
   // Load caps
   int i;
   for ( i = 0; i < TB_CAP__COUNT; i++ ) {
-    const char *cap =
-        get_terminfo_string( pos_str_offsets, pos_str_table, header[5], terminfo_cap_indexes[i] );
+    const char *cap = get_terminfo_string( (uint16_t) pos_str_offsets, (uint16_t) pos_str_table,
+                                           header[5], terminfo_cap_indexes[i] );
     if ( !cap ) {
       // Something is not right
       return TB_ERR;
@@ -2629,9 +2629,9 @@ static int extract_esc_mouse( struct tb_event *event ) {
       } else {
         int start = ( type == TYPE_1015 ? 2 : 3 );
 
-        unsigned n1 = strtoul( &in->buf[start], NULL, 10 );
-        unsigned n2 = strtoul( &in->buf[indices[FIRST_SEMICOLON] + 1], NULL, 10 );
-        unsigned n3 = strtoul( &in->buf[indices[LAST_SEMICOLON] + 1], NULL, 10 );
+        unsigned n1 = (unsigned int) strtoul( &in->buf[start], NULL, 10 );
+        unsigned n2 = (unsigned int) strtoul( &in->buf[indices[FIRST_SEMICOLON] + 1], NULL, 10 );
+        unsigned n3 = (unsigned int) strtoul( &in->buf[indices[LAST_SEMICOLON] + 1], NULL, 10 );
 
         if ( type == TYPE_1015 ) { n1 -= 0x20; }
 
