@@ -7,7 +7,9 @@ export ASAN_OPTIONS=abort_on_error=0:fast_unwind_on_malloc=0:detect_leaks=0 UBSA
 
 export G_SLICE=always-malloc G_DEBUG=gc-friendly
 
-LDFLAGS = -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment -flto -v
+LDFLAGS = $(CFLAGS)
+
+DBLD_FLAGS = -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment -flto -v
 
 SRCS = $(shell find . -name '.ccls-cache' -type d -prune -o -type f -name '*.c' -print)
 HEADERS = $(shell find . -name '.ccls-cache' -type d -prune -o -type f -name '*.h' -print)
@@ -15,7 +17,7 @@ HEADERS = $(shell find . -name '.ccls-cache' -type d -prune -o -type f -name '*.
 main: $(SRCS) $(HEADERS)
 	$(CC) $(CFLAGS) $(SRCS) $(LDFLAGS) -o  "$@"
 main-debug: $(SRCS) $(HEADERS)
-	$(CC) -std=gnu17 -Og -ggdb3 -fno-omit-frame-pointer -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment -fanalyzer -v $(SRCS) $(LD_FLAGS)-o "$@"
+	$(CC) -std=gnu17 -Og -ggdb3 -fno-omit-frame-pointer -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment -fanalyzer -v $(SRCS) $(DBLD_FLAGS)-o "$@"
 
 strip: $(SRCS) $(HEADERS)
 	$(CC) $(CFLAGS) $(SRCS) -o  main && strip --strip-all --verbose main
