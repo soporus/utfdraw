@@ -5,23 +5,10 @@
 #include "term.h"
 
 int main( int argc, char **argv ) {
-
-  const slots slot       = { {
-            .space = L'\u00a0',  // spaceblock
-            .shadL = L'\u2591',  // ░
-            .shadM = L'\u2592',  // ▒
-            .shadH = L'\u2593',  // ▓︎
-            .fullH = L'\u2588',  // █
-            .blkTp = L'\u2580',  // top block
-            .blkHi = L'\u2594',  // high thin
-            .blkLo = L'\u2581',  // low thin
-            .blkBt = L'\u2584',  // bottom blo
-            .blkMd = L'\u25FC',  // middle blo
-  } };
   const blocks *const st = &slot.stp;  // access union as struct
   const uint8_t slotSize = sizeof( slot.arr ) / sizeof( slot.arr[0] ) - 1;
   const uint16_t *c      = &st->fullH;
-  struct tb_event *ev    = malloc( sizeof *ev );
+  struct tb_event *ev    = alloca( sizeof *ev );
   Color color            = { .rgb = 0x00808080 };
 
   tb_init();
@@ -52,7 +39,7 @@ int main( int argc, char **argv ) {
     // check only if a key was pressed
     if ( keyTest != ev->ch ) {
       switch ( ev->ch ) {
-        //block select
+        // block select
         case '1' : c = &st->space; goto draw;
         case '2' : c = &st->shadL; goto draw;
         case '3' : c = &st->shadM; goto draw;
@@ -91,8 +78,8 @@ int main( int argc, char **argv ) {
     tb_present();
     keyTest = ev->ch;
   }
-  free( ev );
-  // clean up terminal
+  // free( ev );
+  //   clean up terminal
   tb_shutdown();
   return 0;
 }

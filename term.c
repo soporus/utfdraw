@@ -1,12 +1,25 @@
 #include "term.h"
+// drawing characters
+const slots slot = { {
+    .space = L'\u00a0',  // spaceblock
+    .shadL = L'\u2591',  // ░
+    .shadM = L'\u2592',  // ▒
+    .shadH = L'\u2593',  // ▓︎
+    .fullH = L'\u2588',  // █
+    .blkTp = L'\u2580',  // top block
+    .blkHi = L'\u2594',  // high thin
+    .blkLo = L'\u2581',  // low thin
+    .blkBt = L'\u2584',  // bottom blo
+    .blkMd = L'\u25FC',  // middle blo
+} };
 
 // increment value of RGB color channels until wrap to 0
 void setColor( Color *restrict color, uint32_t *restrict c ) {
   switch ( *c ) {
-  case 'z': color->r += 8; break;
-  case 'x': color->g += 8; break;
-  case 'c': color->b += 8; break;
-  default: break;
+    case 'z' : color->r += 8; break;
+    case 'x' : color->g += 8; break;
+    case 'c' : color->b += 8; break;
+    default : break;
   }
 }
 // draw a horizontal line
