@@ -5,16 +5,31 @@
 #include "term.h"
 
 int main( int argc, char **argv ) {
-  const blocks *const st = &slot.stp;  // access union as struct
-  const uint8_t slotSize = sizeof( slot.arr ) / sizeof( slot.arr[0] ) - 1;
-  const uint16_t *c      = &st->fullH;
-  struct tb_event *ev    = alloca( sizeof *ev );
-  Color color            = { .rgb = 0x00808080 };
+
+  struct tb_event *ev     = alloca( sizeof *ev );
+  Color color             = { .rgb = 0x00808080 };
+  const Slots *const slot = alloca( sizeof *slot );
+  *(Slots *) slot         = ( Slots ) { {
+              .space = L'\u00a0',  // spaceblock
+              .shadL = L'\u2591',  // ░
+              .shadM = L'\u2592',  // ▒
+              .shadH = L'\u2593',  // ▓︎
+              .fullH = L'\u2588',  // █
+              .blkTp = L'\u2580',  // top block
+              .blkHi = L'\u2594',  // high thin
+              .blkLo = L'\u2581',  // low thin
+              .blkBt = L'\u2584',  // bottom blo
+              .blkMd = L'\u25FC',  // middle blo
+  } };
+  const blocks *const st  = &slot->stp;  // access union as struct
+  const uint8_t slotSize  = sizeof( slot->arr ) / sizeof( slot->arr[0] ) - 1;
+  const uint16_t *c       = &st->fullH;
+  // drawing characters
 
   tb_init();
   tb_set_output_mode( TB_OUTPUT_TRUECOLOR );
   tb_set_input_mode( TB_INPUT_MOUSE );
-  drawPalette( slot.arr, slotSize, c );
+  drawPalette( slot->arr, slotSize, c );
   tb_present();
   // input loop (esc exits)
   while ( ev->key != TB_KEY_ESC ) {
@@ -72,9 +87,9 @@ int main( int argc, char **argv ) {
       if ( hjkl == 1 ) { tb_set_cursor( sX, sY ); }
     }
   draw:
-    drawPalette( slot.arr, slotSize, c );
+    drawPalette( slot->arr, slotSize, c );
     tb_printf( tb_width() - 9, tb_height() - 1, fg_UI, bg_UI, "%d, %d", sX, sY );
-    drawColorStatus( &color, slot.arr );
+    drawColorStatus( &color, slot->arr );
     tb_present();
     keyTest = ev->ch;
   }

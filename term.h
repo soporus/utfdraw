@@ -10,22 +10,22 @@
 #define bg_B   0x101040    // RGB status foreground color
 
 typedef struct {
-  const uint16_t space;
-  const uint16_t shadL;
-  const uint16_t shadM;
-  const uint16_t shadH;
-  const uint16_t fullH;
-  const uint16_t blkTp;
-  const uint16_t blkHi;
-  const uint16_t blkLo;
-  const uint16_t blkBt;
-  const uint16_t blkMd;
-} const blocks;
+  uint16_t space;
+  uint16_t shadL;
+  uint16_t shadM;
+  uint16_t shadH;
+  uint16_t fullH;
+  uint16_t blkTp;
+  uint16_t blkHi;
+  uint16_t blkLo;
+  uint16_t blkBt;
+  uint16_t blkMd;
+} blocks;
 
 typedef union {
-  const blocks stp;
-  const uint16_t arr[10];
-} const slots;
+  blocks stp;
+  uint16_t arr[10];
+} Slots;
 
 typedef union {
   uint32_t rgb : 32;
@@ -37,7 +37,8 @@ typedef union {
   };
 } Color;
 
-extern const slots slot;
+Slots createSlots();
+
 // increment value of RGB color channels until wrap to 0
 void setColor( Color *restrict color, uint32_t *restrict c );
 
