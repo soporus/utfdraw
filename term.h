@@ -37,16 +37,18 @@ typedef union {
   };
 } Color;
 
-Slots createSlots();
+// inputs
+void checkInput( struct tb_event *ev, Color *color, const uint16_t **c, const blocks *const st,
+                 uint8_t *sX, uint8_t *sY );
 
 // increment value of RGB color channels until wrap to 0
 void setColor( Color *restrict color, uint32_t *restrict c );
 
 // draw a horizontal line
-void hLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c );
+void hLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c, uint8_t dir );
 
 // draw a vertical line
-void vLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c );
+void vLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c, uint8_t dir );
 
 // draw palette characters at screen bottom
 void drawPalette( const uint16_t *restrict array, const uint8_t len, const uint16_t *restrict c );

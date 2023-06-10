@@ -1,20 +1,69 @@
 #include "term.h"
 
-Slots createSlots() {
-  Slots *tmpSlot = alloca( sizeof( Slots ) );
-  *tmpSlot       = ( Slots ) { {
-            .space = L'\u00a0',  // spaceblock
-            .shadL = L'\u2591',  // ░
-            .shadM = L'\u2592',  // ▒
-            .shadH = L'\u2593',  // ▓︎
-            .fullH = L'\u2588',  // █
-            .blkTp = L'\u2580',  // top block
-            .blkHi = L'\u2594',  // high thin
-            .blkLo = L'\u2581',  // low thin
-            .blkBt = L'\u2584',  // bottom blo
-            .blkMd = L'\u25FC',  // middle blo
-  } };
-  return *tmpSlot;
+// inputs
+void checkInput( struct tb_event *ev, Color *color, const uint16_t **c, const blocks *const st,
+                 uint8_t *sX, uint8_t *sY ) {
+  // movement - wasd: move cursor and paint. hjkl: move only
+  uint8_t wasd = 0;
+  uint8_t hjkl = 0;
+  // save previous keypress to test
+  static uint32_t keyTest = 0;
+
+  // mouse movement and paint
+  if ( ev->key == TB_KEY_MOUSE_LEFT ) {
+    tb_set_cursor( ev->x, ev->y );
+    tb_set_cell( ev->x, ev->y, **c, color->rgb, BLACK );
+    *sX = (uint8_t) ev->x;
+    *sY = (uint8_t) ev->y;
+    goto bypass;
+  }
+  if ( ev->key == TB_KEY_END ) { }
+  if ( ev->key == TB_KEY_HOME ) { }
+  switch ( ev->key ) {
+    case TB_KEY_HOME : hLine( *sX, *sY, color->rgb, BLACK, **c, 0 ); goto bypass;
+    case TB_KEY_END : hLine( *sX, *sY, color->rgb, BLACK, **c, 1 ); goto bypass;
+    case TB_KEY_PGUP : vLine( *sX, *sY, color->rgb, BLACK, **c, 0 ); goto bypass;
+    case TB_KEY_PGDN : vLine( *sX, *sY, color->rgb, BLACK, **c, 1 ); goto bypass;
+  }
+  // check only if a key was pressed
+  if ( keyTest != ev->ch ) {
+    switch ( ev->ch ) {
+      // block select
+      case '1' : *c = &st->space; goto bypass;
+      case '2' : *c = &st->shadL; goto bypass;
+      case '3' : *c = &st->shadM; goto bypass;
+      case '4' : *c = &st->shadH; goto bypass;
+      case '5' : *c = &st->fullH; goto bypass;
+      case '6' : *c = &st->blkTp; goto bypass;
+      case '7' : *c = &st->blkHi; goto bypass;
+      case '8' : *c = &st->blkLo; goto bypass;
+      case '9' : *c = &st->blkBt; goto bypass;
+      case '0' : *c = &st->blkMd; goto bypass;
+      // colors
+      case 'z' : setColor( color, &ev->ch ); goto bypass;
+      case 'x' : setColor( color, &ev->ch ); goto bypass;
+      case 'c' : setColor( color, &ev->ch ); goto bypass;
+      // directional draw
+      case 'w' : *sY = ( *sY > 0 ) ? *sY - ( ++wasd ) : 0; break;
+      case 'a' : *sX = ( *sX > 0 ) ? *sX - ( ++wasd ) : 0; break;
+      case 's' : *sY = ( *sY < tb_height() - 2 ) ? *sY + ( ++wasd ) : *sY; break;
+      case 'd' :
+        *sX = ( *sX < tb_width() - 1 ) ? *sX + ( ++wasd ) : *sX;
+        break;
+        // directional no draw
+      case 'k' : *sY = ( *sY > 0 ) ? *sY - ( ++hjkl ) : 0; break;
+      case 'h' : *sX = ( *sX > 0 ) ? *sX - ( ++hjkl ) : 0; break;
+      case 'j' : *sY = ( *sY < tb_height() - 2 ) ? *sY + ( ++hjkl ) : *sY; break;
+      case 'l' : *sX = ( *sX < tb_width() - 1 ) ? *sX + ( ++hjkl ) : *sX; break;
+    }
+    if ( wasd == 1 ) {
+      tb_set_cursor( *sX, *sY );
+      tb_set_cell( *sX, *sY, **c, color->rgb, BLACK );
+    }
+    if ( hjkl == 1 ) { tb_set_cursor( *sX, *sY ); }
+  }
+bypass:
+  keyTest = ev->ch;
 }
 
 // increment value of RGB color channels until wrap to 0
@@ -27,20 +76,34 @@ void setColor( Color *restrict color, uint32_t *restrict c ) {
   }
 }
 // draw a horizontal line
-void hLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c ) {
-  for ( ; x < tb_width(); ++x ) {
-    tb_set_cell( x, y, c, fgCol, bgCol );
+void hLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c, uint8_t dir ) {
+  const uint16_t width = (uint16_t) tb_width();
+  if ( dir == 1 ) {
+    for ( ; x < width; ++x ) {
+      tb_set_cell( x, y, c, fgCol, bgCol );
+    }
+  } else {
+    for ( ; --x; ) {
+      tb_set_cell( x, y, c, fgCol, bgCol );
+    }
   }
 }
 // draw a vertical line
-void vLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c ) {
-  for ( ; y < tb_height(); ++y ) {
-    tb_set_cell( x, y, c, fgCol, bgCol );
+void vLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c, uint8_t dir ) {
+  const uint16_t height = (uint16_t) tb_height();
+  if ( dir == 1 ) {
+    for ( ; y < height; ++y ) {
+      tb_set_cell( x, y, c, fgCol, bgCol );
+    }
+  } else {
+    for ( ; --y; ) {
+      tb_set_cell( x, y, c, fgCol, bgCol );
+    }
   }
 }
 // draw palette characters at screen bottom
 void drawPalette( const uint16_t *restrict arr, const uint8_t len, const uint16_t *restrict c ) {
-  hLine( 0, (uint16_t) tb_height() - 1, 0, bg_UI, ' ' );
+  hLine( 0, (uint16_t) tb_height() - 1, 0, bg_UI, ' ', 1 );
   const uint16_t y = (uint16_t) tb_height() - 1;
   uint32_t cfg     = fg_UI;
   uint32_t cbg     = bg_UI;

@@ -34,6 +34,7 @@ SOFTWARE.
 #define _DEFAULT_SOURCE
 #endif
 
+#include <assert.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <limits.h>
@@ -2414,7 +2415,7 @@ static int wait_event( struct tb_event *event, int timeout ) {
 
     if ( resize_has_events ) {
       int ignore = 0;
-      read( global.resize_pipefd[0], &ignore, sizeof( ignore ) );
+      assert( read( global.resize_pipefd[0], &ignore, sizeof( ignore ) ) > 0 );
       // TODO Harden against errors encountered mid-resize
       if_err_return( rv, update_term_size() );
       if_err_return( rv, resize_cellbufs() );
@@ -2690,7 +2691,7 @@ static int resize_cellbufs( void ) {
 
 static void handle_resize( int sig ) {
   int errno_copy = errno;
-  write( global.resize_pipefd[1], &sig, sizeof( sig ) );
+  assert( write( global.resize_pipefd[1], &sig, sizeof( sig ) ) > 0 );
   errno = errno_copy;
 }
 
@@ -2959,7 +2960,7 @@ static int cell_set( struct tb_cell *cell, uint32_t *ch, size_t nch, uintattr_t 
 static int cell_reserve_ech( struct tb_cell *cell, size_t n ) {
 #ifdef TB_OPT_EGC
   if ( cell->cech >= n ) { return TB_OK; }
-  //  if (!(cell->ech = tb_realloc(cell->ech, n * sizeof(cell->ch)))) {
+  // if (!(cell->ech = tb_realloc(cell->ech, n * sizeof(cell->ch)))) {
   void *tmp = tb_realloc( cell->ech, n * sizeof( cell->ch ) );
   if ( !tmp ) {
     return TB_ERR_MEM;
