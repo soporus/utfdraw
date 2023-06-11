@@ -36,9 +36,8 @@ int main( int argc, char **argv ) {
     static uint8_t sX = 0;
     static uint8_t sY = 0;
     // listen (non blocking)
-    tb_peek_event( ev, 17 );
-    checkInput( ev, color, &c, st, &sX, &sY );
-
+    // tb_peek_event( ev, 17 );
+    if ( tb_poll_event( ev ) == TB_OK ) { checkInput( ev, color, &c, st, &sX, &sY ); }
   draw:
     drawPalette( slot->arr, slotSize, c );
     tb_printf( tb_width() - 9, tb_height() - 1, fg_UI, bg_UI, "%d, %d", sX, sY );
