@@ -38,8 +38,8 @@ typedef union {
 } Color;
 
 // inputs
-void checkInput( struct tb_event *ev, Color *color, const uint16_t **c, const blocks *const st,
-                 uint8_t *sX, uint8_t *sY );
+void checkInput( struct tb_event *restrict ev, Color *restrict color, const uint16_t **restrict c,
+                 const blocks *restrict const st, uint8_t *restrict sX, uint8_t *restrict sY );
 
 // increment value of RGB color channels until wrap to 0
 void setColor( Color *restrict color, uint32_t *restrict c );

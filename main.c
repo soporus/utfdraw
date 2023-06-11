@@ -29,14 +29,14 @@ int main( int argc, char **argv ) {
   tb_set_output_mode( TB_OUTPUT_TRUECOLOR );
   tb_set_input_mode( TB_INPUT_MOUSE );
   drawPalette( slot->arr, slotSize, c );
+  drawColorStatus( color, slot->arr );
   tb_present();
   // input loop (esc exits)
   while ( ev->key != TB_KEY_ESC ) {
     /// status x and y coordinates
     static uint8_t sX = 0;
     static uint8_t sY = 0;
-    // listen (non blocking)
-    // tb_peek_event( ev, 17 );
+    // wait for input, proces input, only if found
     if ( tb_poll_event( ev ) == TB_OK ) { checkInput( ev, color, &c, st, &sX, &sY ); }
   draw:
     drawPalette( slot->arr, slotSize, c );
