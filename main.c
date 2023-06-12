@@ -28,21 +28,18 @@ int main( int argc, char **argv ) {
   tb_init();
   tb_set_output_mode( TB_OUTPUT_TRUECOLOR );
   tb_set_input_mode( TB_INPUT_MOUSE );
-  drawPalette( slot->arr, slotSize, c );
-  drawColorStatus( color, slot->arr );
-  tb_present();
   // input loop (esc exits)
+  ev->key = 0;
   while ( ev->key != TB_KEY_ESC ) {
-    /// status x and y coordinates
+    // status x and y coordinates
     static uint8_t sX = 0;
     static uint8_t sY = 0;
-    // wait for input, proces input, only if found
-    if ( tb_poll_event( ev ) == TB_OK ) { checkInput( ev, color, &c, st, &sX, &sY ); }
-  draw:
     drawPalette( slot->arr, slotSize, c );
     tb_printf( tb_width() - 9, tb_height() - 1, fg_UI, bg_UI, "%d, %d", sX, sY );
     drawColorStatus( color, slot->arr );
     tb_present();
+    // wait for input, proces input, only if found
+    if ( tb_poll_event( ev ) == TB_OK ) { checkInput( ev, color, &c, st, &sX, &sY ); }
   }
   // clean up terminal
   tb_shutdown();
