@@ -105,12 +105,14 @@ void drawPalette( const uint16_t *restrict arr, const uint8_t len, const uint16_
 }
 // draw current color settings
 void drawColorStatus( const Color *restrict color, const uint16_t *restrict array ) {
+  const uint16_t width  = (uint16_t) tb_width();
+  const uint16_t height = (uint16_t) tb_height();
   for ( uint8_t i = 1; i < 5; i++ ) {
-    tb_set_cell( tb_width() - 23 + i, tb_height() - 1, array[i], color->rgb, bg_UI );
+    tb_set_cell( width - 23 + i, height - 1, array[i], color->rgb, bg_UI );
   }
-  tb_printf( tb_width() - 17, tb_height() - 1, fg_RGB, bg_R, "%02X", color->r );
-  tb_printf( tb_width() - 15, tb_height() - 1, fg_RGB, bg_G, "%02X", color->g );
-  tb_printf( tb_width() - 13, tb_height() - 1, fg_RGB, bg_B, "%02X", color->b );
+  tb_printf( width - 17, height - 1, fg_RGB, bg_R, "%02X", color->r );
+  tb_printf( width - 15, height - 1, fg_RGB, bg_G, "%02X", color->g );
+  tb_printf( width - 13, height - 1, fg_RGB, bg_B, "%02X", color->b );
 }
 // random integer within range given
 const uint32_t randRange( const uint32_t min, const uint32_t max ) {
