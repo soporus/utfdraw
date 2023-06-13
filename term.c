@@ -16,6 +16,10 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, const uint
       *sX = (uint8_t) ev->x;
       *sY = (uint8_t) ev->y;
       goto bypass;
+    case TB_KEY_ARROW_LEFT : *sX = ( *sX > 0 ) ? *sX - ( ++hjkl ) : 0; break;
+    case TB_KEY_ARROW_DOWN : *sY = ( *sY < tb_height() - 2 ) ? *sY + ( ++hjkl ) : *sY; break;
+    case TB_KEY_ARROW_UP : *sY = ( *sY > 0 ) ? *sY - ( ++hjkl ) : 0; break;
+    case TB_KEY_ARROW_RIGHT : *sX = ( *sX < tb_width() - 1 ) ? *sX + ( ++hjkl ) : *sX; break;
     // draw to boundary
     case TB_KEY_HOME : hLine( *sX, *sY, color->rgb, BLACK, **c, 0 ); goto bypass;
     case TB_KEY_END : hLine( *sX, *sY, color->rgb, BLACK, **c, 1 ); goto bypass;
@@ -45,9 +49,9 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, const uint
     case 's' : *sY = ( *sY < tb_height() - 2 ) ? *sY + ( ++wasd ) : *sY; break;
     case 'd' : *sX = ( *sX < tb_width() - 1 ) ? *sX + ( ++wasd ) : *sX; break;
     // directional no draw
-    case 'k' : *sY = ( *sY > 0 ) ? *sY - ( ++hjkl ) : 0; break;
     case 'h' : *sX = ( *sX > 0 ) ? *sX - ( ++hjkl ) : 0; break;
     case 'j' : *sY = ( *sY < tb_height() - 2 ) ? *sY + ( ++hjkl ) : *sY; break;
+    case 'k' : *sY = ( *sY > 0 ) ? *sY - ( ++hjkl ) : 0; break;
     case 'l' : *sX = ( *sX < tb_width() - 1 ) ? *sX + ( ++hjkl ) : *sX; break;
   }
   tb_set_cursor( *sX, *sY );
