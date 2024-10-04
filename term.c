@@ -6,7 +6,7 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, const uint
   // movement - wasd: move cursor and paint. hjkl: move only
   uint8_t wasd = 0;
   uint8_t hjkl = 0;
-  // save previous keypress to test
+  // save previous keypress to test for change
   static uint32_t keyTest = 0;
   // mouse movement and paint
   switch ( ev->key ) {
@@ -40,9 +40,9 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, const uint
     case '9' : *c = &st->blkBt; goto bypass;
     case '0' : *c = &st->blkMd; goto bypass;
     // colors
-    case 'z' : setColor( color, &ev->ch ); goto bypass;
-    case 'x' : setColor( color, &ev->ch ); goto bypass;
-    case 'c' : setColor( color, &ev->ch ); goto bypass;
+    case 'r' : setColor( color, &ev->ch ); goto bypass;
+    case 'g' : setColor( color, &ev->ch ); goto bypass;
+    case 'b' : setColor( color, &ev->ch ); goto bypass;
     // directional draw
     case 'w' : *sY = ( *sY > 0 ) ? *sY - ( ++wasd ) : 0; break;
     case 'a' : *sX = ( *sX > 0 ) ? *sX - ( ++wasd ) : 0; break;
@@ -63,9 +63,9 @@ bypass:
 // increment value of RGB color channels until wrap to 0
 void setColor( Color *restrict color, uint32_t *restrict c ) {
   switch ( *c ) {
-    case 'z' : color->r += 8; break;
-    case 'x' : color->g += 8; break;
-    case 'c' : color->b += 8; break;
+    case 'r' : color->r += 8; break;
+    case 'g' : color->g += 8; break;
+    case 'b' : color->b += 8; break;
     default : break;
   }
 }

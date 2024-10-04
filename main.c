@@ -5,7 +5,7 @@
 #include "term.h"
 
 int main( int argc, char **argv ) {
-
+  // setup memory for event loop, color value, and drawing chars
   struct tb_event *ev     = alloca( sizeof *ev );
   Color *color            = alloca( sizeof *color );
   color->rgb              = 0x00808080;
@@ -19,8 +19,8 @@ int main( int argc, char **argv ) {
               .blkTp = L'\u2580',  // top block
               .blkHi = L'\u2594',  // high thin
               .blkLo = L'\u2581',  // low thin
-              .blkBt = L'\u2584',  // bottom blo
-              .blkMd = L'\u25FC',  // middle blo
+              .blkBt = L'\u2584',  // bottom block
+              .blkMd = L'\u25FC',  // middle block
   } };
   const blocks *const st  = &slot->stp;  // access union as struct
   const uint8_t slotSize  = sizeof( slot->arr ) / sizeof( slot->arr[0] ) - 1;
