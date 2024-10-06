@@ -3,23 +3,25 @@
 // inputs
 void checkInput( struct tb_event *restrict ev, Color *restrict color, const uint16_t **restrict c,
                  const blocks *restrict const st, uint8_t *restrict sX, uint8_t *restrict sY ) {
-  // movement - wasd: move cursor and paint. hjkl: move only
-  uint8_t wasd = 0;
-  uint8_t hjkl = 0;
+  // flag when a draw is needed
+  uint8_t draw = 0;
   // save previous keypress to test for change
   static uint32_t keyTest = 0;
   // mouse movement and paint
   switch ( ev->key ) {
     case TB_KEY_MOUSE_LEFT :
-      tb_set_cursor( ev->x, ev->y );
-      tb_set_cell( ev->x, ev->y, **c, color->rgb, BLACK );
       *sX = (uint8_t) ev->x;
       *sY = (uint8_t) ev->y;
-      goto bypass;
-    case TB_KEY_ARROW_LEFT : *sX = ( *sX > 0 ) ? *sX - ( ++hjkl ) : 0; break;
-    case TB_KEY_ARROW_DOWN : *sY = ( *sY < tb_height() - 2 ) ? *sY + ( ++hjkl ) : *sY; break;
-    case TB_KEY_ARROW_UP : *sY = ( *sY > 0 ) ? *sY - ( ++hjkl ) : 0; break;
-    case TB_KEY_ARROW_RIGHT : *sX = ( *sX < tb_width() - 1 ) ? *sX + ( ++hjkl ) : *sX; break;
+      ++draw;
+      goto draw;
+    case TB_KEY_MOUSE_RIGHT :
+      *sX = (uint8_t) ev->x;
+      *sY = (uint8_t) ev->y;
+      break;
+    case TB_KEY_ARROW_LEFT : *sX = ( *sX > 0 ) ? *sX - 1 : 0; break;
+    case TB_KEY_ARROW_DOWN : *sY = ( *sY < tb_height() - 2 ) ? *sY + 1 : *sY; break;
+    case TB_KEY_ARROW_UP : *sY = ( *sY > 0 ) ? *sY - 1 : 0; break;
+    case TB_KEY_ARROW_RIGHT : *sX = ( *sX < tb_width() - 1 ) ? *sX + 1 : *sX; break;
     // draw to boundary
     case TB_KEY_HOME : hLine( *sX, *sY, color->rgb, BLACK, **c, 0 ); goto bypass;
     case TB_KEY_END : hLine( *sX, *sY, color->rgb, BLACK, **c, 1 ); goto bypass;
@@ -28,7 +30,17 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, const uint
   }
   // check keypress, do something
   switch ( ev->ch ) {
-    // block select
+    // movement
+    case 'w' : *sY = ( *sY > 0 ) ? *sY - 1 : 0; break;
+    case 'a' : *sX = ( *sX > 0 ) ? *sX - 1 : 0; break;
+    case 's' : *sY = ( *sY < tb_height() - 2 ) ? *sY + 1 : *sY; break;
+    case 'd' : *sX = ( *sX < tb_width() - 1 ) ? *sX + 1 : *sX; break;
+    // vi style movement
+    case 'h' : *sX = ( *sX > 0 ) ? *sX - 1 : 0; break;
+    case 'j' : *sY = ( *sY < tb_height() - 2 ) ? *sY + 1 : *sY; break;
+    case 'k' : *sY = ( *sY > 0 ) ? *sY - 1 : 0; break;
+    case 'l' : *sX = ( *sX < tb_width() - 1 ) ? *sX + 1 : *sX; break;
+
     case '1' : *c = &st->space; goto bypass;
     case '2' : *c = &st->shadL; goto bypass;
     case '3' : *c = &st->shadM; goto bypass;
@@ -43,19 +55,25 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, const uint
     case 'r' : setColor( color, &ev->ch ); goto bypass;
     case 'g' : setColor( color, &ev->ch ); goto bypass;
     case 'b' : setColor( color, &ev->ch ); goto bypass;
+    case 'R' : setColor( color, &ev->ch ); goto bypass;
+    case 'G' : setColor( color, &ev->ch ); goto bypass;
+    case 'B' : setColor( color, &ev->ch ); goto bypass;
     // directional draw
-    case 'w' : *sY = ( *sY > 0 ) ? *sY - ( ++wasd ) : 0; break;
-    case 'a' : *sX = ( *sX > 0 ) ? *sX - ( ++wasd ) : 0; break;
-    case 's' : *sY = ( *sY < tb_height() - 2 ) ? *sY + ( ++wasd ) : *sY; break;
-    case 'd' : *sX = ( *sX < tb_width() - 1 ) ? *sX + ( ++wasd ) : *sX; break;
-    // directional no draw
-    case 'h' : *sX = ( *sX > 0 ) ? *sX - ( ++hjkl ) : 0; break;
-    case 'j' : *sY = ( *sY < tb_height() - 2 ) ? *sY + ( ++hjkl ) : *sY; break;
-    case 'k' : *sY = ( *sY > 0 ) ? *sY - ( ++hjkl ) : 0; break;
-    case 'l' : *sX = ( *sX < tb_width() - 1 ) ? *sX + ( ++hjkl ) : *sX; break;
+    case 'W' : *sY = ( *sY > 0 ) ? *sY - ( ++draw ) : 0; break;                  // up
+    case 'A' : *sX = ( *sX > 0 ) ? *sX - ( ++draw ) : 0; break;                  // left
+    case 'S' : *sY = ( *sY < tb_height() - 2 ) ? *sY + ( ++draw ) : *sY; break;  // down
+    case 'D' :
+      *sX = ( *sX < tb_width() - 1 ) ? *sX + ( ++draw ) : *sX;
+      break;  // right
+    // vi style directional draw
+    case 'K' : *sY = ( *sY > 0 ) ? *sY - ( ++draw ) : 0; break;                  // up
+    case 'H' : *sX = ( *sX > 0 ) ? *sX - ( ++draw ) : 0; break;                  // left
+    case 'J' : *sY = ( *sY < tb_height() - 2 ) ? *sY + ( ++draw ) : *sY; break;  // down
+    case 'L' : *sX = ( *sX < tb_width() - 1 ) ? *sX + ( ++draw ) : *sX; break;   // right
   }
+draw:
   tb_set_cursor( *sX, *sY );
-  if ( wasd == 1 ) { tb_set_cell( *sX, *sY, **c, color->rgb, BLACK ); }
+  if ( draw == 1 ) { tb_set_cell( *sX, *sY, **c, color->rgb, BLACK ); }
 bypass:
   keyTest = ev->ch;
 }
@@ -66,6 +84,9 @@ void setColor( Color *restrict color, uint32_t *restrict c ) {
     case 'r' : color->r += 8; break;
     case 'g' : color->g += 8; break;
     case 'b' : color->b += 8; break;
+    case 'R' : color->r += 8; break;
+    case 'G' : color->g += 8; break;
+    case 'B' : color->b += 8; break;
     default : break;
   }
 }
