@@ -81,9 +81,11 @@ bypass:
 // increment value of RGB color channels until wrap to 0
 void setColor( Color *restrict color, uint32_t *restrict c ) {
   switch ( *c ) {
-    case 'r' : color->r += 8; break;
-    case 'g' : color->g += 8; break;
-    case 'b' : color->b += 8; break;
+    // decrease color
+    case 'r' : color->r -= 8; break;
+    case 'g' : color->g -= 8; break;
+    case 'b' : color->b -= 8; break;
+    // increase color
     case 'R' : color->r += 8; break;
     case 'G' : color->g += 8; break;
     case 'B' : color->b += 8; break;
