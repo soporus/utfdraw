@@ -27,8 +27,7 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, const uint
     case TB_KEY_END : hLine( *sX, *sY, color->rgb, BLACK, **c, 1 ); goto bypass;
     case TB_KEY_PGUP : vLine( *sX, *sY, color->rgb, BLACK, **c, 0 ); goto bypass;
     case TB_KEY_PGDN : vLine( *sX, *sY, color->rgb, BLACK, **c, 1 ); goto bypass;
-		       case TB_KEY_TAB : break;
-
+    default : break;
   }
   // check keypress, do something
   switch ( ev->ch ) {
@@ -64,9 +63,7 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, const uint
     case 'W' : *sY = ( *sY > 0 ) ? *sY - ( ++draw ) : 0; break;                  // up
     case 'A' : *sX = ( *sX > 0 ) ? *sX - ( ++draw ) : 0; break;                  // left
     case 'S' : *sY = ( *sY < tb_height() - 2 ) ? *sY + ( ++draw ) : *sY; break;  // down
-    case 'D' :
-      *sX = ( *sX < tb_width() - 1 ) ? *sX + ( ++draw ) : *sX;
-      break;  // right
+    case 'D' : *sX = ( *sX < tb_width() - 1 ) ? *sX + ( ++draw ) : *sX;  break;  // right
     // vi style directional draw
     case 'K' : *sY = ( *sY > 0 ) ? *sY - ( ++draw ) : 0; break;                  // up
     case 'H' : *sX = ( *sX > 0 ) ? *sX - ( ++draw ) : 0; break;                  // left
