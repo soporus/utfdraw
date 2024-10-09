@@ -27,6 +27,8 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, const uint
     case TB_KEY_END : hLine( *sX, *sY, color->rgb, BLACK, **c, 1 ); goto bypass;
     case TB_KEY_PGUP : vLine( *sX, *sY, color->rgb, BLACK, **c, 0 ); goto bypass;
     case TB_KEY_PGDN : vLine( *sX, *sY, color->rgb, BLACK, **c, 1 ); goto bypass;
+		       case TB_KEY_TAB : break;
+
   }
   // check keypress, do something
   switch ( ev->ch ) {

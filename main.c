@@ -25,6 +25,7 @@ int main( int argc, char **argv ) {
   const blocks *const st  = &slot->stp;  // access union as struct
   const uint8_t slotSize  = sizeof( slot->arr ) / sizeof( slot->arr[0] ) - 1;
   const uint16_t *c       = &st->fullH;
+  // setup termbox2 
   tb_init();
   tb_set_output_mode( TB_OUTPUT_TRUECOLOR );
   tb_set_input_mode( TB_INPUT_MOUSE );
