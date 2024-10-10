@@ -51,7 +51,7 @@ void hLine( uint8_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c, u
 void vLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c, uint8_t dir );
 
 // draw palette characters at screen bottom
-void drawPalette( const uint16_t *restrict array, const uint8_t len, const uint16_t *restrict c );
+void drawPalette( const uint16_t *restrict array, const uint8_t len, const uint16_t *restrict c, const Color *restrict color );
 
 // draw current color settings
 void drawColorStatus( const Color *restrict color, const uint16_t *array );

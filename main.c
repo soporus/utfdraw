@@ -8,7 +8,7 @@ int main( int argc, char **argv ) {
   // setup memory for event loop, color value, and drawing chars
   struct tb_event *ev     = alloca( sizeof *ev );
   Color *color            = alloca( sizeof *color );
-  color->rgb              = 0x00808080;
+  color->rgb              = 0x00c0c0c0;
   const Slots *const slot = alloca( sizeof *slot );
   *(Slots *) slot         = ( Slots ) { {
               .space = L'\u00a0',  // spaceblock
@@ -35,7 +35,7 @@ int main( int argc, char **argv ) {
     // status x and y coordinates
     static uint8_t sX = 0;
     static uint8_t sY = 0;
-    drawPalette( slot->arr, slotSize, c );
+    drawPalette( slot->arr, slotSize, c, color );
     tb_printf( tb_width() - 9, tb_height() - 1, fg_UI, bg_UI, "%d, %d", sX, sY );
     drawColorStatus( color, slot->arr );
     tb_present();

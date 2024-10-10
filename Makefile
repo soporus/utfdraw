@@ -1,6 +1,6 @@
 all: main
 CC = clang
-override CFLAGS += -std=c2y -oS -Wconversion -Wno-sign-conversion -Wdouble-promotion -ffunction-sections -flto -march=native -Wpedantic
+override CFLAGS += -std=c23 -oS -Wconversion -Wno-sign-conversion -Wdouble-promotion -ffunction-sections -flto -march=native -Wpedantic
 
 #export ASAN_OPTIONS=strict_string_checks=1:detect_stack_use_after_return=1:check_initialization_order=1:strict_init_order=1:halt_on_error=0
 export ASAN_OPTIONS=abort_on_error=0:fast_unwind_on_malloc=0:detect_leaks=0 UBSAN_OPTIONS=print_stacktrace=1

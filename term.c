@@ -118,7 +118,7 @@ void hLine( uint8_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c, u
 }
 // draw a vertical line
 void vLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c, uint8_t dir ) {
-  const uint16_t height = (uint16_t) tb_height();
+  const uint16_t height = (uint16_t) tb_height() - 1;
   if ( dir == 1 ) {
     for ( ; y < height; ++y ) {
       tb_set_cell( x, y, c, fgCol, bgCol );
@@ -130,13 +130,13 @@ void vLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c, 
   }
 }
 // draw palette characters at screen bottom
-void drawPalette( const uint16_t *restrict arr, const uint8_t len, const uint16_t *restrict c ) {
+void drawPalette( const uint16_t *restrict arr, const uint8_t len, const uint16_t *restrict c, const Color *restrict color ) {
   hLine( 0, (uint16_t) tb_height() - 1, 0, bg_UI, ' ', 1 );
   const uint16_t y = (uint16_t) tb_height() - 1;
   uint32_t cfg     = fg_UI;
   uint32_t cbg     = bg_UI;
   for ( uint16_t i = 0; i <= len; ++i ) {
-    cfg = ( ( arr[i] == *c ) ? WHITE : fg_UI );
+    cfg = ( ( arr[i] == *c ) ? color->rgb : (uint32_t) (color->rgb * 0.5) );
     cbg = ( ( arr[i] == *c ) ? BLACK : bg_UI );
     tb_set_cell( i, y, arr[i], cfg, cbg );
   }
@@ -145,13 +145,21 @@ void drawPalette( const uint16_t *restrict arr, const uint8_t len, const uint16_
 void drawColorStatus( const Color *restrict color, const uint16_t *restrict array ) {
   const uint16_t width  = (uint16_t) tb_width();
   const uint16_t height = (uint16_t) tb_height();
-  for ( uint8_t i = 1; i < 5; i++ ) {
+  
+  /*for ( uint8_t i = 1; i < 5; i++ ) {
     tb_set_cell( width - 23 + i, height - 1, array[i], color->rgb, bg_UI );
   }
+  */
+  tb_printf( 12, height - 1,0x00202820 | (uint32_t) color->r << 16, bg_UI,"%02X",color->r );
+  tb_printf( 14, height - 1,0x00282830 | (uint32_t) color->g << 8, bg_UI, "%02X", color->g );
+  tb_printf( 16, height - 1,0x00304028 | (uint32_t) color->b, bg_UI,"%02X", color->b );
+/*
   tb_printf( width - 17, height - 1, fg_RGB, bg_R, "%02X", color->r );
   tb_printf( width - 15, height - 1, fg_RGB, bg_G, "%02X", color->g );
   tb_printf( width - 13, height - 1, fg_RGB, bg_B, "%02X", color->b );
+  */
 }
+
 /* used for testing
 // random integer within range given
 const uint32_t randRange( const uint32_t min, const uint32_t max ) {
