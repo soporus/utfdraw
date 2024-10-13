@@ -37,26 +37,6 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, const wcha
   }
   // check keypress, do something
   switch ( ev->ch ) {
-    // character select
-    case '1' : *c = &st->space; goto bypass;
-    case '2' : *c = &st->shadL; goto bypass;
-    case '3' : *c = &st->shadM; goto bypass;
-    case '4' : *c = &st->shadH; goto bypass;
-    case '5' : *c = &st->fullH; goto bypass;
-    case '6' : *c = &st->blkTp; goto bypass;
-    case '7' : *c = &st->blkHi; goto bypass;
-    case '8' : *c = &st->blkLo; goto bypass;
-    case '9' : *c = &st->blkBt; goto bypass;
-    case '0' : *c = &st->blkMd; goto bypass;
-    // colors
-    // lowercase will decrease respective color
-    case 'r' : setColor( color, &ev->ch ); goto bypass;
-    case 'g' : setColor( color, &ev->ch ); goto bypass;
-    case 'b' : setColor( color, &ev->ch ); goto bypass;
-    // uppercase will increase respective color
-    case 'R' : setColor( color, &ev->ch ); goto bypass;
-    case 'G' : setColor( color, &ev->ch ); goto bypass;
-    case 'B' : setColor( color, &ev->ch ); goto bypass;
     // movement
     case 'w' : *sY = ( *sY > 0 ) ? *sY - 1 : 0; break;
     case 'a' : *sX = ( *sX > 0 ) ? *sX - 1 : 0; break;
@@ -77,6 +57,27 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, const wcha
     case 'H' : *sX = ( *sX > 0 ) ? *sX - ( ++draw ) : 0; break;                  // left
     case 'J' : *sY = ( *sY < tb_height() - 2 ) ? *sY + ( ++draw ) : *sY; break;  // down
     case 'L' : *sX = ( *sX < tb_width() - 1  ) ? *sX + ( ++draw ) : *sX; break;  // right
+    // character select
+    case '1' : *c = &st->space; goto bypass;
+    case '2' : *c = &st->shadL; goto bypass;
+    case '3' : *c = &st->shadM; goto bypass;
+    case '4' : *c = &st->shadH; goto bypass;
+    case '5' : *c = &st->fullH; goto bypass;
+    case '6' : *c = &st->blkTp; goto bypass;
+    case '7' : *c = &st->blkHi; goto bypass;
+    case '8' : *c = &st->blkLo; goto bypass;
+    case '9' : *c = &st->blkBt; goto bypass;
+    case '0' : *c = &st->blkMd; goto bypass;
+    // colors
+    // lowercase will decrease respective color
+    case 'r' : setColor( color, &ev->ch ); goto bypass;
+    case 'g' : setColor( color, &ev->ch ); goto bypass;
+    case 'b' : setColor( color, &ev->ch ); goto bypass;
+    // uppercase will increase respective color
+    case 'R' : setColor( color, &ev->ch ); goto bypass;
+    case 'G' : setColor( color, &ev->ch ); goto bypass;
+    case 'B' : setColor( color, &ev->ch ); goto bypass;
+
   }
 // we jump here if no further checks needed and ready to draw.  left-click draw for example
 // set cursor position, write character, paint fg color and bg color (always black for now)

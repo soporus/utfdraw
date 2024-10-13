@@ -1,4 +1,3 @@
-//#include <locale.h>
 #include "termbox2/termbox2.h"
 
 #define fg_UI  0x00808080

@@ -1,6 +1,8 @@
+#define _XOPEN_SOURCE
+#define _DEFAULT_SOURCE
 #define TB_IMPL
 #define TB_OPT_TRUECOLOR
-
+#include <locale.h>
 #include "term.h"
 
 int main( int argc, char **argv ) {
