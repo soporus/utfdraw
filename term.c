@@ -1,8 +1,8 @@
 #include "term.h"
 
 // inputs
-void checkInput( struct tb_event *restrict ev, Color *restrict color, const uint16_t **restrict c,
-                 const blocks *restrict const st, uint8_t *restrict sX, uint8_t *restrict sY ) {
+void checkInput( struct tb_event *restrict ev, Color *restrict color, const wchar_t **restrict c,
+                 const blocks *restrict const st, uint16_t *restrict sX, uint16_t *restrict sY ) {
   // flag when a draw is needed
   uint8_t draw = 0;
   // stores previous keypress persistently
@@ -14,14 +14,14 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, const uint
   switch ( ev->key ) {
     // movement and paints character
     case TB_KEY_MOUSE_LEFT :
-      *sX = (uint8_t) ev->x;
-      *sY = (uint8_t) ev->y;
+      *sX = (uint16_t) ev->x;
+      *sY = (uint16_t) ev->y;
       ++draw;
       goto draw;
     // movement.  does not paint character, but we need to paint cursor with draw
     case TB_KEY_MOUSE_RIGHT :
-      *sX = (uint8_t) ev->x;
-      *sY = (uint8_t) ev->y;
+      *sX = (uint16_t) ev->x;
+      *sY = (uint16_t) ev->y;
       goto draw;
     // movement.  does not draw a character, but we must call draw later to paint cursor position  
     case TB_KEY_ARROW_LEFT  : *sX = ( *sX > 0 ) ? *sX - 1 : 0; goto draw;
@@ -82,7 +82,8 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, const uint
 // set cursor position, write character, paint fg color and bg color (always black for now)
 draw:
   tb_set_cursor( *sX, *sY );
-  if ( draw == 1 ) { tb_set_cell( *sX, *sY, **c, color->rgb, BLACK ); }
+  if ( draw == 1 ) { tb_set_cell( *sX, *sY, **c, color->rgb, TB_HI_BLACK ); }
+
 // jump here when no further checks needed and no draw required. arrow keys or char select
 // store more recent key pressed
 bypass:
@@ -90,8 +91,8 @@ bypass:
 }
 
 // increment value of RGB color channels until wrap to 0
-void setColor( Color *restrict color, uint32_t *restrict c ) {
-  switch ( *c ) {
+void setColor( Color *restrict color, uint32_t *restrict ch ) {
+  switch ( *ch ) {
     // decrease color
     case 'r' : color->r -= 8; break;
     case 'g' : color->g -= 8; break;
@@ -104,7 +105,7 @@ void setColor( Color *restrict color, uint32_t *restrict c ) {
   }
 }
 // draw a horizontal line
-void hLine( uint8_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c, uint8_t dir ) {
+void hLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, wchar_t c, uint8_t dir ) {
   const uint16_t width = (uint16_t) tb_width();
   if ( dir == 1 ) {
     for ( ; x < width; ++x ) {
@@ -117,7 +118,7 @@ void hLine( uint8_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c, u
   }
 }
 // draw a vertical line
-void vLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c, uint8_t dir ) {
+void vLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, wchar_t c, uint8_t dir ) {
   const uint16_t height = (uint16_t) tb_height() - 1;
   if ( dir == 1 ) {
     for ( ; y < height; ++y ) {
@@ -130,7 +131,7 @@ void vLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c, 
   }
 }
 // draw palette characters at screen bottom
-void drawPalette( const uint16_t *restrict arr, const uint8_t len, const uint16_t *restrict c, const Color *restrict color ) {
+void drawPalette( const wchar_t *restrict arr, const uint8_t len, const wchar_t *restrict c, const Color *restrict color ) {
   hLine( 0, (uint16_t) tb_height() - 1, 0, bg_UI, ' ', 1 );
   const uint16_t y = (uint16_t) tb_height() - 1;
   uint32_t cfg     = fg_UI;
@@ -142,22 +143,13 @@ void drawPalette( const uint16_t *restrict arr, const uint8_t len, const uint16_
   }
 }
 // draw current color settings
-void drawColorStatus( const Color *restrict color, const uint16_t *restrict array ) {
+void drawColorStatus( const Color *restrict color ) {
   const uint16_t width  = (uint16_t) tb_width();
   const uint16_t height = (uint16_t) tb_height();
   
-  /*for ( uint8_t i = 1; i < 5; i++ ) {
-    tb_set_cell( width - 23 + i, height - 1, array[i], color->rgb, bg_UI );
-  }
-  */
-  tb_printf( 12, height - 1,0x00202820 | (uint32_t) color->r << 16, bg_UI,"%02X",color->r );
-  tb_printf( 14, height - 1,0x00282830 | (uint32_t) color->g << 8, bg_UI, "%02X", color->g );
-  tb_printf( 16, height - 1,0x00304028 | (uint32_t) color->b, bg_UI,"%02X", color->b );
-/*
-  tb_printf( width - 17, height - 1, fg_RGB, bg_R, "%02X", color->r );
-  tb_printf( width - 15, height - 1, fg_RGB, bg_G, "%02X", color->g );
-  tb_printf( width - 13, height - 1, fg_RGB, bg_B, "%02X", color->b );
-  */
+  tb_printf( 12, height - 1,0x00202820 | (uint32_t) color->r << 16, (uintattr_t) bg_UI,"%02X",color->r );
+  tb_printf( 14, height - 1,0x00282830 | (uint32_t) color->g << 8, (uintattr_t) bg_UI, "%02X", color->g );
+  tb_printf( 16, height - 1,0x00304028 | (uint32_t) color->b, (uintattr_t) bg_UI,"%02X", color->b );
 }
 
 /* used for testing

@@ -1,30 +1,31 @@
-#include "termbox2.h"
+//#include <locale.h>
+#include "termbox2/termbox2.h"
 
-#define fg_UI  0x808080
-#define bg_UI  0x101010
+#define fg_UI  0x00808080
+#define bg_UI  0x00101010
 #define BLACK  0x20000000  // true color black
-#define WHITE  0xF0F0F0    // off-white
-#define fg_RGB 0xC0C0C0    // RGB status foreground color
-#define bg_R   0x401010    // RGB status foreground color
-#define bg_G   0x104010    // RGB status foreground color
-#define bg_B   0x101040    // RGB status foreground color
+#define WHITE  0x00F0F0F0    // off-white
+#define fg_RGB 0x00C0C0C0    // RGB status foreground color
+#define bg_R   0x00401010    // RGB status foreground color
+#define bg_G   0x00104010    // RGB status foreground color
+#define bg_B   0x00101040    // RGB status foreground color
 
 typedef struct {
-  uint16_t space;
-  uint16_t shadL;
-  uint16_t shadM;
-  uint16_t shadH;
-  uint16_t fullH;
-  uint16_t blkTp;
-  uint16_t blkHi;
-  uint16_t blkLo;
-  uint16_t blkBt;
-  uint16_t blkMd;
+  wchar_t space;
+  wchar_t shadL;
+  wchar_t shadM;
+  wchar_t shadH;
+  wchar_t fullH;
+  wchar_t blkTp;
+  wchar_t blkHi;
+  wchar_t blkLo;
+  wchar_t blkBt;
+  wchar_t blkMd;
 } blocks;
 
 typedef union {
   blocks stp;
-  uint16_t arr[10];
+  wchar_t arr[10];
 } Slots;
 
 typedef union {
@@ -38,24 +39,24 @@ typedef union {
 } Color;
 
 // inputs
-void checkInput( struct tb_event *restrict ev, Color *restrict color, const uint16_t **restrict c,
-                 const blocks *restrict const st, uint8_t *restrict sX, uint8_t *restrict sY );
+void checkInput( struct tb_event *restrict ev, Color *restrict color, const wchar_t **restrict c,
+                 const blocks *restrict const st, uint16_t *restrict sX, uint16_t *restrict sY );
 
 // increment value of RGB color channels until wrap to 0
-void setColor( Color *restrict color, uint32_t *restrict c );
+void setColor( Color *restrict color, uint32_t *restrict ch );
 
 // draw a horizontal line
-void hLine( uint8_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c, uint8_t dir );
+void hLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, wchar_t c, uint8_t dir );
 
 // draw a vertical line
-void vLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, uint16_t c, uint8_t dir );
+void vLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, wchar_t c, uint8_t dir );
 
 // draw palette characters at screen bottom
-void drawPalette( const uint16_t *restrict array, const uint8_t len, const uint16_t *restrict c, const Color *restrict color );
+void drawPalette( const wchar_t *restrict arr, const uint8_t len, const wchar_t *restrict c, const Color *restrict color );
 
 // draw current color settings
-void drawColorStatus( const Color *restrict color, const uint16_t *array );
+void drawColorStatus( const Color *restrict color );
 
 // rand uint16_t in range
-const uint32_t randRange( const uint32_t min, const uint32_t max );
+// const uint32_t randRange( const uint32_t min, const uint32_t max );
 
