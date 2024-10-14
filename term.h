@@ -2,7 +2,8 @@
 
 #define fg_UI  0x00808080
 #define bg_UI  0x00101010
-#define BLACK  0x20000000  // true color black
+//#define BLACK  0x20000000  // true color black
+#define BLACK  TB_HI_BLACK			   // 
 #define WHITE  0x00F0F0F0    // off-white
 #define fg_RGB 0x00C0C0C0    // RGB status foreground color
 #define bg_R   0x00401010    // RGB status foreground color
@@ -51,7 +52,7 @@ void hLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, wchar_t c, u
 void vLine( uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, wchar_t c, uint8_t dir );
 
 // draw palette characters at screen bottom
-void drawPalette( const wchar_t *restrict arr, const uint8_t len, const wchar_t *restrict c, const Color *restrict color );
+void drawPalette( const wchar_t *restrict arr, const uint8_t len, const wchar_t *restrict c );
 
 // draw current color settings
 void drawColorStatus( const Color *restrict color );
