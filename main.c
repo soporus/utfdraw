@@ -7,25 +7,25 @@
 
 int main(int argc, char **argv) {
   // setup memory for event loop, color value, and drawing chars
-  struct tb_event *ev          = alloca(sizeof *ev);
-  Color           *color       = alloca(sizeof *color);
-  color->rgb                   = 0x00c0c0c0;
-  const Slots *const slot      = alloca(sizeof *slot);
-  *(Slots *) slot              = (Slots) {{
-                 .space = L'\U000000A0', // spaceblock
-                 .shadL = L'\U00002591', // ░
-                 .shadM = L'\U00002592', // ▒
-                 .shadH = L'\U00002593', // ▓
-                 .fullH = L'\U00002588', // █
-                 .blkTp = L'\U00002580', // top block
-                 .blkHi = L'\U00002594', // high thin
-                 .blkLo = L'\U00002581', // low thin
-                 .blkBt = L'\U00002584', // bottom block
-                 .blkMd = L'\U000025FC', // middle block
+  struct tb_event *ev              = alloca(sizeof *ev);
+  Color *restrict color            = alloca(sizeof *color);
+  color->rgb                       = 0x00c0c0c0;
+  const Slots *restrict const slot = alloca(sizeof *slot);
+  *(Slots *restrict) slot          = (Slots) {{
+             .space = L'\U000000A0', // blank
+             .shadL = L'\U00002591', // ░
+             .shadM = L'\U00002592', // ▒
+             .shadH = L'\U00002593', // ▓
+             .fullH = L'\U00002588', // █
+             .blkTp = L'\U00002580', // ▀
+             .blkHi = L'\U00002594', // ▔
+             .blkLo = L'\U00002581', // ▁
+             .blkBt = L'\U00002584', // ▄
+             .blkMd = L'\U000025FC', // ◼
   }};
-  const blocks *const st       = &slot->stp; // access union as struct
-  const uint8_t       slotSize = sizeof(slot->arr) / sizeof(slot->arr[0]) - 1;
-  const wchar_t      *c        = &st->fullH;
+  const blocks *restrict const st  = &slot->stp; // access union as struct
+  const uint8_t  slotSize          = sizeof(slot->arr) / sizeof(slot->arr[0]) - 1;
+  const wchar_t *c                 = &st->fullH;
   setlocale(LC_ALL, "C.UTF-8");
   // setup termbox2
   tb_init();

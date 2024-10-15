@@ -1,8 +1,7 @@
 #include "termbox2/termbox2.h"
 
-#define fg_UI 0x00808080
-#define bg_UI 0x00101010
-// #define BLACK  0x20000000  // true color black
+#define fg_UI  0x00808080
+#define bg_UI  0x00101010
 #define BLACK  TB_HI_BLACK // use termbox definition of black for portability
 #define WHITE  0x00F0F0F0  // off-white
 #define fg_RGB 0x00C0C0C0  // RGB status foreground color
@@ -30,6 +29,7 @@ typedef union {
 
 typedef union {
   uint32_t rgb : 32;
+  uint8_t  rgbArr[4];
   struct {
     uint8_t b : 8;
     uint8_t g : 8;
