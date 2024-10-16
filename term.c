@@ -1,5 +1,4 @@
 #include "term.h"
-
 // inputs
 void checkInput(struct tb_event *restrict ev, Color *restrict color, const wchar_t **c,
                 const wchar_t *restrict arr, uint16_t *restrict sX, uint16_t *restrict sY) {
@@ -76,7 +75,9 @@ void checkInput(struct tb_event *restrict ev, Color *restrict color, const wchar
     case '8' : *c = &arr[7]; goto bypass;                               // ▁
     case '9' : *c = &arr[8]; goto bypass;                               // ▄
     case '0' : *c = &arr[9]; goto bypass;                               // ◼
+    case 'Q' : [[fallthrough]];                                         // c23 implicit fallthrough.
     case 'q' : *c != &arr[0] ? (*c -= 1) : (*c = &arr[9]); goto bypass; // choose block to left in palette
+    case 'E' : [[fallthrough]];                                         // c23 fallthrough.
     case 'e' : *c != &arr[9] ? (*c += 1) : (*c = &arr[0]); goto bypass; // choose block to right in palette
   }
 // jump here if no further checks needed and ready to draw.  left-click draw for example
