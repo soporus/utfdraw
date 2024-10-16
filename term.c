@@ -1,8 +1,8 @@
 #include "term.h"
 
 // inputs
-void checkInput(struct tb_event *restrict ev, Color *restrict color, const wchar_t **restrict c,
-                const blocks *restrict const st, uint16_t *restrict sX, uint16_t *restrict sY) {
+void checkInput(struct tb_event *restrict ev, Color *restrict color, const wchar_t **c,
+                const wchar_t *restrict arr, uint16_t *restrict sX, uint16_t *restrict sY) {
   // flag when a draw is needed
   uint8_t draw = 0;
   // stores previous keypress persistently
@@ -44,38 +44,40 @@ void checkInput(struct tb_event *restrict ev, Color *restrict color, const wchar
   }
   switch (ev->ch) {
     // lowercase: move only  uppercase: move and draw
-    case 'w' : *sY = (*sY > 0) ? *sY - 1 : 0; break;               // ▲  wasd movement
-    case 'a' : *sX = (*sX > 0) ? *sX - 1 : 0; break;               // ◀︎
-    case 's' : *sY = (*sY < height) ? *sY + 1 : *sY; break;        // ▼
-    case 'd' : *sX = (*sX < width) ? *sX + 1 : *sX; break;         // ▶︎
-    case 'k' : *sY = (*sY > 0) ? *sY - 1 : 0; break;               // ▲  vi movement
-    case 'h' : *sX = (*sX > 0) ? *sX - 1 : 0; break;               // ◀︎
-    case 'j' : *sY = (*sY < height) ? *sY + 1 : *sY; break;        // ▼
-    case 'l' : *sX = (*sX < width) ? *sX + 1 : *sX; break;         // ▶︎
-    case 'W' : *sY = (*sY > 0) ? *sY - (++draw) : 0; break;        // ▲  wasd draw
-    case 'A' : *sX = (*sX > 0) ? *sX - (++draw) : 0; break;        // ◀︎
-    case 'S' : *sY = (*sY < height) ? *sY + (++draw) : *sY; break; // ▼
-    case 'D' : *sX = (*sX < width) ? *sX + (++draw) : *sX; break;  // ▶︎
-    case 'K' : *sY = (*sY > 0) ? *sY - (++draw) : 0; break;        // ▲  vi draw
-    case 'H' : *sX = (*sX > 0) ? *sX - (++draw) : 0; break;        // ◀︎
-    case 'J' : *sY = (*sY < height) ? *sY + (++draw) : *sY; break; // ▼
-    case 'L' : *sX = (*sX < width) ? *sX + (++draw) : *sX; break;  // ▶︎
-    case 'r' : setColor(color, &ev->ch); goto bypass;              // --red    colors
-    case 'g' : setColor(color, &ev->ch); goto bypass;              // --green
-    case 'b' : setColor(color, &ev->ch); goto bypass;              // --blue
-    case 'R' : setColor(color, &ev->ch); goto bypass;              // ++red
-    case 'G' : setColor(color, &ev->ch); goto bypass;              // ++green
-    case 'B' : setColor(color, &ev->ch); goto bypass;              // ++blue
-    case '1' : *c = &st->space; goto bypass;                       //    char selection
-    case '2' : *c = &st->shadL; goto bypass;                       // ░
-    case '3' : *c = &st->shadM; goto bypass;                       // ▒
-    case '4' : *c = &st->shadH; goto bypass;                       // ▓
-    case '5' : *c = &st->fullH; goto bypass;                       // █
-    case '6' : *c = &st->blkTp; goto bypass;                       // ▀
-    case '7' : *c = &st->blkHi; goto bypass;                       // ▔
-    case '8' : *c = &st->blkLo; goto bypass;                       // ▁
-    case '9' : *c = &st->blkBt; goto bypass;                       // ▄
-    case '0' : *c = &st->blkMd; goto bypass;                       // ◼
+    case 'w' : *sY = (*sY > 0) ? *sY - 1 : 0; break;                    // ▲  wasd movement
+    case 'a' : *sX = (*sX > 0) ? *sX - 1 : 0; break;                    // ◀︎
+    case 's' : *sY = (*sY < height) ? *sY + 1 : *sY; break;             // ▼
+    case 'd' : *sX = (*sX < width) ? *sX + 1 : *sX; break;              // ▶︎
+    case 'k' : *sY = (*sY > 0) ? *sY - 1 : 0; break;                    // ▲  vi movement
+    case 'h' : *sX = (*sX > 0) ? *sX - 1 : 0; break;                    // ◀︎
+    case 'j' : *sY = (*sY < height) ? *sY + 1 : *sY; break;             // ▼
+    case 'l' : *sX = (*sX < width) ? *sX + 1 : *sX; break;              // ▶︎
+    case 'W' : *sY = (*sY > 0) ? *sY - (++draw) : 0; break;             // ▲  wasd draw
+    case 'A' : *sX = (*sX > 0) ? *sX - (++draw) : 0; break;             // ◀︎
+    case 'S' : *sY = (*sY < height) ? *sY + (++draw) : *sY; break;      // ▼
+    case 'D' : *sX = (*sX < width) ? *sX + (++draw) : *sX; break;       // ▶︎
+    case 'K' : *sY = (*sY > 0) ? *sY - (++draw) : 0; break;             // ▲  vi draw
+    case 'H' : *sX = (*sX > 0) ? *sX - (++draw) : 0; break;             // ◀︎
+    case 'J' : *sY = (*sY < height) ? *sY + (++draw) : *sY; break;      // ▼
+    case 'L' : *sX = (*sX < width) ? *sX + (++draw) : *sX; break;       // ▶︎
+    case 'r' : setColor(color, &ev->ch); goto bypass;                   // --red    colors
+    case 'g' : setColor(color, &ev->ch); goto bypass;                   // --green
+    case 'b' : setColor(color, &ev->ch); goto bypass;                   // --blue
+    case 'R' : setColor(color, &ev->ch); goto bypass;                   // ++red
+    case 'G' : setColor(color, &ev->ch); goto bypass;                   // ++green
+    case 'B' : setColor(color, &ev->ch); goto bypass;                   // ++blue
+    case '1' : *c = &arr[0]; goto bypass;                               //    char selection
+    case '2' : *c = &arr[1]; goto bypass;                               // ░
+    case '3' : *c = &arr[2]; goto bypass;                               // ▒
+    case '4' : *c = &arr[3]; goto bypass;                               // ▓
+    case '5' : *c = &arr[4]; goto bypass;                               // █
+    case '6' : *c = &arr[5]; goto bypass;                               // ▀
+    case '7' : *c = &arr[6]; goto bypass;                               // ▔
+    case '8' : *c = &arr[7]; goto bypass;                               // ▁
+    case '9' : *c = &arr[8]; goto bypass;                               // ▄
+    case '0' : *c = &arr[9]; goto bypass;                               // ◼
+    case 'q' : *c != &arr[0] ? (*c -= 1) : (*c = &arr[9]); goto bypass; // choose block to left in palette
+    case 'e' : *c != &arr[9] ? (*c += 1) : (*c = &arr[0]); goto bypass; // choose block to right in palette
   }
 // jump here if no further checks needed and ready to draw.  left-click draw for example
 // set cursor position, write character, paint fg color and bg color (always black for now)
@@ -145,15 +147,10 @@ void drawColorStatus(const Color *restrict color) {
   for (uint8_t l = 0, j = 0; l < 6 && j < 3; l += 2, j++) {
     tb_printf(xloc - l, yloc, (uintattr_t) fg_UI, BLACK, "%02X", color->rgbArr[j]);
   }
-  /* working but old. testing loop version
+  /* working / old. easier to read?
   tb_printf(xloc - 4, yloc, (uintattr_t) fg_UI, BLACK, "%02X", color->r);
   tb_printf(xloc - 2, yloc, (uintattr_t) fg_UI, BLACK, "%02X", color->g);
   tb_printf(xloc, yloc, (uintattr_t) fg_UI, BLACK, "%02X", color->b);
   */
 }
 
-/* 4 	 && 3	    	print
- * 4-2=2 && 3-1	=2 	print
- * 2-2=0 && 2-1 =1 	print	stop here
- * 0-2=N && 1-1 =1 	false
- */

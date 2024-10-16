@@ -42,7 +42,7 @@ int main(int argc, char **argv) {
     drawColorStatus(color);
     tb_present();
     // wait for input, process input, only if found
-    if (tb_poll_event(ev) == TB_OK) { checkInput(ev, color, &c, st, &sX, &sY); }
+    if (tb_poll_event(ev) == TB_OK) { checkInput(ev, color, &c, slot->arr, &sX, &sY); }
   }
   // clean up terminal
   tb_shutdown();

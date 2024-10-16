@@ -1,3 +1,4 @@
 [submodule "termbox2"]
 	path = termbox2
 	url = https://github.com/termbox/termbox2.git
+	ignore = dirty

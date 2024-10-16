@@ -40,7 +40,7 @@ typedef union {
 
 // inputs
 void checkInput(struct tb_event *restrict ev, Color *restrict color, const wchar_t **restrict c,
-                const blocks *restrict const st, uint16_t *restrict sX, uint16_t *restrict sY);
+                const wchar_t *restrict arr, uint16_t *restrict sX, uint16_t *restrict sY);
 
 // increment value of RGB color channels until wrap to 0
 void setColor(Color *restrict color, uint32_t *restrict ch);
