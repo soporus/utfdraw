@@ -42,11 +42,11 @@ void checkInput(struct tb_event *restrict ev, Color *restrict color, const wchar
     case 'H' : *sX = (*sX > 0) ? *sX - (++draw) : 0; break;             // ◀︎
     case 'J' : *sY = (*sY < height) ? *sY + (++draw) : *sY; break;      // ▼
     case 'L' : *sX = (*sX < width) ? *sX + (++draw) : *sX; break;       // ▶︎
-    case 'r' : setColor(color, &ev->ch); goto bypass;                   // --red    colors
-    case 'g' : setColor(color, &ev->ch); goto bypass;                   // --green
-    case 'b' : setColor(color, &ev->ch); goto bypass;                   // --blue
-    case 'R' : setColor(color, &ev->ch); goto bypass;                   // ++red
-    case 'G' : setColor(color, &ev->ch); goto bypass;                   // ++green
+    case 'r' : [[fallthrough]];                                         // --red    colors
+    case 'g' : [[fallthrough]];                                         // --green
+    case 'b' : [[fallthrough]];                                         // --blue
+    case 'R' : [[fallthrough]];                                         // ++red
+    case 'G' : [[fallthrough]];                                         // ++green
     case 'B' : setColor(color, &ev->ch); goto bypass;                   // ++blue
     case '1' : *c = &arr[0]; goto bypass;                               //    char selection
     case '2' : *c = &arr[1]; goto bypass;                               // ░
