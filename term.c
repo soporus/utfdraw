@@ -131,13 +131,8 @@ void drawColorStatus(const Color *restrict color) {
   // hashtag shows current color
   tb_set_cell(xloc - 5, yloc, '#', 0x01000000 | color->rgb, BLACK);
   // print RGB hex values.  screen bottom, and centered
-  for (uint8_t l = 0, j = 0; l < 6 && j < 3; l += 2, j++) {
+  for (uint8_t l = 0, j = 0; j < 3; l += 2, j++) {
     tb_printf(xloc - l, yloc, (uintattr_t) fg_UI, BLACK, "%02X", color->rgbArr[j]);
   }
-  /* working / old. easier to read?
-  tb_printf(xloc - 4, yloc, (uintattr_t) fg_UI, BLACK, "%02X", color->r);
-  tb_printf(xloc - 2, yloc, (uintattr_t) fg_UI, BLACK, "%02X", color->g);
-  tb_printf(xloc, yloc, (uintattr_t) fg_UI, BLACK, "%02X", color->b);
-  */
 }
 

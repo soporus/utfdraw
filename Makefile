@@ -18,7 +18,7 @@ HEADERS = term.h termbox2/termbox2.h
 main: $(SRCS) $(HEADERS)
 	$(CC) $(CFLAGS) $(SRCS) $(LDFLAGS) -o  "$@"
 main-debug: $(SRCS) $(HEADERS)
-	$(CC) -std=gnu17 -Og -ggdb3 -fno-omit-frame-pointer -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment -fanalyzer $(SRCS) $(DBLD_FLAGS) -o "$@"
+	$(CC) -std=c2x -Og -ggdb3 -fno-omit-frame-pointer -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment -fanalyzer $(SRCS) $(DBLD_FLAGS) -o "$@"
 
 strip: $(SRCS) $(HEADERS)
 	$(CC) $(CFLAGS) $(SRCS) -o  main && strip --strip-all --verbose main
