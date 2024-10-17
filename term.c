@@ -2,46 +2,29 @@
 // inputs
 void checkInput(struct tb_event *restrict ev, Color *restrict color, const wchar_t **c,
                 const wchar_t *restrict arr, uint16_t *restrict sX, uint16_t *restrict sY) {
+  const uint32_t key = (ev->ch > 0) ? ev->ch : (uint32_t) ev->key;
   // flag when a draw is needed
   uint8_t draw = 0;
   // stores previous keypress persistently
-  static uint32_t keyTest = 0;
+  // static uint32_t keyTest = 0;
   // setup boundaries for movement, and check within boundary after resize
   const uint16_t width  = (uint16_t) tb_width() - 1;
   const uint16_t height = (uint16_t) tb_height() - 2;
   // check we are within boundary
   *sX = (*sX < width + 1) ? *sX : width;
   *sY = (*sY < height + 1) ? *sY : height;
-  // TODO clean up this double switch to not rely on GOTO (considered helpful)
-  // because of the different key types, we use 2 switches.
-  // first switch cases jump over the next switch, since additional tests are not required
-  // . . . . . . . . . . . . . . . . . . . . . . .
-  // mouse movement and paint
-  switch (ev->key) {
+  switch (key) {
     // movement and paints character
     case TB_KEY_MOUSE_LEFT :
       *sX = (uint16_t) ev->x;
       *sY = (uint16_t) ev->y;
       ++draw;
-      goto draw;
+      break;
     // movement only, but must draw to paint cursor position
-    case TB_KEY_ARROW_LEFT  : *sX = (*sX > 0) ? *sX - 1 : 0; goto draw;
-    case TB_KEY_ARROW_UP    : *sY = (*sY > 0) ? *sY - 1 : 0; goto draw;
-    case TB_KEY_ARROW_DOWN  : *sY = (*sY < height) ? *sY + 1 : *sY; goto draw;
-    case TB_KEY_ARROW_RIGHT : *sX = (*sX < width) ? *sX + 1 : *sX; goto draw;
-    // movement.  does not paint character, but we need to paint cursor with draw
-    case TB_KEY_MOUSE_RIGHT :
-      *sX = (uint16_t) ev->x;
-      *sY = (uint16_t) ev->y;
-      goto draw;
-    // draw to boundary
-    case TB_KEY_HOME : hLine(*sX, *sY, color->rgb, BLACK, **c, 0); goto bypass;
-    case TB_KEY_END  : hLine(*sX, *sY, color->rgb, BLACK, **c, 1); goto bypass;
-    case TB_KEY_PGUP : vLine(*sX, *sY, color->rgb, BLACK, **c, 0); goto bypass;
-    case TB_KEY_PGDN : vLine(*sX, *sY, color->rgb, BLACK, **c, 1); goto bypass;
-    default          : break;
-  }
-  switch (ev->ch) {
+    case TB_KEY_ARROW_LEFT  : *sX = (*sX > 0) ? *sX - 1 : 0; break;
+    case TB_KEY_ARROW_UP    : *sY = (*sY > 0) ? *sY - 1 : 0; break;
+    case TB_KEY_ARROW_DOWN  : *sY = (*sY < height) ? *sY + 1 : *sY; break;
+    case TB_KEY_ARROW_RIGHT : *sX = (*sX < width) ? *sX + 1 : *sX; break;
     // lowercase: move only  uppercase: move and draw
     case 'w' : *sY = (*sY > 0) ? *sY - 1 : 0; break;                    // ▲  wasd movement
     case 'a' : *sX = (*sX > 0) ? *sX - 1 : 0; break;                    // ◀︎
@@ -75,20 +58,23 @@ void checkInput(struct tb_event *restrict ev, Color *restrict color, const wchar
     case '8' : *c = &arr[7]; goto bypass;                               // ▁
     case '9' : *c = &arr[8]; goto bypass;                               // ▄
     case '0' : *c = &arr[9]; goto bypass;                               // ◼
-    case 'Q' : [[fallthrough]];                                         // c23 implicit fallthrough.
+    case 'Q' : [[fallthrough]];                                         // tell clang fallthrough intentional
     case 'q' : *c != &arr[0] ? (*c -= 1) : (*c = &arr[9]); goto bypass; // choose block to left in palette
-    case 'E' : [[fallthrough]];                                         // c23 fallthrough.
+    case 'E' : [[fallthrough]];                                         //
     case 'e' : *c != &arr[9] ? (*c += 1) : (*c = &arr[0]); goto bypass; // choose block to right in palette
+    case TB_KEY_MOUSE_RIGHT :                                           // movement without draw
+      *sX = (uint16_t) ev->x;
+      *sY = (uint16_t) ev->y;
+      break; // draw to left, right, top, or lower boundary
+    case TB_KEY_HOME : hLine(*sX, *sY, color->rgb, BLACK, **c, 0); goto bypass; // ◀︎
+    case TB_KEY_END  : hLine(*sX, *sY, color->rgb, BLACK, **c, 1); goto bypass; // ▶︎
+    case TB_KEY_PGUP : vLine(*sX, *sY, color->rgb, BLACK, **c, 0); goto bypass; // ▲
+    case TB_KEY_PGDN : vLine(*sX, *sY, color->rgb, BLACK, **c, 1); goto bypass; // ▼
   }
-// jump here if no further checks needed and ready to draw.  left-click draw for example
-// set cursor position, write character, paint fg color and bg color (always black for now)
-draw:
+  // set cursor position and draw
   tb_set_cursor(*sX, *sY);
   if (draw == 1) { tb_set_cell(*sX, *sY, **c, color->rgb, BLACK); }
-// jump here when no further checks needed and no draw required. arrow keys or char select
-// store most recent key pressed
-bypass:
-  keyTest = ev->ch;
+bypass:; // jump if no draw required
 }
 // increment value of RGB color channels until wrap to 0
 void setColor(Color *restrict color, uint32_t *restrict ch) {
