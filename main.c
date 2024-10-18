@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
              .blkMd = L'\U000025FC', // ◼
   }};
   const blocks *restrict const st  = &slot->stp; // access union as struct
-  const uint8_t  slotSize          = sizeof(slot->arr) / sizeof(slot->arr[0]) - 1;
+  const uint8_t  palSize           = sizeof(slot->arr) / sizeof(slot->arr[0]) - 1;
   const wchar_t *c                 = &st->fullH;
   setlocale(LC_ALL, "C.UTF-8");
   // setup termbox2
@@ -37,7 +37,7 @@ int main(int argc, char **argv) {
     // status x and y coordinates
     static uint16_t sX = 0;
     static uint16_t sY = 0;
-    drawPalette(slot->arr, slotSize, c);
+    drawPalette(slot->arr, palSize, c);
     tb_printf(tb_width() - 9, tb_height() - 1, (uintattr_t) fg_UI, BLACK, "%d, %d", sX, sY);
     drawColorStatus(color);
     tb_present();
