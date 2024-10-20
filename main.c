@@ -23,9 +23,14 @@ int main(int argc, char **argv) {
              .blkBt = L'\U00002584', // ▄
              .blkMd = L'\U000025FC', // ◼
   }};
-  const blocks *restrict const st  = &slot->stp; // access union as struct
-  const uint8_t  palSize           = sizeof(slot->arr) / sizeof(slot->arr[0]) - 1;
-  const wchar_t *c                 = &st->fullH;
+  // Pixel(*buffer)[256][256]         = calloc(256 * 256, sizeof(*buffer));
+  // Pixel(**buffer)[256][256] = malloc(sizeof(*buffer[256][256]));
+  Pixel buffer[256][256] = {};
+
+  const blocks *restrict const st = &slot->stp; // access union as struct
+  const uint8_t  palSize          = sizeof(slot->arr) / sizeof(slot->arr[0]) - 1;
+  const wchar_t *c                = &st->fullH;
+  uint8_t        select           = 4;
   setlocale(LC_ALL, "C.UTF-8");
   // setup termbox2
   tb_init();
@@ -35,16 +40,17 @@ int main(int argc, char **argv) {
   ev->key = 0;
   while (ev->key != TB_KEY_ESC) {
     // status x and y coordinates
-    static uint16_t sX = 0;
-    static uint16_t sY = 0;
-    drawPalette(slot->arr, palSize, c);
+    static uint8_t sX = 0;
+    static uint8_t sY = 0;
+    drawPalette(buffer, slot->arr, palSize, &select);
     tb_printf(tb_width() - 9, tb_height() - 1, (uintattr_t) fg_UI, BLACK, "%d, %d", sX, sY);
     drawColorStatus(color);
     tb_present();
     // wait for input, process input, only if found
-    if (tb_poll_event(ev) == TB_OK) { checkInput(ev, color, &c, slot->arr, &sX, &sY); }
+    if (tb_poll_event(ev) == TB_OK) { checkInput(ev, color, &select, slot->arr, &sX, &sY, buffer); }
   }
   // clean up terminal
+  //  free(buffer);
   tb_shutdown();
   return 0;
 }

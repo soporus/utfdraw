@@ -1,0 +1,706 @@
+BLACK	term.h	/^#define BLACK  TB_HI_BLACK /;"	d
+Color	term.h	/^} Color;$/;"	t	typeref:union:__anon1dd971d3030a
+FIRST_LAST_MAX	termbox2/termbox2.h	/^                FIRST_LAST_MAX$/;"	e	enum:extract_esc_mouse::__anon01aa40700403
+FIRST_M	termbox2/termbox2.h	/^                FIRST_M = 0,$/;"	e	enum:extract_esc_mouse::__anon01aa40700403
+FIRST_SEMICOLON	termbox2/termbox2.h	/^                FIRST_SEMICOLON,$/;"	e	enum:extract_esc_mouse::__anon01aa40700403
+K_0	termbox2/demo/keyboard.c	/^struct key K_0[] = {{31,4,'0'},STOP};$/;"	v	typeref:struct:key[]
+K_0_SHIFT	termbox2/demo/keyboard.c	/^struct key K_0_SHIFT[] = {{31,4,')'},STOP};$/;"	v	typeref:struct:key[]
+K_1	termbox2/demo/keyboard.c	/^struct key K_1[] = {{4,4,'1'},STOP};$/;"	v	typeref:struct:key[]
+K_1_SHIFT	termbox2/demo/keyboard.c	/^struct key K_1_SHIFT[] = {{4,4,'!'},STOP};$/;"	v	typeref:struct:key[]
+K_2	termbox2/demo/keyboard.c	/^struct key K_2[] = {{7,4,'2'},STOP};$/;"	v	typeref:struct:key[]
+K_2_SHIFT	termbox2/demo/keyboard.c	/^struct key K_2_SHIFT[] = {{7,4,'@'},STOP};$/;"	v	typeref:struct:key[]
+K_3	termbox2/demo/keyboard.c	/^struct key K_3[] = {{10,4,'3'},STOP};$/;"	v	typeref:struct:key[]
+K_3_SHIFT	termbox2/demo/keyboard.c	/^struct key K_3_SHIFT[] = {{10,4,'#'},STOP};$/;"	v	typeref:struct:key[]
+K_4	termbox2/demo/keyboard.c	/^struct key K_4[] = {{13,4,'4'},STOP};$/;"	v	typeref:struct:key[]
+K_4_SHIFT	termbox2/demo/keyboard.c	/^struct key K_4_SHIFT[] = {{13,4,'$'},STOP};$/;"	v	typeref:struct:key[]
+K_5	termbox2/demo/keyboard.c	/^struct key K_5[] = {{16,4,'5'},STOP};$/;"	v	typeref:struct:key[]
+K_5_SHIFT	termbox2/demo/keyboard.c	/^struct key K_5_SHIFT[] = {{16,4,'%'},STOP};$/;"	v	typeref:struct:key[]
+K_6	termbox2/demo/keyboard.c	/^struct key K_6[] = {{19,4,'6'},STOP};$/;"	v	typeref:struct:key[]
+K_6_SHIFT	termbox2/demo/keyboard.c	/^struct key K_6_SHIFT[] = {{19,4,'^'},STOP};$/;"	v	typeref:struct:key[]
+K_7	termbox2/demo/keyboard.c	/^struct key K_7[] = {{22,4,'7'},STOP};$/;"	v	typeref:struct:key[]
+K_7_SHIFT	termbox2/demo/keyboard.c	/^struct key K_7_SHIFT[] = {{22,4,'&'},STOP};$/;"	v	typeref:struct:key[]
+K_8	termbox2/demo/keyboard.c	/^struct key K_8[] = {{25,4,'8'},STOP};$/;"	v	typeref:struct:key[]
+K_8_SHIFT	termbox2/demo/keyboard.c	/^struct key K_8_SHIFT[] = {{25,4,'*'},STOP};$/;"	v	typeref:struct:key[]
+K_9	termbox2/demo/keyboard.c	/^struct key K_9[] = {{28,4,'9'},STOP};$/;"	v	typeref:struct:key[]
+K_9_SHIFT	termbox2/demo/keyboard.c	/^struct key K_9_SHIFT[] = {{28,4,'('},STOP};$/;"	v	typeref:struct:key[]
+K_A	termbox2/demo/keyboard.c	/^struct key K_A[] = {{7,8,'A'},STOP};$/;"	v	typeref:struct:key[]
+K_ARROW_DOWN	termbox2/demo/keyboard.c	/^struct key K_ARROW_DOWN[] = {{54,12,'('},{55,12,0x2193},{56,12,')'},STOP};$/;"	v	typeref:struct:key[]
+K_ARROW_LEFT	termbox2/demo/keyboard.c	/^struct key K_ARROW_LEFT[] = {{50,12,'('},{51,12,0x2190},{52,12,')'},STOP};$/;"	v	typeref:struct:key[]
+K_ARROW_RIGHT	termbox2/demo/keyboard.c	/^struct key K_ARROW_RIGHT[] = {{58,12,'('},{59,12,0x2192},{60,12,')'},STOP};$/;"	v	typeref:struct:key[]
+K_ARROW_UP	termbox2/demo/keyboard.c	/^struct key K_ARROW_UP[] = {{54,10,'('},{55,10,0x2191},{56,10,')'},STOP};$/;"	v	typeref:struct:key[]
+K_B	termbox2/demo/keyboard.c	/^struct key K_B[] = {{21,10,'B'},STOP};$/;"	v	typeref:struct:key[]
+K_BACKSLASH	termbox2/demo/keyboard.c	/^struct key K_BACKSLASH[] = {{40,4,'\\\\'},STOP};$/;"	v	typeref:struct:key[]
+K_BACKSLASH_SHIFT	termbox2/demo/keyboard.c	/^struct key K_BACKSLASH_SHIFT[] = {{40,4,'|'},STOP};$/;"	v	typeref:struct:key[]
+K_BACKSPACE	termbox2/demo/keyboard.c	/^struct key K_BACKSPACE[] = {{44,4,0x2190},{45,4,0x2500},{46,4,0x2500},STOP};$/;"	v	typeref:struct:key[]
+K_BRK	termbox2/demo/keyboard.c	/^struct key K_BRK[] = {{58,1,'B'},{59,1,'R'},{60,1,'K'},STOP};$/;"	v	typeref:struct:key[]
+K_C	termbox2/demo/keyboard.c	/^struct key K_C[] = {{15,10,'C'},STOP};$/;"	v	typeref:struct:key[]
+K_CAPS	termbox2/demo/keyboard.c	/^struct key K_CAPS[] = {{1,8,'C'},{2,8,'A'},{3,8,'P'},{4,8,'S'},STOP};$/;"	v	typeref:struct:key[]
+K_COMMA	termbox2/demo/keyboard.c	/^struct key K_COMMA[] = {{30,10,','},STOP};$/;"	v	typeref:struct:key[]
+K_D	termbox2/demo/keyboard.c	/^struct key K_D[] = {{13,8,'D'},STOP};$/;"	v	typeref:struct:key[]
+K_DEL	termbox2/demo/keyboard.c	/^struct key K_DEL[] = {{50,6,'D'},{51,6,'E'},{52,6,'L'},STOP};$/;"	v	typeref:struct:key[]
+K_DOUBLEQUOTE	termbox2/demo/keyboard.c	/^struct key K_DOUBLEQUOTE[] = {{37,8,'"'},STOP};$/;"	v	typeref:struct:key[]
+K_E	termbox2/demo/keyboard.c	/^struct key K_E[] = {{12,6,'E'},STOP};$/;"	v	typeref:struct:key[]
+K_END	termbox2/demo/keyboard.c	/^struct key K_END[] = {{54,6,'E'},{55,6,'N'},{56,6,'D'},STOP};$/;"	v	typeref:struct:key[]
+K_ENTER	termbox2/demo/keyboard.c	/^struct key K_ENTER[] = {$/;"	v	typeref:struct:key[]
+K_EQUALS	termbox2/demo/keyboard.c	/^struct key K_EQUALS[] = {{37,4,'='},STOP};$/;"	v	typeref:struct:key[]
+K_EQUALS_SHIFT	termbox2/demo/keyboard.c	/^struct key K_EQUALS_SHIFT[] = {{37,4,'+'},STOP};$/;"	v	typeref:struct:key[]
+K_ESC	termbox2/demo/keyboard.c	/^struct key K_ESC[] = {{1,1,'E'},{2,1,'S'},{3,1,'C'},STOP};$/;"	v	typeref:struct:key[]
+K_F	termbox2/demo/keyboard.c	/^struct key K_F[] = {{16,8,'F'},STOP};$/;"	v	typeref:struct:key[]
+K_F1	termbox2/demo/keyboard.c	/^struct key K_F1[] = {{6,1,'F'},{7,1,'1'},STOP};$/;"	v	typeref:struct:key[]
+K_F10	termbox2/demo/keyboard.c	/^struct key K_F10[] = {{36,1,'F'},{37,1,'1'},{38,1,'0'},STOP};$/;"	v	typeref:struct:key[]
+K_F11	termbox2/demo/keyboard.c	/^struct key K_F11[] = {{40,1,'F'},{41,1,'1'},{42,1,'1'},STOP};$/;"	v	typeref:struct:key[]
+K_F12	termbox2/demo/keyboard.c	/^struct key K_F12[] = {{44,1,'F'},{45,1,'1'},{46,1,'2'},STOP};$/;"	v	typeref:struct:key[]
+K_F2	termbox2/demo/keyboard.c	/^struct key K_F2[] = {{9,1,'F'},{10,1,'2'},STOP};$/;"	v	typeref:struct:key[]
+K_F3	termbox2/demo/keyboard.c	/^struct key K_F3[] = {{12,1,'F'},{13,1,'3'},STOP};$/;"	v	typeref:struct:key[]
+K_F4	termbox2/demo/keyboard.c	/^struct key K_F4[] = {{15,1,'F'},{16,1,'4'},STOP};$/;"	v	typeref:struct:key[]
+K_F5	termbox2/demo/keyboard.c	/^struct key K_F5[] = {{19,1,'F'},{20,1,'5'},STOP};$/;"	v	typeref:struct:key[]
+K_F6	termbox2/demo/keyboard.c	/^struct key K_F6[] = {{22,1,'F'},{23,1,'6'},STOP};$/;"	v	typeref:struct:key[]
+K_F7	termbox2/demo/keyboard.c	/^struct key K_F7[] = {{25,1,'F'},{26,1,'7'},STOP};$/;"	v	typeref:struct:key[]
+K_F8	termbox2/demo/keyboard.c	/^struct key K_F8[] = {{28,1,'F'},{29,1,'8'},STOP};$/;"	v	typeref:struct:key[]
+K_F9	termbox2/demo/keyboard.c	/^struct key K_F9[] = {{33,1,'F'},{34,1,'9'},STOP};$/;"	v	typeref:struct:key[]
+K_G	termbox2/demo/keyboard.c	/^struct key K_G[] = {{19,8,'G'},STOP};$/;"	v	typeref:struct:key[]
+K_H	termbox2/demo/keyboard.c	/^struct key K_H[] = {{22,8,'H'},STOP};$/;"	v	typeref:struct:key[]
+K_HOM	termbox2/demo/keyboard.c	/^struct key K_HOM[] = {{54,4,'H'},{55,4,'O'},{56,4,'M'},STOP};$/;"	v	typeref:struct:key[]
+K_I	termbox2/demo/keyboard.c	/^struct key K_I[] = {{27,6,'I'},STOP};$/;"	v	typeref:struct:key[]
+K_INS	termbox2/demo/keyboard.c	/^struct key K_INS[] = {{50,4,'I'},{51,4,'N'},{52,4,'S'},STOP};$/;"	v	typeref:struct:key[]
+K_J	termbox2/demo/keyboard.c	/^struct key K_J[] = {{25,8,'J'},STOP};$/;"	v	typeref:struct:key[]
+K_K	termbox2/demo/keyboard.c	/^struct key K_K[] = {{28,8,'K'},STOP};$/;"	v	typeref:struct:key[]
+K_K_0	termbox2/demo/keyboard.c	/^struct key K_K_0[] = {{65,12,' '},{66,12,'0'},{67,12,' '},{68,12,' '},STOP};$/;"	v	typeref:struct:key[]
+K_K_1	termbox2/demo/keyboard.c	/^struct key K_K_1[] = {{65,10,'1'},STOP};$/;"	v	typeref:struct:key[]
+K_K_2	termbox2/demo/keyboard.c	/^struct key K_K_2[] = {{68,10,'2'},STOP};$/;"	v	typeref:struct:key[]
+K_K_3	termbox2/demo/keyboard.c	/^struct key K_K_3[] = {{71,10,'3'},STOP};$/;"	v	typeref:struct:key[]
+K_K_4	termbox2/demo/keyboard.c	/^struct key K_K_4[] = {{65,8,'4'},STOP};$/;"	v	typeref:struct:key[]
+K_K_5	termbox2/demo/keyboard.c	/^struct key K_K_5[] = {{68,8,'5'},STOP};$/;"	v	typeref:struct:key[]
+K_K_6	termbox2/demo/keyboard.c	/^struct key K_K_6[] = {{71,8,'6'},STOP};$/;"	v	typeref:struct:key[]
+K_K_7	termbox2/demo/keyboard.c	/^struct key K_K_7[] = {{65,6,'7'},STOP};$/;"	v	typeref:struct:key[]
+K_K_8	termbox2/demo/keyboard.c	/^struct key K_K_8[] = {{68,6,'8'},STOP};$/;"	v	typeref:struct:key[]
+K_K_9	termbox2/demo/keyboard.c	/^struct key K_K_9[] = {{71,6,'9'},STOP};$/;"	v	typeref:struct:key[]
+K_K_ENTER	termbox2/demo/keyboard.c	/^struct key K_K_ENTER[] = {{74,10,0x2591},{74,11,0x2591},{74,12,0x2591},STOP};$/;"	v	typeref:struct:key[]
+K_K_MINUS	termbox2/demo/keyboard.c	/^struct key K_K_MINUS[] = {{74,4,'-'},STOP};$/;"	v	typeref:struct:key[]
+K_K_NUMLOCK	termbox2/demo/keyboard.c	/^struct key K_K_NUMLOCK[] = {{65,4,'N'},STOP};$/;"	v	typeref:struct:key[]
+K_K_PERIOD	termbox2/demo/keyboard.c	/^struct key K_K_PERIOD[] = {{71,12,'.'},STOP};$/;"	v	typeref:struct:key[]
+K_K_PLUS	termbox2/demo/keyboard.c	/^struct key K_K_PLUS[] = {{74,6,' '},{74,7,'+'},{74,8,' '},STOP};$/;"	v	typeref:struct:key[]
+K_K_SLASH	termbox2/demo/keyboard.c	/^struct key K_K_SLASH[] = {{68,4,'\/'},STOP};$/;"	v	typeref:struct:key[]
+K_K_STAR	termbox2/demo/keyboard.c	/^struct key K_K_STAR[] = {{71,4,'*'},STOP};$/;"	v	typeref:struct:key[]
+K_L	termbox2/demo/keyboard.c	/^struct key K_L[] = {{31,8,'L'},STOP};$/;"	v	typeref:struct:key[]
+K_LALT	termbox2/demo/keyboard.c	/^struct key K_LALT[] = {{10,12,'A'},{11,12,'L'},{12,12,'T'},STOP};$/;"	v	typeref:struct:key[]
+K_LANB	termbox2/demo/keyboard.c	/^struct key K_LANB[] = {{30,10,'<'},STOP};$/;"	v	typeref:struct:key[]
+K_LCTRL	termbox2/demo/keyboard.c	/^struct key K_LCTRL[] = {{1,12,'C'},{2,12,'T'},{3,12,'R'},{4,12,'L'},STOP};$/;"	v	typeref:struct:key[]
+K_LCUB	termbox2/demo/keyboard.c	/^struct key K_LCUB[] = {{36,6,'{'},STOP};$/;"	v	typeref:struct:key[]
+K_LED1	termbox2/demo/keyboard.c	/^struct key K_LED1[] = {{66,1,'-'},STOP};$/;"	v	typeref:struct:key[]
+K_LED2	termbox2/demo/keyboard.c	/^struct key K_LED2[] = {{70,1,'-'},STOP};$/;"	v	typeref:struct:key[]
+K_LED3	termbox2/demo/keyboard.c	/^struct key K_LED3[] = {{74,1,'-'},STOP};$/;"	v	typeref:struct:key[]
+K_LSHIFT	termbox2/demo/keyboard.c	/^struct key K_LSHIFT[] = {{1,10,'S'},{2,10,'H'},{3,10,'I'},{4,10,'F'},{5,10,'T'},STOP};$/;"	v	typeref:struct:key[]
+K_LSQB	termbox2/demo/keyboard.c	/^struct key K_LSQB[] = {{36,6,'['},STOP};$/;"	v	typeref:struct:key[]
+K_LWIN	termbox2/demo/keyboard.c	/^struct key K_LWIN[] = {{6,12,'W'},{7,12,'I'},{8,12,'N'},STOP};$/;"	v	typeref:struct:key[]
+K_M	termbox2/demo/keyboard.c	/^struct key K_M[] = {{27,10,'M'},STOP};$/;"	v	typeref:struct:key[]
+K_MINUS	termbox2/demo/keyboard.c	/^struct key K_MINUS[] = {{34,4,'-'},STOP};$/;"	v	typeref:struct:key[]
+K_MINUS_SHIFT	termbox2/demo/keyboard.c	/^struct key K_MINUS_SHIFT[] = {{34,4,'_'},STOP};$/;"	v	typeref:struct:key[]
+K_N	termbox2/demo/keyboard.c	/^struct key K_N[] = {{24,10,'N'},STOP};$/;"	v	typeref:struct:key[]
+K_O	termbox2/demo/keyboard.c	/^struct key K_O[] = {{30,6,'O'},STOP};$/;"	v	typeref:struct:key[]
+K_P	termbox2/demo/keyboard.c	/^struct key K_P[] = {{33,6,'P'},STOP};$/;"	v	typeref:struct:key[]
+K_PARENTHESIS	termbox2/demo/keyboard.c	/^struct key K_PARENTHESIS[] = {{34,8,':'},STOP};$/;"	v	typeref:struct:key[]
+K_PERIOD	termbox2/demo/keyboard.c	/^struct key K_PERIOD[] = {{33,10,'.'},STOP};$/;"	v	typeref:struct:key[]
+K_PGD	termbox2/demo/keyboard.c	/^struct key K_PGD[] = {{58,6,'P'},{59,6,'G'},{60,6,'D'},STOP};$/;"	v	typeref:struct:key[]
+K_PGU	termbox2/demo/keyboard.c	/^struct key K_PGU[] = {{58,4,'P'},{59,4,'G'},{60,4,'U'},STOP};$/;"	v	typeref:struct:key[]
+K_PRN	termbox2/demo/keyboard.c	/^struct key K_PRN[] = {{50,1,'P'},{51,1,'R'},{52,1,'N'},STOP};$/;"	v	typeref:struct:key[]
+K_Q	termbox2/demo/keyboard.c	/^struct key K_Q[] = {{6,6,'Q'},STOP};$/;"	v	typeref:struct:key[]
+K_QUESTION	termbox2/demo/keyboard.c	/^struct key K_QUESTION[] = {{36,10,'?'},STOP};$/;"	v	typeref:struct:key[]
+K_QUOTE	termbox2/demo/keyboard.c	/^struct key K_QUOTE[] = {{37,8,'\\''},STOP};$/;"	v	typeref:struct:key[]
+K_R	termbox2/demo/keyboard.c	/^struct key K_R[] = {{15,6,'R'},STOP};$/;"	v	typeref:struct:key[]
+K_RALT	termbox2/demo/keyboard.c	/^struct key K_RALT[] = {{30,12,'A'},{31,12,'L'},{32,12,'T'},STOP};$/;"	v	typeref:struct:key[]
+K_RANB	termbox2/demo/keyboard.c	/^struct key K_RANB[] = {{33,10,'>'},STOP};$/;"	v	typeref:struct:key[]
+K_RCTRL	termbox2/demo/keyboard.c	/^struct key K_RCTRL[] = {{43,12,'C'},{44,12,'T'},{45,12,'R'},{46,12,'L'},STOP};$/;"	v	typeref:struct:key[]
+K_RCUB	termbox2/demo/keyboard.c	/^struct key K_RCUB[] = {{39,6,'}'},STOP};$/;"	v	typeref:struct:key[]
+K_RPROP	termbox2/demo/keyboard.c	/^struct key K_RPROP[] = {{38,12,'P'},{39,12,'R'},{40,12,'O'},{41,12,'P'},STOP};$/;"	v	typeref:struct:key[]
+K_RSHIFT	termbox2/demo/keyboard.c	/^struct key K_RSHIFT[] = {{42,10,'S'},{43,10,'H'},{44,10,'I'},{45,10,'F'},{46,10,'T'},STOP};$/;"	v	typeref:struct:key[]
+K_RSQB	termbox2/demo/keyboard.c	/^struct key K_RSQB[] = {{39,6,']'},STOP};$/;"	v	typeref:struct:key[]
+K_RWIN	termbox2/demo/keyboard.c	/^struct key K_RWIN[] = {{34,12,'W'},{35,12,'I'},{36,12,'N'},STOP};$/;"	v	typeref:struct:key[]
+K_S	termbox2/demo/keyboard.c	/^struct key K_S[] = {{10,8,'S'},STOP};$/;"	v	typeref:struct:key[]
+K_SCR	termbox2/demo/keyboard.c	/^struct key K_SCR[] = {{54,1,'S'},{55,1,'C'},{56,1,'R'},STOP};$/;"	v	typeref:struct:key[]
+K_SEMICOLON	termbox2/demo/keyboard.c	/^struct key K_SEMICOLON[] = {{34,8,';'},STOP};$/;"	v	typeref:struct:key[]
+K_SLASH	termbox2/demo/keyboard.c	/^struct key K_SLASH[] = {{36,10,'\/'},STOP};$/;"	v	typeref:struct:key[]
+K_SPACE	termbox2/demo/keyboard.c	/^struct key K_SPACE[] = {$/;"	v	typeref:struct:key[]
+K_T	termbox2/demo/keyboard.c	/^struct key K_T[] = {{18,6,'T'},STOP};$/;"	v	typeref:struct:key[]
+K_TAB	termbox2/demo/keyboard.c	/^struct key K_TAB[] = {{1,6,'T'},{2,6,'A'},{3,6,'B'},STOP};$/;"	v	typeref:struct:key[]
+K_TILDE	termbox2/demo/keyboard.c	/^struct key K_TILDE[] = {{1,4,'`'},STOP};$/;"	v	typeref:struct:key[]
+K_TILDE_SHIFT	termbox2/demo/keyboard.c	/^struct key K_TILDE_SHIFT[] = {{1,4,'~'},STOP};$/;"	v	typeref:struct:key[]
+K_U	termbox2/demo/keyboard.c	/^struct key K_U[] = {{24,6,'U'},STOP};$/;"	v	typeref:struct:key[]
+K_V	termbox2/demo/keyboard.c	/^struct key K_V[] = {{18,10,'V'},STOP};$/;"	v	typeref:struct:key[]
+K_W	termbox2/demo/keyboard.c	/^struct key K_W[] = {{9,6,'W'},STOP};$/;"	v	typeref:struct:key[]
+K_X	termbox2/demo/keyboard.c	/^struct key K_X[] = {{12,10,'X'},STOP};$/;"	v	typeref:struct:key[]
+K_Y	termbox2/demo/keyboard.c	/^struct key K_Y[] = {{21,6,'Y'},STOP};$/;"	v	typeref:struct:key[]
+K_Z	termbox2/demo/keyboard.c	/^struct key K_Z[] = {{9,10,'Z'},STOP};$/;"	v	typeref:struct:key[]
+K_a	termbox2/demo/keyboard.c	/^struct key K_a[] = {{7,8,'a'},STOP};$/;"	v	typeref:struct:key[]
+K_b	termbox2/demo/keyboard.c	/^struct key K_b[] = {{21,10,'b'},STOP};$/;"	v	typeref:struct:key[]
+K_c	termbox2/demo/keyboard.c	/^struct key K_c[] = {{15,10,'c'},STOP};$/;"	v	typeref:struct:key[]
+K_d	termbox2/demo/keyboard.c	/^struct key K_d[] = {{13,8,'d'},STOP};$/;"	v	typeref:struct:key[]
+K_e	termbox2/demo/keyboard.c	/^struct key K_e[] = {{12,6,'e'},STOP};$/;"	v	typeref:struct:key[]
+K_f	termbox2/demo/keyboard.c	/^struct key K_f[] = {{16,8,'f'},STOP};$/;"	v	typeref:struct:key[]
+K_g	termbox2/demo/keyboard.c	/^struct key K_g[] = {{19,8,'g'},STOP};$/;"	v	typeref:struct:key[]
+K_h	termbox2/demo/keyboard.c	/^struct key K_h[] = {{22,8,'h'},STOP};$/;"	v	typeref:struct:key[]
+K_i	termbox2/demo/keyboard.c	/^struct key K_i[] = {{27,6,'i'},STOP};$/;"	v	typeref:struct:key[]
+K_j	termbox2/demo/keyboard.c	/^struct key K_j[] = {{25,8,'j'},STOP};$/;"	v	typeref:struct:key[]
+K_k	termbox2/demo/keyboard.c	/^struct key K_k[] = {{28,8,'k'},STOP};$/;"	v	typeref:struct:key[]
+K_l	termbox2/demo/keyboard.c	/^struct key K_l[] = {{31,8,'l'},STOP};$/;"	v	typeref:struct:key[]
+K_m	termbox2/demo/keyboard.c	/^struct key K_m[] = {{27,10,'m'},STOP};$/;"	v	typeref:struct:key[]
+K_n	termbox2/demo/keyboard.c	/^struct key K_n[] = {{24,10,'n'},STOP};$/;"	v	typeref:struct:key[]
+K_o	termbox2/demo/keyboard.c	/^struct key K_o[] = {{30,6,'o'},STOP};$/;"	v	typeref:struct:key[]
+K_p	termbox2/demo/keyboard.c	/^struct key K_p[] = {{33,6,'p'},STOP};$/;"	v	typeref:struct:key[]
+K_q	termbox2/demo/keyboard.c	/^struct key K_q[] = {{6,6,'q'},STOP};$/;"	v	typeref:struct:key[]
+K_r	termbox2/demo/keyboard.c	/^struct key K_r[] = {{15,6,'r'},STOP};$/;"	v	typeref:struct:key[]
+K_s	termbox2/demo/keyboard.c	/^struct key K_s[] = {{10,8,'s'},STOP};$/;"	v	typeref:struct:key[]
+K_t	termbox2/demo/keyboard.c	/^struct key K_t[] = {{18,6,'t'},STOP};$/;"	v	typeref:struct:key[]
+K_u	termbox2/demo/keyboard.c	/^struct key K_u[] = {{24,6,'u'},STOP};$/;"	v	typeref:struct:key[]
+K_v	termbox2/demo/keyboard.c	/^struct key K_v[] = {{18,10,'v'},STOP};$/;"	v	typeref:struct:key[]
+K_w	termbox2/demo/keyboard.c	/^struct key K_w[] = {{9,6,'w'},STOP};$/;"	v	typeref:struct:key[]
+K_x	termbox2/demo/keyboard.c	/^struct key K_x[] = {{12,10,'x'},STOP};$/;"	v	typeref:struct:key[]
+K_y	termbox2/demo/keyboard.c	/^struct key K_y[] = {{21,6,'y'},STOP};$/;"	v	typeref:struct:key[]
+K_z	termbox2/demo/keyboard.c	/^struct key K_z[] = {{9,10,'z'},STOP};$/;"	v	typeref:struct:key[]
+LAST_SEMICOLON	termbox2/termbox2.h	/^                LAST_SEMICOLON,$/;"	e	enum:extract_esc_mouse::__anon01aa40700403
+STOP	termbox2/demo/keyboard.c	/^#define STOP /;"	d	file:
+Slots	term.h	/^} Slots;$/;"	t	typeref:union:__anon1dd971d3020a
+TB_256_BLACK	termbox2/termbox2.h	/^#define TB_256_BLACK TB_HI_BLACK \/\/ `TB_256_BLACK`/;"	d
+TB_BLACK	termbox2/termbox2.h	/^#define TB_BLACK /;"	d
+TB_BLINK	termbox2/termbox2.h	/^#define TB_BLINK /;"	d
+TB_BLUE	termbox2/termbox2.h	/^#define TB_BLUE /;"	d
+TB_BOLD	termbox2/termbox2.h	/^#define TB_BOLD /;"	d
+TB_BRIGHT	termbox2/termbox2.h	/^#define TB_BRIGHT /;"	d
+TB_CAP_ARROW_DOWN	termbox2/termbox2.h	/^#define TB_CAP_ARROW_DOWN /;"	d
+TB_CAP_ARROW_LEFT	termbox2/termbox2.h	/^#define TB_CAP_ARROW_LEFT /;"	d
+TB_CAP_ARROW_RIGHT	termbox2/termbox2.h	/^#define TB_CAP_ARROW_RIGHT /;"	d
+TB_CAP_ARROW_UP	termbox2/termbox2.h	/^#define TB_CAP_ARROW_UP /;"	d
+TB_CAP_BACK_TAB	termbox2/termbox2.h	/^#define TB_CAP_BACK_TAB /;"	d
+TB_CAP_BLINK	termbox2/termbox2.h	/^#define TB_CAP_BLINK /;"	d
+TB_CAP_BOLD	termbox2/termbox2.h	/^#define TB_CAP_BOLD /;"	d
+TB_CAP_CLEAR_SCREEN	termbox2/termbox2.h	/^#define TB_CAP_CLEAR_SCREEN /;"	d
+TB_CAP_DELETE	termbox2/termbox2.h	/^#define TB_CAP_DELETE /;"	d
+TB_CAP_DIM	termbox2/termbox2.h	/^#define TB_CAP_DIM /;"	d
+TB_CAP_END	termbox2/termbox2.h	/^#define TB_CAP_END /;"	d
+TB_CAP_ENTER_CA	termbox2/termbox2.h	/^#define TB_CAP_ENTER_CA /;"	d
+TB_CAP_ENTER_KEYPAD	termbox2/termbox2.h	/^#define TB_CAP_ENTER_KEYPAD /;"	d
+TB_CAP_EXIT_CA	termbox2/termbox2.h	/^#define TB_CAP_EXIT_CA /;"	d
+TB_CAP_EXIT_KEYPAD	termbox2/termbox2.h	/^#define TB_CAP_EXIT_KEYPAD /;"	d
+TB_CAP_F1	termbox2/termbox2.h	/^#define TB_CAP_F1 /;"	d
+TB_CAP_F10	termbox2/termbox2.h	/^#define TB_CAP_F10 /;"	d
+TB_CAP_F11	termbox2/termbox2.h	/^#define TB_CAP_F11 /;"	d
+TB_CAP_F12	termbox2/termbox2.h	/^#define TB_CAP_F12 /;"	d
+TB_CAP_F2	termbox2/termbox2.h	/^#define TB_CAP_F2 /;"	d
+TB_CAP_F3	termbox2/termbox2.h	/^#define TB_CAP_F3 /;"	d
+TB_CAP_F4	termbox2/termbox2.h	/^#define TB_CAP_F4 /;"	d
+TB_CAP_F5	termbox2/termbox2.h	/^#define TB_CAP_F5 /;"	d
+TB_CAP_F6	termbox2/termbox2.h	/^#define TB_CAP_F6 /;"	d
+TB_CAP_F7	termbox2/termbox2.h	/^#define TB_CAP_F7 /;"	d
+TB_CAP_F8	termbox2/termbox2.h	/^#define TB_CAP_F8 /;"	d
+TB_CAP_F9	termbox2/termbox2.h	/^#define TB_CAP_F9 /;"	d
+TB_CAP_HIDE_CURSOR	termbox2/termbox2.h	/^#define TB_CAP_HIDE_CURSOR /;"	d
+TB_CAP_HOME	termbox2/termbox2.h	/^#define TB_CAP_HOME /;"	d
+TB_CAP_INSERT	termbox2/termbox2.h	/^#define TB_CAP_INSERT /;"	d
+TB_CAP_INVISIBLE	termbox2/termbox2.h	/^#define TB_CAP_INVISIBLE /;"	d
+TB_CAP_ITALIC	termbox2/termbox2.h	/^#define TB_CAP_ITALIC /;"	d
+TB_CAP_PGDN	termbox2/termbox2.h	/^#define TB_CAP_PGDN /;"	d
+TB_CAP_PGUP	termbox2/termbox2.h	/^#define TB_CAP_PGUP /;"	d
+TB_CAP_REVERSE	termbox2/termbox2.h	/^#define TB_CAP_REVERSE /;"	d
+TB_CAP_SGR0	termbox2/termbox2.h	/^#define TB_CAP_SGR0 /;"	d
+TB_CAP_SHOW_CURSOR	termbox2/termbox2.h	/^#define TB_CAP_SHOW_CURSOR /;"	d
+TB_CAP_UNDERLINE	termbox2/termbox2.h	/^#define TB_CAP_UNDERLINE /;"	d
+TB_CAP__COUNT	termbox2/termbox2.h	/^#define TB_CAP__COUNT /;"	d
+TB_CAP__COUNT_KEYS	termbox2/termbox2.h	/^#define TB_CAP__COUNT_KEYS /;"	d
+TB_CYAN	termbox2/termbox2.h	/^#define TB_CYAN /;"	d
+TB_DEFAULT	termbox2/termbox2.h	/^#define TB_DEFAULT /;"	d
+TB_DIM	termbox2/termbox2.h	/^#define TB_DIM /;"	d
+TB_ERR	termbox2/termbox2.h	/^#define TB_ERR /;"	d
+TB_ERR_CAP_COLLISION	termbox2/termbox2.h	/^#define TB_ERR_CAP_COLLISION /;"	d
+TB_ERR_INIT_ALREADY	termbox2/termbox2.h	/^#define TB_ERR_INIT_ALREADY /;"	d
+TB_ERR_INIT_OPEN	termbox2/termbox2.h	/^#define TB_ERR_INIT_OPEN /;"	d
+TB_ERR_MEM	termbox2/termbox2.h	/^#define TB_ERR_MEM /;"	d
+TB_ERR_NEED_MORE	termbox2/termbox2.h	/^#define TB_ERR_NEED_MORE /;"	d
+TB_ERR_NOT_INIT	termbox2/termbox2.h	/^#define TB_ERR_NOT_INIT /;"	d
+TB_ERR_NO_EVENT	termbox2/termbox2.h	/^#define TB_ERR_NO_EVENT /;"	d
+TB_ERR_NO_TERM	termbox2/termbox2.h	/^#define TB_ERR_NO_TERM /;"	d
+TB_ERR_OUT_OF_BOUNDS	termbox2/termbox2.h	/^#define TB_ERR_OUT_OF_BOUNDS /;"	d
+TB_ERR_POLL	termbox2/termbox2.h	/^#define TB_ERR_POLL /;"	d
+TB_ERR_READ	termbox2/termbox2.h	/^#define TB_ERR_READ /;"	d
+TB_ERR_RESIZE_IOCTL	termbox2/termbox2.h	/^#define TB_ERR_RESIZE_IOCTL /;"	d
+TB_ERR_RESIZE_PIPE	termbox2/termbox2.h	/^#define TB_ERR_RESIZE_PIPE /;"	d
+TB_ERR_RESIZE_POLL	termbox2/termbox2.h	/^#define TB_ERR_RESIZE_POLL /;"	d
+TB_ERR_RESIZE_READ	termbox2/termbox2.h	/^#define TB_ERR_RESIZE_READ /;"	d
+TB_ERR_RESIZE_SELECT	termbox2/termbox2.h	/^#define TB_ERR_RESIZE_SELECT /;"	d
+TB_ERR_RESIZE_SIGACTION	termbox2/termbox2.h	/^#define TB_ERR_RESIZE_SIGACTION /;"	d
+TB_ERR_RESIZE_SSCANF	termbox2/termbox2.h	/^#define TB_ERR_RESIZE_SSCANF /;"	d
+TB_ERR_RESIZE_WRITE	termbox2/termbox2.h	/^#define TB_ERR_RESIZE_WRITE /;"	d
+TB_ERR_SELECT	termbox2/termbox2.h	/^#define TB_ERR_SELECT /;"	d
+TB_ERR_TCGETATTR	termbox2/termbox2.h	/^#define TB_ERR_TCGETATTR /;"	d
+TB_ERR_TCSETATTR	termbox2/termbox2.h	/^#define TB_ERR_TCSETATTR /;"	d
+TB_ERR_UNSUPPORTED_TERM	termbox2/termbox2.h	/^#define TB_ERR_UNSUPPORTED_TERM /;"	d
+TB_EVENT_KEY	termbox2/termbox2.h	/^#define TB_EVENT_KEY /;"	d
+TB_EVENT_MOUSE	termbox2/termbox2.h	/^#define TB_EVENT_MOUSE /;"	d
+TB_EVENT_RESIZE	termbox2/termbox2.h	/^#define TB_EVENT_RESIZE /;"	d
+TB_FUNC_EXTRACT_POST	termbox2/termbox2.h	/^#define TB_FUNC_EXTRACT_POST /;"	d
+TB_FUNC_EXTRACT_PRE	termbox2/termbox2.h	/^#define TB_FUNC_EXTRACT_PRE /;"	d
+TB_GREEN	termbox2/termbox2.h	/^#define TB_GREEN /;"	d
+TB_HARDCAP_ENTER_MOUSE	termbox2/termbox2.h	/^#define TB_HARDCAP_ENTER_MOUSE /;"	d
+TB_HARDCAP_EXIT_MOUSE	termbox2/termbox2.h	/^#define TB_HARDCAP_EXIT_MOUSE /;"	d
+TB_HARDCAP_OVERLINE	termbox2/termbox2.h	/^#define TB_HARDCAP_OVERLINE /;"	d
+TB_HARDCAP_STRIKEOUT	termbox2/termbox2.h	/^#define TB_HARDCAP_STRIKEOUT /;"	d
+TB_HARDCAP_UNDERLINE_2	termbox2/termbox2.h	/^#define TB_HARDCAP_UNDERLINE_2 /;"	d
+TB_HI_BLACK	termbox2/termbox2.h	/^#define TB_HI_BLACK /;"	d
+TB_IMPL	main.c	/^#define TB_IMPL$/;"	d	file:
+TB_INPUT_ALT	termbox2/termbox2.h	/^#define TB_INPUT_ALT /;"	d
+TB_INPUT_CURRENT	termbox2/termbox2.h	/^#define TB_INPUT_CURRENT /;"	d
+TB_INPUT_ESC	termbox2/termbox2.h	/^#define TB_INPUT_ESC /;"	d
+TB_INPUT_MOUSE	termbox2/termbox2.h	/^#define TB_INPUT_MOUSE /;"	d
+TB_INVISIBLE	termbox2/termbox2.h	/^#define TB_INVISIBLE /;"	d
+TB_ITALIC	termbox2/termbox2.h	/^#define TB_ITALIC /;"	d
+TB_KEY_ARROW_DOWN	termbox2/termbox2.h	/^#define TB_KEY_ARROW_DOWN /;"	d
+TB_KEY_ARROW_LEFT	termbox2/termbox2.h	/^#define TB_KEY_ARROW_LEFT /;"	d
+TB_KEY_ARROW_RIGHT	termbox2/termbox2.h	/^#define TB_KEY_ARROW_RIGHT /;"	d
+TB_KEY_ARROW_UP	termbox2/termbox2.h	/^#define TB_KEY_ARROW_UP /;"	d
+TB_KEY_BACKSPACE	termbox2/termbox2.h	/^#define TB_KEY_BACKSPACE /;"	d
+TB_KEY_BACKSPACE2	termbox2/termbox2.h	/^#define TB_KEY_BACKSPACE2 /;"	d
+TB_KEY_BACK_TAB	termbox2/termbox2.h	/^#define TB_KEY_BACK_TAB /;"	d
+TB_KEY_CTRL_2	termbox2/termbox2.h	/^#define TB_KEY_CTRL_2 /;"	d
+TB_KEY_CTRL_3	termbox2/termbox2.h	/^#define TB_KEY_CTRL_3 /;"	d
+TB_KEY_CTRL_4	termbox2/termbox2.h	/^#define TB_KEY_CTRL_4 /;"	d
+TB_KEY_CTRL_5	termbox2/termbox2.h	/^#define TB_KEY_CTRL_5 /;"	d
+TB_KEY_CTRL_6	termbox2/termbox2.h	/^#define TB_KEY_CTRL_6 /;"	d
+TB_KEY_CTRL_7	termbox2/termbox2.h	/^#define TB_KEY_CTRL_7 /;"	d
+TB_KEY_CTRL_8	termbox2/termbox2.h	/^#define TB_KEY_CTRL_8 /;"	d
+TB_KEY_CTRL_A	termbox2/termbox2.h	/^#define TB_KEY_CTRL_A /;"	d
+TB_KEY_CTRL_B	termbox2/termbox2.h	/^#define TB_KEY_CTRL_B /;"	d
+TB_KEY_CTRL_BACKSLASH	termbox2/termbox2.h	/^#define TB_KEY_CTRL_BACKSLASH /;"	d
+TB_KEY_CTRL_C	termbox2/termbox2.h	/^#define TB_KEY_CTRL_C /;"	d
+TB_KEY_CTRL_D	termbox2/termbox2.h	/^#define TB_KEY_CTRL_D /;"	d
+TB_KEY_CTRL_E	termbox2/termbox2.h	/^#define TB_KEY_CTRL_E /;"	d
+TB_KEY_CTRL_F	termbox2/termbox2.h	/^#define TB_KEY_CTRL_F /;"	d
+TB_KEY_CTRL_G	termbox2/termbox2.h	/^#define TB_KEY_CTRL_G /;"	d
+TB_KEY_CTRL_H	termbox2/termbox2.h	/^#define TB_KEY_CTRL_H /;"	d
+TB_KEY_CTRL_I	termbox2/termbox2.h	/^#define TB_KEY_CTRL_I /;"	d
+TB_KEY_CTRL_J	termbox2/termbox2.h	/^#define TB_KEY_CTRL_J /;"	d
+TB_KEY_CTRL_K	termbox2/termbox2.h	/^#define TB_KEY_CTRL_K /;"	d
+TB_KEY_CTRL_L	termbox2/termbox2.h	/^#define TB_KEY_CTRL_L /;"	d
+TB_KEY_CTRL_LSQ_BRACKET	termbox2/termbox2.h	/^#define TB_KEY_CTRL_LSQ_BRACKET /;"	d
+TB_KEY_CTRL_M	termbox2/termbox2.h	/^#define TB_KEY_CTRL_M /;"	d
+TB_KEY_CTRL_N	termbox2/termbox2.h	/^#define TB_KEY_CTRL_N /;"	d
+TB_KEY_CTRL_O	termbox2/termbox2.h	/^#define TB_KEY_CTRL_O /;"	d
+TB_KEY_CTRL_P	termbox2/termbox2.h	/^#define TB_KEY_CTRL_P /;"	d
+TB_KEY_CTRL_Q	termbox2/termbox2.h	/^#define TB_KEY_CTRL_Q /;"	d
+TB_KEY_CTRL_R	termbox2/termbox2.h	/^#define TB_KEY_CTRL_R /;"	d
+TB_KEY_CTRL_RSQ_BRACKET	termbox2/termbox2.h	/^#define TB_KEY_CTRL_RSQ_BRACKET /;"	d
+TB_KEY_CTRL_S	termbox2/termbox2.h	/^#define TB_KEY_CTRL_S /;"	d
+TB_KEY_CTRL_SLASH	termbox2/termbox2.h	/^#define TB_KEY_CTRL_SLASH /;"	d
+TB_KEY_CTRL_T	termbox2/termbox2.h	/^#define TB_KEY_CTRL_T /;"	d
+TB_KEY_CTRL_TILDE	termbox2/termbox2.h	/^#define TB_KEY_CTRL_TILDE /;"	d
+TB_KEY_CTRL_U	termbox2/termbox2.h	/^#define TB_KEY_CTRL_U /;"	d
+TB_KEY_CTRL_UNDERSCORE	termbox2/termbox2.h	/^#define TB_KEY_CTRL_UNDERSCORE /;"	d
+TB_KEY_CTRL_V	termbox2/termbox2.h	/^#define TB_KEY_CTRL_V /;"	d
+TB_KEY_CTRL_W	termbox2/termbox2.h	/^#define TB_KEY_CTRL_W /;"	d
+TB_KEY_CTRL_X	termbox2/termbox2.h	/^#define TB_KEY_CTRL_X /;"	d
+TB_KEY_CTRL_Y	termbox2/termbox2.h	/^#define TB_KEY_CTRL_Y /;"	d
+TB_KEY_CTRL_Z	termbox2/termbox2.h	/^#define TB_KEY_CTRL_Z /;"	d
+TB_KEY_DELETE	termbox2/termbox2.h	/^#define TB_KEY_DELETE /;"	d
+TB_KEY_END	termbox2/termbox2.h	/^#define TB_KEY_END /;"	d
+TB_KEY_ENTER	termbox2/termbox2.h	/^#define TB_KEY_ENTER /;"	d
+TB_KEY_ESC	termbox2/termbox2.h	/^#define TB_KEY_ESC /;"	d
+TB_KEY_F1	termbox2/termbox2.h	/^#define TB_KEY_F1 /;"	d
+TB_KEY_F10	termbox2/termbox2.h	/^#define TB_KEY_F10 /;"	d
+TB_KEY_F11	termbox2/termbox2.h	/^#define TB_KEY_F11 /;"	d
+TB_KEY_F12	termbox2/termbox2.h	/^#define TB_KEY_F12 /;"	d
+TB_KEY_F2	termbox2/termbox2.h	/^#define TB_KEY_F2 /;"	d
+TB_KEY_F3	termbox2/termbox2.h	/^#define TB_KEY_F3 /;"	d
+TB_KEY_F4	termbox2/termbox2.h	/^#define TB_KEY_F4 /;"	d
+TB_KEY_F5	termbox2/termbox2.h	/^#define TB_KEY_F5 /;"	d
+TB_KEY_F6	termbox2/termbox2.h	/^#define TB_KEY_F6 /;"	d
+TB_KEY_F7	termbox2/termbox2.h	/^#define TB_KEY_F7 /;"	d
+TB_KEY_F8	termbox2/termbox2.h	/^#define TB_KEY_F8 /;"	d
+TB_KEY_F9	termbox2/termbox2.h	/^#define TB_KEY_F9 /;"	d
+TB_KEY_HOME	termbox2/termbox2.h	/^#define TB_KEY_HOME /;"	d
+TB_KEY_INSERT	termbox2/termbox2.h	/^#define TB_KEY_INSERT /;"	d
+TB_KEY_MOUSE_LEFT	termbox2/termbox2.h	/^#define TB_KEY_MOUSE_LEFT /;"	d
+TB_KEY_MOUSE_MIDDLE	termbox2/termbox2.h	/^#define TB_KEY_MOUSE_MIDDLE /;"	d
+TB_KEY_MOUSE_RELEASE	termbox2/termbox2.h	/^#define TB_KEY_MOUSE_RELEASE /;"	d
+TB_KEY_MOUSE_RIGHT	termbox2/termbox2.h	/^#define TB_KEY_MOUSE_RIGHT /;"	d
+TB_KEY_MOUSE_WHEEL_DOWN	termbox2/termbox2.h	/^#define TB_KEY_MOUSE_WHEEL_DOWN /;"	d
+TB_KEY_MOUSE_WHEEL_UP	termbox2/termbox2.h	/^#define TB_KEY_MOUSE_WHEEL_UP /;"	d
+TB_KEY_PGDN	termbox2/termbox2.h	/^#define TB_KEY_PGDN /;"	d
+TB_KEY_PGUP	termbox2/termbox2.h	/^#define TB_KEY_PGUP /;"	d
+TB_KEY_SPACE	termbox2/termbox2.h	/^#define TB_KEY_SPACE /;"	d
+TB_KEY_TAB	termbox2/termbox2.h	/^#define TB_KEY_TAB /;"	d
+TB_MAGENTA	termbox2/termbox2.h	/^#define TB_MAGENTA /;"	d
+TB_MOD_ALT	termbox2/termbox2.h	/^#define TB_MOD_ALT /;"	d
+TB_MOD_CTRL	termbox2/termbox2.h	/^#define TB_MOD_CTRL /;"	d
+TB_MOD_MOTION	termbox2/termbox2.h	/^#define TB_MOD_MOTION /;"	d
+TB_MOD_SHIFT	termbox2/termbox2.h	/^#define TB_MOD_SHIFT /;"	d
+TB_OK	termbox2/termbox2.h	/^#define TB_OK /;"	d
+TB_OPT_ATTR_W	termbox2/termbox2.h	/^#define TB_OPT_ATTR_W /;"	d
+TB_OPT_EGC	termbox2/termbox2.h	/^#define TB_OPT_EGC$/;"	d
+TB_OPT_PRINTF_BUF	termbox2/termbox2.h	/^#define TB_OPT_PRINTF_BUF /;"	d
+TB_OPT_READ_BUF	termbox2/termbox2.h	/^#define TB_OPT_READ_BUF /;"	d
+TB_OPT_TRUECOLOR	main.c	/^#define TB_OPT_TRUECOLOR$/;"	d	file:
+TB_OUTPUT_216	termbox2/termbox2.h	/^#define TB_OUTPUT_216 /;"	d
+TB_OUTPUT_256	termbox2/termbox2.h	/^#define TB_OUTPUT_256 /;"	d
+TB_OUTPUT_CURRENT	termbox2/termbox2.h	/^#define TB_OUTPUT_CURRENT /;"	d
+TB_OUTPUT_GRAYSCALE	termbox2/termbox2.h	/^#define TB_OUTPUT_GRAYSCALE /;"	d
+TB_OUTPUT_NORMAL	termbox2/termbox2.h	/^#define TB_OUTPUT_NORMAL /;"	d
+TB_OUTPUT_TRUECOLOR	termbox2/termbox2.h	/^#define TB_OUTPUT_TRUECOLOR /;"	d
+TB_OVERLINE	termbox2/termbox2.h	/^#define TB_OVERLINE /;"	d
+TB_PATH_MAX	termbox2/termbox2.h	/^#define TB_PATH_MAX /;"	d
+TB_RED	termbox2/termbox2.h	/^#define TB_RED /;"	d
+TB_RESIZE_FALLBACK_MS	termbox2/termbox2.h	/^#define TB_RESIZE_FALLBACK_MS /;"	d
+TB_REVERSE	termbox2/termbox2.h	/^#define TB_REVERSE /;"	d
+TB_STRIKEOUT	termbox2/termbox2.h	/^#define TB_STRIKEOUT /;"	d
+TB_UNDERLINE	termbox2/termbox2.h	/^#define TB_UNDERLINE /;"	d
+TB_UNDERLINE_2	termbox2/termbox2.h	/^#define TB_UNDERLINE_2 /;"	d
+TB_VERSION_STR	termbox2/termbox2.h	/^#define TB_VERSION_STR /;"	d
+TB_WHITE	termbox2/termbox2.h	/^#define TB_WHITE /;"	d
+TB_YELLOW	termbox2/termbox2.h	/^#define TB_YELLOW /;"	d
+TERMBOX_H_INCL	termbox2/termbox2.h	/^#define TERMBOX_H_INCL$/;"	d
+TYPE_1006	termbox2/termbox2.h	/^    enum { TYPE_VT200 = 0, TYPE_1006, TYPE_1015, TYPE_MAX };$/;"	e	enum:extract_esc_mouse::__anon01aa40700303
+TYPE_1015	termbox2/termbox2.h	/^    enum { TYPE_VT200 = 0, TYPE_1006, TYPE_1015, TYPE_MAX };$/;"	e	enum:extract_esc_mouse::__anon01aa40700303
+TYPE_MAX	termbox2/termbox2.h	/^    enum { TYPE_VT200 = 0, TYPE_1006, TYPE_1015, TYPE_MAX };$/;"	e	enum:extract_esc_mouse::__anon01aa40700303
+TYPE_VT200	termbox2/termbox2.h	/^    enum { TYPE_VT200 = 0, TYPE_1006, TYPE_1015, TYPE_MAX };$/;"	e	enum:extract_esc_mouse::__anon01aa40700303
+WHITE	term.h	/^#define WHITE /;"	d
+_DEFAULT_SOURCE	main.c	/^#define _DEFAULT_SOURCE$/;"	d	file:
+_DEFAULT_SOURCE	termbox2/termbox2.h	/^#define _DEFAULT_SOURCE$/;"	d
+_XOPEN_SOURCE	main.c	/^#define _XOPEN_SOURCE$/;"	d	file:
+_XOPEN_SOURCE	termbox2/termbox2.h	/^#define _XOPEN_SOURCE$/;"	d
+__anon01aa40700108::alias	termbox2/termbox2.h	/^    const char *alias;$/;"	m	struct:__anon01aa40700108	typeref:typename:const char *
+__anon01aa40700108::caps	termbox2/termbox2.h	/^    const char **caps;$/;"	m	struct:__anon01aa40700108	typeref:typename:const char **
+__anon01aa40700108::name	termbox2/termbox2.h	/^    const char *name;$/;"	m	struct:__anon01aa40700108	typeref:typename:const char *
+__anon01aa40700208::cap	termbox2/termbox2.h	/^    const char *cap;$/;"	m	struct:__anon01aa40700208	typeref:typename:const char *
+__anon01aa40700208::key	termbox2/termbox2.h	/^    const uint16_t key;$/;"	m	struct:__anon01aa40700208	typeref:typename:const uint16_t
+__anon01aa40700208::mod	termbox2/termbox2.h	/^    const uint8_t mod;$/;"	m	struct:__anon01aa40700208	typeref:typename:const uint8_t
+__anon1dd971d30108::blkBt	term.h	/^  wchar_t blkBt;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+__anon1dd971d30108::blkHi	term.h	/^  wchar_t blkHi;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+__anon1dd971d30108::blkLo	term.h	/^  wchar_t blkLo;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+__anon1dd971d30108::blkMd	term.h	/^  wchar_t blkMd;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+__anon1dd971d30108::blkTp	term.h	/^  wchar_t blkTp;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+__anon1dd971d30108::fullH	term.h	/^  wchar_t fullH;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+__anon1dd971d30108::shadH	term.h	/^  wchar_t shadH;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+__anon1dd971d30108::shadL	term.h	/^  wchar_t shadL;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+__anon1dd971d30108::shadM	term.h	/^  wchar_t shadM;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+__anon1dd971d30108::space	term.h	/^  wchar_t space;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+__anon1dd971d3020a::arr	term.h	/^  wchar_t arr[10];$/;"	m	union:__anon1dd971d3020a	typeref:typename:wchar_t[10]
+__anon1dd971d3020a::stp	term.h	/^  blocks  stp;$/;"	m	union:__anon1dd971d3020a	typeref:typename:blocks
+__anon1dd971d3030a::__anon1dd971d30408::b	term.h	/^    uint8_t b : 8;$/;"	m	struct:__anon1dd971d3030a::__anon1dd971d30408	typeref:typename:uint8_t:8
+__anon1dd971d3030a::__anon1dd971d30408::g	term.h	/^    uint8_t g : 8;$/;"	m	struct:__anon1dd971d3030a::__anon1dd971d30408	typeref:typename:uint8_t:8
+__anon1dd971d3030a::__anon1dd971d30408::r	term.h	/^    uint8_t r : 8;$/;"	m	struct:__anon1dd971d3030a::__anon1dd971d30408	typeref:typename:uint8_t:8
+__anon1dd971d3030a::__anon1dd971d30408::x	term.h	/^    uint8_t x : 8;$/;"	m	struct:__anon1dd971d3030a::__anon1dd971d30408	typeref:typename:uint8_t:8
+__anon1dd971d3030a::rgb	term.h	/^  uint32_t rgb : 32;$/;"	m	union:__anon1dd971d3030a	typeref:typename:uint32_t:32
+__anon1dd971d3030a::rgbArr	term.h	/^  uint8_t  rgbArr[4];$/;"	m	union:__anon1dd971d3030a	typeref:typename:uint8_t[4]
+alias	termbox2/termbox2.h	/^    const char *alias;$/;"	m	struct:__anon01aa40700108	typeref:typename:const char *
+arr	term.h	/^  wchar_t arr[10];$/;"	m	union:__anon1dd971d3020a	typeref:typename:wchar_t[10]
+b	term.h	/^    uint8_t b : 8;$/;"	m	struct:__anon1dd971d3030a::__anon1dd971d30408	typeref:typename:uint8_t:8
+back	termbox2/termbox2.h	/^    struct cellbuf_t back;$/;"	m	struct:tb_global_t	typeref:struct:cellbuf_t
+bg	termbox2/termbox2.h	/^    uintattr_t bg; \/\/ bitwise background attributes$/;"	m	struct:tb_cell	typeref:typename:uintattr_t
+bg	termbox2/termbox2.h	/^    uintattr_t bg;$/;"	m	struct:tb_global_t	typeref:typename:uintattr_t
+bg_B	term.h	/^#define bg_B /;"	d
+bg_G	term.h	/^#define bg_G /;"	d
+bg_R	term.h	/^#define bg_R /;"	d
+bg_UI	term.h	/^#define bg_UI /;"	d
+blkBt	term.h	/^  wchar_t blkBt;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+blkHi	term.h	/^  wchar_t blkHi;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+blkLo	term.h	/^  wchar_t blkLo;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+blkMd	term.h	/^  wchar_t blkMd;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+blkTp	term.h	/^  wchar_t blkTp;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+blocks	term.h	/^} blocks;$/;"	t	typeref:struct:__anon1dd971d30108
+buf	termbox2/termbox2.h	/^    char *buf;$/;"	m	struct:bytebuf_t	typeref:typename:char *
+builtin_mod_caps	termbox2/termbox2.h	/^} builtin_mod_caps[] = {$/;"	v	typeref:struct:__anon01aa40700208[]
+builtin_terms	termbox2/termbox2.h	/^} builtin_terms[] = {$/;"	v	typeref:struct:__anon01aa40700108[]
+bytebuf_flush	termbox2/termbox2.h	/^static int bytebuf_flush(struct bytebuf_t *b, int fd) {$/;"	f	typeref:typename:int
+bytebuf_free	termbox2/termbox2.h	/^static int bytebuf_free(struct bytebuf_t *b) {$/;"	f	typeref:typename:int
+bytebuf_nputs	termbox2/termbox2.h	/^static int bytebuf_nputs(struct bytebuf_t *b, const char *str, size_t nstr) {$/;"	f	typeref:typename:int
+bytebuf_puts	termbox2/termbox2.h	/^static int bytebuf_puts(struct bytebuf_t *b, const char *str) {$/;"	f	typeref:typename:int
+bytebuf_reserve	termbox2/termbox2.h	/^static int bytebuf_reserve(struct bytebuf_t *b, size_t sz) {$/;"	f	typeref:typename:int
+bytebuf_shift	termbox2/termbox2.h	/^static int bytebuf_shift(struct bytebuf_t *b, size_t n) {$/;"	f	typeref:typename:int
+bytebuf_t	termbox2/termbox2.h	/^struct bytebuf_t {$/;"	s
+bytebuf_t::buf	termbox2/termbox2.h	/^    char *buf;$/;"	m	struct:bytebuf_t	typeref:typename:char *
+bytebuf_t::cap	termbox2/termbox2.h	/^    size_t cap;$/;"	m	struct:bytebuf_t	typeref:typename:size_t
+bytebuf_t::len	termbox2/termbox2.h	/^    size_t len;$/;"	m	struct:bytebuf_t	typeref:typename:size_t
+c	termbox2/termbox2.h	/^    char c;$/;"	m	struct:cap_trie_t	typeref:typename:char
+cap	termbox2/termbox2.h	/^    const char *cap;$/;"	m	struct:__anon01aa40700208	typeref:typename:const char *
+cap	termbox2/termbox2.h	/^    size_t cap;$/;"	m	struct:bytebuf_t	typeref:typename:size_t
+cap_trie	termbox2/termbox2.h	/^    struct cap_trie_t cap_trie;$/;"	m	struct:tb_global_t	typeref:struct:cap_trie_t
+cap_trie_add	termbox2/termbox2.h	/^static int cap_trie_add(const char *cap, uint16_t key, uint8_t mod) {$/;"	f	typeref:typename:int
+cap_trie_deinit	termbox2/termbox2.h	/^static int cap_trie_deinit(struct cap_trie_t *node) {$/;"	f	typeref:typename:int
+cap_trie_find	termbox2/termbox2.h	/^static int cap_trie_find(const char *buf, size_t nbuf, struct cap_trie_t **last,$/;"	f	typeref:typename:int
+cap_trie_t	termbox2/termbox2.h	/^struct cap_trie_t {$/;"	s
+cap_trie_t::c	termbox2/termbox2.h	/^    char c;$/;"	m	struct:cap_trie_t	typeref:typename:char
+cap_trie_t::children	termbox2/termbox2.h	/^    struct cap_trie_t *children;$/;"	m	struct:cap_trie_t	typeref:struct:cap_trie_t *
+cap_trie_t::is_leaf	termbox2/termbox2.h	/^    int is_leaf;$/;"	m	struct:cap_trie_t	typeref:typename:int
+cap_trie_t::key	termbox2/termbox2.h	/^    uint16_t key;$/;"	m	struct:cap_trie_t	typeref:typename:uint16_t
+cap_trie_t::mod	termbox2/termbox2.h	/^    uint8_t mod;$/;"	m	struct:cap_trie_t	typeref:typename:uint8_t
+cap_trie_t::nchildren	termbox2/termbox2.h	/^    size_t nchildren;$/;"	m	struct:cap_trie_t	typeref:typename:size_t
+caps	termbox2/termbox2.h	/^    const char **caps;$/;"	m	struct:__anon01aa40700108	typeref:typename:const char **
+caps	termbox2/termbox2.h	/^    const char *caps[TB_CAP__COUNT];$/;"	m	struct:tb_global_t	typeref:typename:const char * []
+cech	termbox2/termbox2.h	/^    size_t cech;   \/\/ num elements allocated for ech$/;"	m	struct:tb_cell	typeref:typename:size_t
+cell_cmp	termbox2/termbox2.h	/^static int cell_cmp(struct tb_cell *a, struct tb_cell *b) {$/;"	f	typeref:typename:int
+cell_copy	termbox2/termbox2.h	/^static int cell_copy(struct tb_cell *dst, struct tb_cell *src) {$/;"	f	typeref:typename:int
+cell_free	termbox2/termbox2.h	/^static int cell_free(struct tb_cell *cell) {$/;"	f	typeref:typename:int
+cell_reserve_ech	termbox2/termbox2.h	/^static int cell_reserve_ech(struct tb_cell *cell, size_t n) {$/;"	f	typeref:typename:int
+cell_set	termbox2/termbox2.h	/^static int cell_set(struct tb_cell *cell, uint32_t *ch, size_t nch,$/;"	f	typeref:typename:int
+cellbuf_clear	termbox2/termbox2.h	/^static int cellbuf_clear(struct cellbuf_t *c) {$/;"	f	typeref:typename:int
+cellbuf_free	termbox2/termbox2.h	/^static int cellbuf_free(struct cellbuf_t *c) {$/;"	f	typeref:typename:int
+cellbuf_get	termbox2/termbox2.h	/^static int cellbuf_get(struct cellbuf_t *c, int x, int y,$/;"	f	typeref:typename:int
+cellbuf_in_bounds	termbox2/termbox2.h	/^static int cellbuf_in_bounds(struct cellbuf_t *c, int x, int y) {$/;"	f	typeref:typename:int
+cellbuf_init	termbox2/termbox2.h	/^static int cellbuf_init(struct cellbuf_t *c, int w, int h) {$/;"	f	typeref:typename:int
+cellbuf_resize	termbox2/termbox2.h	/^static int cellbuf_resize(struct cellbuf_t *c, int w, int h) {$/;"	f	typeref:typename:int
+cellbuf_t	termbox2/termbox2.h	/^struct cellbuf_t {$/;"	s
+cellbuf_t::cells	termbox2/termbox2.h	/^    struct tb_cell *cells;$/;"	m	struct:cellbuf_t	typeref:struct:tb_cell *
+cellbuf_t::height	termbox2/termbox2.h	/^    int height;$/;"	m	struct:cellbuf_t	typeref:typename:int
+cellbuf_t::width	termbox2/termbox2.h	/^    int width;$/;"	m	struct:cellbuf_t	typeref:typename:int
+cells	termbox2/termbox2.h	/^    struct tb_cell *cells;$/;"	m	struct:cellbuf_t	typeref:struct:tb_cell *
+ch	termbox2/demo/keyboard.c	/^    uint32_t ch;$/;"	m	struct:key	typeref:typename:uint32_t	file:
+ch	termbox2/termbox2.h	/^    uint32_t ch;   \/\/ a Unicode codepoint$/;"	m	struct:tb_cell	typeref:typename:uint32_t
+ch	termbox2/termbox2.h	/^    uint32_t ch;  \/\/ a Unicode codepoint$/;"	m	struct:tb_event	typeref:typename:uint32_t
+checkInput	term.c	/^void checkInput(struct tb_event *restrict ev, Color *restrict color, const wchar_t **c,$/;"	f	typeref:typename:void
+children	termbox2/termbox2.h	/^    struct cap_trie_t *children;$/;"	m	struct:cap_trie_t	typeref:struct:cap_trie_t *
+combo	termbox2/demo/keyboard.c	/^struct combo {$/;"	s	file:
+combo::keys	termbox2/demo/keyboard.c	/^    struct key *keys[6];$/;"	m	struct:combo	typeref:struct:key * [6]	file:
+combos	termbox2/demo/keyboard.c	/^struct combo combos[] = {$/;"	v	typeref:struct:combo[]
+convert_num	termbox2/termbox2.h	/^static int convert_num(uint32_t num, char *buf) {$/;"	f	typeref:typename:int
+counter	termbox2/demo/keyboard.c	/^int counter = 0;$/;"	v	typeref:typename:int
+cursor_x	termbox2/termbox2.h	/^    int cursor_x;$/;"	m	struct:tb_global_t	typeref:typename:int
+cursor_y	termbox2/termbox2.h	/^    int cursor_y;$/;"	m	struct:tb_global_t	typeref:typename:int
+dispatch_press	termbox2/demo/keyboard.c	/^void dispatch_press(struct tb_event *ev)$/;"	f	typeref:typename:void
+drawColorStatus	term.c	/^void drawColorStatus(const Color *restrict color) {$/;"	f	typeref:typename:void
+drawPalette	term.c	/^void drawPalette(const wchar_t *restrict arr, const uint8_t len, const wchar_t *restrict c) {$/;"	f	typeref:typename:void
+draw_key	termbox2/demo/keyboard.c	/^void draw_key(struct key *k, uint16_t fg, uint16_t bg)$/;"	f	typeref:typename:void
+draw_keyboard	termbox2/demo/keyboard.c	/^void draw_keyboard(void)$/;"	f	typeref:typename:void
+ech	termbox2/termbox2.h	/^    uint32_t *ech; \/\/ a grapheme cluster of Unicode codepoints, 0-terminated$/;"	m	struct:tb_cell	typeref:typename:uint32_t *
+errbuf	termbox2/termbox2.h	/^    char errbuf[1024];$/;"	m	struct:tb_global_t	typeref:typename:char[1024]
+eterm_caps	termbox2/termbox2.h	/^static const char *eterm_caps[] = {$/;"	v	typeref:typename:const char * []
+extract_esc	termbox2/termbox2.h	/^static int extract_esc(struct tb_event *event) {$/;"	f	typeref:typename:int
+extract_esc_cap	termbox2/termbox2.h	/^static int extract_esc_cap(struct tb_event *event) {$/;"	f	typeref:typename:int
+extract_esc_mouse	termbox2/termbox2.h	/^static int extract_esc_mouse(struct tb_event *event) {$/;"	f	typeref:typename:int
+extract_esc_mouse::FIRST_LAST_MAX	termbox2/termbox2.h	/^                FIRST_LAST_MAX$/;"	e	enum:extract_esc_mouse::__anon01aa40700403
+extract_esc_mouse::FIRST_M	termbox2/termbox2.h	/^                FIRST_M = 0,$/;"	e	enum:extract_esc_mouse::__anon01aa40700403
+extract_esc_mouse::FIRST_SEMICOLON	termbox2/termbox2.h	/^                FIRST_SEMICOLON,$/;"	e	enum:extract_esc_mouse::__anon01aa40700403
+extract_esc_mouse::LAST_SEMICOLON	termbox2/termbox2.h	/^                LAST_SEMICOLON,$/;"	e	enum:extract_esc_mouse::__anon01aa40700403
+extract_esc_mouse::TYPE_1006	termbox2/termbox2.h	/^    enum { TYPE_VT200 = 0, TYPE_1006, TYPE_1015, TYPE_MAX };$/;"	e	enum:extract_esc_mouse::__anon01aa40700303
+extract_esc_mouse::TYPE_1015	termbox2/termbox2.h	/^    enum { TYPE_VT200 = 0, TYPE_1006, TYPE_1015, TYPE_MAX };$/;"	e	enum:extract_esc_mouse::__anon01aa40700303
+extract_esc_mouse::TYPE_MAX	termbox2/termbox2.h	/^    enum { TYPE_VT200 = 0, TYPE_1006, TYPE_1015, TYPE_MAX };$/;"	e	enum:extract_esc_mouse::__anon01aa40700303
+extract_esc_mouse::TYPE_VT200	termbox2/termbox2.h	/^    enum { TYPE_VT200 = 0, TYPE_1006, TYPE_1015, TYPE_MAX };$/;"	e	enum:extract_esc_mouse::__anon01aa40700303
+extract_esc_user	termbox2/termbox2.h	/^static int extract_esc_user(struct tb_event *event, int is_post) {$/;"	f	typeref:typename:int
+extract_event	termbox2/termbox2.h	/^static int extract_event(struct tb_event *event) {$/;"	f	typeref:typename:int
+fg	termbox2/termbox2.h	/^    uintattr_t fg; \/\/ bitwise foreground attributes$/;"	m	struct:tb_cell	typeref:typename:uintattr_t
+fg	termbox2/termbox2.h	/^    uintattr_t fg;$/;"	m	struct:tb_global_t	typeref:typename:uintattr_t
+fg_RGB	term.h	/^#define fg_RGB /;"	d
+fg_UI	term.h	/^#define fg_UI /;"	d
+fn_extract_esc_post	termbox2/termbox2.h	/^    int (*fn_extract_esc_post)(struct tb_event *, size_t *);$/;"	m	struct:tb_global_t	typeref:typename:int (*)(struct tb_event *,size_t *)
+fn_extract_esc_pre	termbox2/termbox2.h	/^    int (*fn_extract_esc_pre)(struct tb_event *, size_t *);$/;"	m	struct:tb_global_t	typeref:typename:int (*)(struct tb_event *,size_t *)
+front	termbox2/termbox2.h	/^    struct cellbuf_t front;$/;"	m	struct:tb_global_t	typeref:struct:cellbuf_t
+fullH	term.h	/^  wchar_t fullH;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+func_combos	termbox2/demo/keyboard.c	/^struct combo func_combos[] = {$/;"	v	typeref:struct:combo[]
+funckeymap	termbox2/demo/keyboard.c	/^const char *funckeymap(int k)$/;"	f	typeref:typename:const char *
+g	term.h	/^    uint8_t g : 8;$/;"	m	struct:__anon1dd971d3030a::__anon1dd971d30408	typeref:typename:uint8_t:8
+get_terminfo_string	termbox2/termbox2.h	/^static const char *get_terminfo_string(int16_t str_offsets_pos,$/;"	f	typeref:typename:const char *
+global	termbox2/termbox2.h	/^static struct tb_global_t global = {0};$/;"	v	typeref:struct:tb_global_t
+h	termbox2/termbox2.h	/^    int32_t h;    \/\/ resize height$/;"	m	struct:tb_event	typeref:typename:int32_t
+hLine	term.c	/^void hLine(uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, wchar_t c, uint8_t dir) {$/;"	f	typeref:typename:void
+handle_resize	termbox2/termbox2.h	/^static void handle_resize(int sig) {$/;"	f	typeref:typename:void
+has_orig_tios	termbox2/termbox2.h	/^    int has_orig_tios;$/;"	m	struct:tb_global_t	typeref:typename:int
+height	termbox2/termbox2.h	/^    int height;$/;"	m	struct:cellbuf_t	typeref:typename:int
+height	termbox2/termbox2.h	/^    int height;$/;"	m	struct:tb_global_t	typeref:typename:int
+if_err_break	termbox2/termbox2.h	/^#define if_err_break(/;"	d
+if_err_return	termbox2/termbox2.h	/^#define if_err_return(/;"	d
+if_not_init_return	termbox2/termbox2.h	/^#define if_not_init_return(/;"	d
+if_ok_or_need_more_return	termbox2/termbox2.h	/^#define if_ok_or_need_more_return(/;"	d
+if_ok_return	termbox2/termbox2.h	/^#define if_ok_return(/;"	d
+in	termbox2/termbox2.h	/^    struct bytebuf_t in;$/;"	m	struct:tb_global_t	typeref:struct:bytebuf_t
+init_cap_trie	termbox2/termbox2.h	/^static int init_cap_trie(void) {$/;"	f	typeref:typename:int
+init_cellbuf	termbox2/termbox2.h	/^static int init_cellbuf(void) {$/;"	f	typeref:typename:int
+init_resize_handler	termbox2/termbox2.h	/^static int init_resize_handler(void) {$/;"	f	typeref:typename:int
+init_term_attrs	termbox2/termbox2.h	/^static int init_term_attrs(void) {$/;"	f	typeref:typename:int
+init_term_caps	termbox2/termbox2.h	/^static int init_term_caps(void) {$/;"	f	typeref:typename:int
+initialized	termbox2/termbox2.h	/^    int initialized;$/;"	m	struct:tb_global_t	typeref:typename:int
+input_mode	termbox2/termbox2.h	/^    int input_mode;$/;"	m	struct:tb_global_t	typeref:typename:int
+is_leaf	termbox2/termbox2.h	/^    int is_leaf;$/;"	m	struct:cap_trie_t	typeref:typename:int
+key	termbox2/demo/keyboard.c	/^struct key {$/;"	s	file:
+key	termbox2/termbox2.h	/^    const uint16_t key;$/;"	m	struct:__anon01aa40700208	typeref:typename:const uint16_t
+key	termbox2/termbox2.h	/^    uint16_t key; \/\/ one of `TB_KEY_*` constants$/;"	m	struct:tb_event	typeref:typename:uint16_t
+key	termbox2/termbox2.h	/^    uint16_t key;$/;"	m	struct:cap_trie_t	typeref:typename:uint16_t
+key::ch	termbox2/demo/keyboard.c	/^    uint32_t ch;$/;"	m	struct:key	typeref:typename:uint32_t	file:
+key::x	termbox2/demo/keyboard.c	/^    unsigned char x;$/;"	m	struct:key	typeref:typename:unsigned char	file:
+key::y	termbox2/demo/keyboard.c	/^    unsigned char y;$/;"	m	struct:key	typeref:typename:unsigned char	file:
+keyboard.c	termbox2/demo/keyboard.c	1;"	F	epoch:1728804345
+keys	termbox2/demo/keyboard.c	/^    struct key *keys[6];$/;"	m	struct:combo	typeref:struct:key * [6]	file:
+last_bg	termbox2/termbox2.h	/^    uintattr_t last_bg;$/;"	m	struct:tb_global_t	typeref:typename:uintattr_t
+last_errno	termbox2/termbox2.h	/^    int last_errno;$/;"	m	struct:tb_global_t	typeref:typename:int
+last_fg	termbox2/termbox2.h	/^    uintattr_t last_fg;$/;"	m	struct:tb_global_t	typeref:typename:uintattr_t
+last_x	termbox2/termbox2.h	/^    int last_x;$/;"	m	struct:tb_global_t	typeref:typename:int
+last_y	termbox2/termbox2.h	/^    int last_y;$/;"	m	struct:tb_global_t	typeref:typename:int
+len	termbox2/termbox2.h	/^    size_t len;$/;"	m	struct:bytebuf_t	typeref:typename:size_t
+linux_caps	termbox2/termbox2.h	/^static const char *linux_caps[] = {$/;"	v	typeref:typename:const char * []
+load_builtin_caps	termbox2/termbox2.h	/^static int load_builtin_caps(void) {$/;"	f	typeref:typename:int
+load_terminfo	termbox2/termbox2.h	/^static int load_terminfo(void) {$/;"	f	typeref:typename:int
+load_terminfo_from_path	termbox2/termbox2.h	/^static int load_terminfo_from_path(const char *path, const char *term) {$/;"	f	typeref:typename:int
+main	main.c	/^int main(int argc, char **argv) {$/;"	f	typeref:typename:int
+main	termbox2/demo/keyboard.c	/^int main(int argc, char **argv)$/;"	f	typeref:typename:int
+main.c	main.c	1;"	F	epoch:1729229177
+mod	termbox2/termbox2.h	/^    const uint8_t mod;$/;"	m	struct:__anon01aa40700208	typeref:typename:const uint8_t
+mod	termbox2/termbox2.h	/^    uint8_t mod;  \/\/ bitwise `TB_MOD_*` constants$/;"	m	struct:tb_event	typeref:typename:uint8_t
+mod	termbox2/termbox2.h	/^    uint8_t mod;$/;"	m	struct:cap_trie_t	typeref:typename:uint8_t
+name	termbox2/termbox2.h	/^    const char *name;$/;"	m	struct:__anon01aa40700108	typeref:typename:const char *
+nchildren	termbox2/termbox2.h	/^    size_t nchildren;$/;"	m	struct:cap_trie_t	typeref:typename:size_t
+nech	termbox2/termbox2.h	/^    size_t nech;   \/\/ num elements in ech, 0 means use ch instead of ech$/;"	m	struct:tb_cell	typeref:typename:size_t
+nterminfo	termbox2/termbox2.h	/^    size_t nterminfo;$/;"	m	struct:tb_global_t	typeref:typename:size_t
+orig_tios	termbox2/termbox2.h	/^    struct termios orig_tios;$/;"	m	struct:tb_global_t	typeref:struct:termios
+out	termbox2/termbox2.h	/^    struct bytebuf_t out;$/;"	m	struct:tb_global_t	typeref:struct:bytebuf_t
+output_mode	termbox2/termbox2.h	/^    int output_mode;$/;"	m	struct:tb_global_t	typeref:typename:int
+parse_terminfo_caps	termbox2/termbox2.h	/^static int parse_terminfo_caps(void) {$/;"	f	typeref:typename:int
+pretty_print_mouse	termbox2/demo/keyboard.c	/^void pretty_print_mouse(struct tb_event *ev) {$/;"	f	typeref:typename:void
+pretty_print_press	termbox2/demo/keyboard.c	/^void pretty_print_press(struct tb_event *ev)$/;"	f	typeref:typename:void
+pretty_print_resize	termbox2/demo/keyboard.c	/^void pretty_print_resize(struct tb_event *ev)$/;"	f	typeref:typename:void
+print_tb	termbox2/demo/keyboard.c	/^void print_tb(const char *str, int x, int y, uint16_t fg, uint16_t bg)$/;"	f	typeref:typename:void
+printf_tb	termbox2/demo/keyboard.c	/^void printf_tb(int x, int y, uint16_t fg, uint16_t bg, const char *fmt, ...)$/;"	f	typeref:typename:void
+r	term.h	/^    uint8_t r : 8;$/;"	m	struct:__anon1dd971d3030a::__anon1dd971d30408	typeref:typename:uint8_t:8
+read_terminfo_path	termbox2/termbox2.h	/^static int read_terminfo_path(const char *path) {$/;"	f	typeref:typename:int
+resize_cellbufs	termbox2/termbox2.h	/^static int resize_cellbufs(void) {$/;"	f	typeref:typename:int
+resize_pipefd	termbox2/termbox2.h	/^    int resize_pipefd[2];$/;"	m	struct:tb_global_t	typeref:typename:int[2]
+rfd	termbox2/termbox2.h	/^    int rfd;$/;"	m	struct:tb_global_t	typeref:typename:int
+rgb	term.h	/^  uint32_t rgb : 32;$/;"	m	union:__anon1dd971d3030a	typeref:typename:uint32_t:32
+rgbArr	term.h	/^  uint8_t  rgbArr[4];$/;"	m	union:__anon1dd971d3030a	typeref:typename:uint8_t[4]
+rxvt_256color_caps	termbox2/termbox2.h	/^static const char *rxvt_256color_caps[] = {$/;"	v	typeref:typename:const char * []
+rxvt_unicode_caps	termbox2/termbox2.h	/^static const char *rxvt_unicode_caps[] = {$/;"	v	typeref:typename:const char * []
+screen_caps	termbox2/termbox2.h	/^static const char *screen_caps[] = {$/;"	v	typeref:typename:const char * []
+send_attr	termbox2/termbox2.h	/^static int send_attr(uintattr_t fg, uintattr_t bg) {$/;"	f	typeref:typename:int
+send_char	termbox2/termbox2.h	/^static int send_char(int x, int y, uint32_t ch) {$/;"	f	typeref:typename:int
+send_clear	termbox2/termbox2.h	/^static int send_clear(void) {$/;"	f	typeref:typename:int
+send_cluster	termbox2/termbox2.h	/^static int send_cluster(int x, int y, uint32_t *ch, size_t nch) {$/;"	f	typeref:typename:int
+send_cursor_if	termbox2/termbox2.h	/^static int send_cursor_if(int x, int y) {$/;"	f	typeref:typename:int
+send_init_escape_codes	termbox2/termbox2.h	/^static int send_init_escape_codes(void) {$/;"	f	typeref:typename:int
+send_literal	termbox2/termbox2.h	/^#define send_literal(/;"	d
+send_num	termbox2/termbox2.h	/^#define send_num(/;"	d
+send_sgr	termbox2/termbox2.h	/^static int send_sgr(uint32_t cfg, uint32_t cbg, int fg_is_default,$/;"	f	typeref:typename:int
+setColor	term.c	/^void setColor(Color *restrict color, uint32_t *restrict ch) {$/;"	f	typeref:typename:void
+shadH	term.h	/^  wchar_t shadH;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+shadL	term.h	/^  wchar_t shadL;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+shadM	term.h	/^  wchar_t shadM;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+snprintf_or_return	termbox2/termbox2.h	/^#define snprintf_or_return(/;"	d
+space	term.h	/^  wchar_t space;$/;"	m	struct:__anon1dd971d30108	typeref:typename:wchar_t
+stp	term.h	/^  blocks  stp;$/;"	m	union:__anon1dd971d3020a	typeref:typename:blocks
+tb_attr_width	termbox2/termbox2.h	/^int tb_attr_width(void) {$/;"	f	typeref:typename:int
+tb_cell	termbox2/termbox2.h	/^struct tb_cell {$/;"	s
+tb_cell::bg	termbox2/termbox2.h	/^    uintattr_t bg; \/\/ bitwise background attributes$/;"	m	struct:tb_cell	typeref:typename:uintattr_t
+tb_cell::cech	termbox2/termbox2.h	/^    size_t cech;   \/\/ num elements allocated for ech$/;"	m	struct:tb_cell	typeref:typename:size_t
+tb_cell::ch	termbox2/termbox2.h	/^    uint32_t ch;   \/\/ a Unicode codepoint$/;"	m	struct:tb_cell	typeref:typename:uint32_t
+tb_cell::ech	termbox2/termbox2.h	/^    uint32_t *ech; \/\/ a grapheme cluster of Unicode codepoints, 0-terminated$/;"	m	struct:tb_cell	typeref:typename:uint32_t *
+tb_cell::fg	termbox2/termbox2.h	/^    uintattr_t fg; \/\/ bitwise foreground attributes$/;"	m	struct:tb_cell	typeref:typename:uintattr_t
+tb_cell::nech	termbox2/termbox2.h	/^    size_t nech;   \/\/ num elements in ech, 0 means use ch instead of ech$/;"	m	struct:tb_cell	typeref:typename:size_t
+tb_cell_buffer	termbox2/termbox2.h	/^struct tb_cell *tb_cell_buffer(void) {$/;"	f	typeref:struct:tb_cell *
+tb_change_cell	termbox2/termbox2.h	/^#define tb_change_cell /;"	d
+tb_clear	termbox2/termbox2.h	/^int tb_clear(void) {$/;"	f	typeref:typename:int
+tb_deinit	termbox2/termbox2.h	/^static int tb_deinit(void) {$/;"	f	typeref:typename:int
+tb_event	termbox2/termbox2.h	/^struct tb_event {$/;"	s
+tb_event::ch	termbox2/termbox2.h	/^    uint32_t ch;  \/\/ a Unicode codepoint$/;"	m	struct:tb_event	typeref:typename:uint32_t
+tb_event::h	termbox2/termbox2.h	/^    int32_t h;    \/\/ resize height$/;"	m	struct:tb_event	typeref:typename:int32_t
+tb_event::key	termbox2/termbox2.h	/^    uint16_t key; \/\/ one of `TB_KEY_*` constants$/;"	m	struct:tb_event	typeref:typename:uint16_t
+tb_event::mod	termbox2/termbox2.h	/^    uint8_t mod;  \/\/ bitwise `TB_MOD_*` constants$/;"	m	struct:tb_event	typeref:typename:uint8_t
+tb_event::type	termbox2/termbox2.h	/^    uint8_t type; \/\/ one of `TB_EVENT_*` constants$/;"	m	struct:tb_event	typeref:typename:uint8_t
+tb_event::w	termbox2/termbox2.h	/^    int32_t w;    \/\/ resize width$/;"	m	struct:tb_event	typeref:typename:int32_t
+tb_event::x	termbox2/termbox2.h	/^    int32_t x;    \/\/ mouse x$/;"	m	struct:tb_event	typeref:typename:int32_t
+tb_event::y	termbox2/termbox2.h	/^    int32_t y;    \/\/ mouse y$/;"	m	struct:tb_event	typeref:typename:int32_t
+tb_extend_cell	termbox2/termbox2.h	/^int tb_extend_cell(int x, int y, uint32_t ch) {$/;"	f	typeref:typename:int
+tb_free	termbox2/termbox2.h	/^#define tb_free /;"	d
+tb_get_fds	termbox2/termbox2.h	/^int tb_get_fds(int *ttyfd, int *resizefd) {$/;"	f	typeref:typename:int
+tb_global_t	termbox2/termbox2.h	/^struct tb_global_t {$/;"	s
+tb_global_t::back	termbox2/termbox2.h	/^    struct cellbuf_t back;$/;"	m	struct:tb_global_t	typeref:struct:cellbuf_t
+tb_global_t::bg	termbox2/termbox2.h	/^    uintattr_t bg;$/;"	m	struct:tb_global_t	typeref:typename:uintattr_t
+tb_global_t::cap_trie	termbox2/termbox2.h	/^    struct cap_trie_t cap_trie;$/;"	m	struct:tb_global_t	typeref:struct:cap_trie_t
+tb_global_t::caps	termbox2/termbox2.h	/^    const char *caps[TB_CAP__COUNT];$/;"	m	struct:tb_global_t	typeref:typename:const char * []
+tb_global_t::cursor_x	termbox2/termbox2.h	/^    int cursor_x;$/;"	m	struct:tb_global_t	typeref:typename:int
+tb_global_t::cursor_y	termbox2/termbox2.h	/^    int cursor_y;$/;"	m	struct:tb_global_t	typeref:typename:int
+tb_global_t::errbuf	termbox2/termbox2.h	/^    char errbuf[1024];$/;"	m	struct:tb_global_t	typeref:typename:char[1024]
+tb_global_t::fg	termbox2/termbox2.h	/^    uintattr_t fg;$/;"	m	struct:tb_global_t	typeref:typename:uintattr_t
+tb_global_t::fn_extract_esc_post	termbox2/termbox2.h	/^    int (*fn_extract_esc_post)(struct tb_event *, size_t *);$/;"	m	struct:tb_global_t	typeref:typename:int (*)(struct tb_event *,size_t *)
+tb_global_t::fn_extract_esc_pre	termbox2/termbox2.h	/^    int (*fn_extract_esc_pre)(struct tb_event *, size_t *);$/;"	m	struct:tb_global_t	typeref:typename:int (*)(struct tb_event *,size_t *)
+tb_global_t::front	termbox2/termbox2.h	/^    struct cellbuf_t front;$/;"	m	struct:tb_global_t	typeref:struct:cellbuf_t
+tb_global_t::has_orig_tios	termbox2/termbox2.h	/^    int has_orig_tios;$/;"	m	struct:tb_global_t	typeref:typename:int
+tb_global_t::height	termbox2/termbox2.h	/^    int height;$/;"	m	struct:tb_global_t	typeref:typename:int
+tb_global_t::in	termbox2/termbox2.h	/^    struct bytebuf_t in;$/;"	m	struct:tb_global_t	typeref:struct:bytebuf_t
+tb_global_t::initialized	termbox2/termbox2.h	/^    int initialized;$/;"	m	struct:tb_global_t	typeref:typename:int
+tb_global_t::input_mode	termbox2/termbox2.h	/^    int input_mode;$/;"	m	struct:tb_global_t	typeref:typename:int
+tb_global_t::last_bg	termbox2/termbox2.h	/^    uintattr_t last_bg;$/;"	m	struct:tb_global_t	typeref:typename:uintattr_t
+tb_global_t::last_errno	termbox2/termbox2.h	/^    int last_errno;$/;"	m	struct:tb_global_t	typeref:typename:int
+tb_global_t::last_fg	termbox2/termbox2.h	/^    uintattr_t last_fg;$/;"	m	struct:tb_global_t	typeref:typename:uintattr_t
+tb_global_t::last_x	termbox2/termbox2.h	/^    int last_x;$/;"	m	struct:tb_global_t	typeref:typename:int
+tb_global_t::last_y	termbox2/termbox2.h	/^    int last_y;$/;"	m	struct:tb_global_t	typeref:typename:int
+tb_global_t::nterminfo	termbox2/termbox2.h	/^    size_t nterminfo;$/;"	m	struct:tb_global_t	typeref:typename:size_t
+tb_global_t::orig_tios	termbox2/termbox2.h	/^    struct termios orig_tios;$/;"	m	struct:tb_global_t	typeref:struct:termios
+tb_global_t::out	termbox2/termbox2.h	/^    struct bytebuf_t out;$/;"	m	struct:tb_global_t	typeref:struct:bytebuf_t
+tb_global_t::output_mode	termbox2/termbox2.h	/^    int output_mode;$/;"	m	struct:tb_global_t	typeref:typename:int
+tb_global_t::resize_pipefd	termbox2/termbox2.h	/^    int resize_pipefd[2];$/;"	m	struct:tb_global_t	typeref:typename:int[2]
+tb_global_t::rfd	termbox2/termbox2.h	/^    int rfd;$/;"	m	struct:tb_global_t	typeref:typename:int
+tb_global_t::terminfo	termbox2/termbox2.h	/^    char *terminfo;$/;"	m	struct:tb_global_t	typeref:typename:char *
+tb_global_t::ttyfd	termbox2/termbox2.h	/^    int ttyfd;$/;"	m	struct:tb_global_t	typeref:typename:int
+tb_global_t::ttyfd_open	termbox2/termbox2.h	/^    int ttyfd_open;$/;"	m	struct:tb_global_t	typeref:typename:int
+tb_global_t::wfd	termbox2/termbox2.h	/^    int wfd;$/;"	m	struct:tb_global_t	typeref:typename:int
+tb_global_t::width	termbox2/termbox2.h	/^    int width;$/;"	m	struct:tb_global_t	typeref:typename:int
+tb_has_egc	termbox2/termbox2.h	/^int tb_has_egc(void) {$/;"	f	typeref:typename:int
+tb_has_truecolor	termbox2/termbox2.h	/^int tb_has_truecolor(void) {$/;"	f	typeref:typename:int
+tb_height	termbox2/termbox2.h	/^int tb_height(void) {$/;"	f	typeref:typename:int
+tb_hide_cursor	termbox2/termbox2.h	/^int tb_hide_cursor(void) {$/;"	f	typeref:typename:int
+tb_init	termbox2/termbox2.h	/^int tb_init(void) {$/;"	f	typeref:typename:int
+tb_init_fd	termbox2/termbox2.h	/^int tb_init_fd(int ttyfd) {$/;"	f	typeref:typename:int
+tb_init_file	termbox2/termbox2.h	/^int tb_init_file(const char *path) {$/;"	f	typeref:typename:int
+tb_init_rwfd	termbox2/termbox2.h	/^int tb_init_rwfd(int rfd, int wfd) {$/;"	f	typeref:typename:int
+tb_invalidate	termbox2/termbox2.h	/^int tb_invalidate(void) {$/;"	f	typeref:typename:int
+tb_key_i	termbox2/termbox2.h	/^#define tb_key_i(/;"	d
+tb_last_errno	termbox2/termbox2.h	/^int tb_last_errno(void) {$/;"	f	typeref:typename:int
+tb_malloc	termbox2/termbox2.h	/^#define tb_malloc /;"	d
+tb_peek_event	termbox2/termbox2.h	/^int tb_peek_event(struct tb_event *event, int timeout_ms) {$/;"	f	typeref:typename:int
+tb_poll_event	termbox2/termbox2.h	/^int tb_poll_event(struct tb_event *event) {$/;"	f	typeref:typename:int
+tb_present	termbox2/termbox2.h	/^int tb_present(void) {$/;"	f	typeref:typename:int
+tb_print	termbox2/termbox2.h	/^int tb_print(int x, int y, uintattr_t fg, uintattr_t bg, const char *str) {$/;"	f	typeref:typename:int
+tb_print_ex	termbox2/termbox2.h	/^int tb_print_ex(int x, int y, uintattr_t fg, uintattr_t bg, size_t *out_w,$/;"	f	typeref:typename:int
+tb_printf	termbox2/termbox2.h	/^int tb_printf(int x, int y, uintattr_t fg, uintattr_t bg, const char *fmt,$/;"	f	typeref:typename:int
+tb_printf_ex	termbox2/termbox2.h	/^int tb_printf_ex(int x, int y, uintattr_t fg, uintattr_t bg, size_t *out_w,$/;"	f	typeref:typename:int
+tb_printf_inner	termbox2/termbox2.h	/^int tb_printf_inner(int x, int y, uintattr_t fg, uintattr_t bg, size_t *out_w,$/;"	f	typeref:typename:int
+tb_put_cell	termbox2/termbox2.h	/^#define tb_put_cell(/;"	d
+tb_realloc	termbox2/termbox2.h	/^#define tb_realloc /;"	d
+tb_reset	termbox2/termbox2.h	/^static int tb_reset(void) {$/;"	f	typeref:typename:int
+tb_select_input_mode	termbox2/termbox2.h	/^#define tb_select_input_mode /;"	d
+tb_select_output_mode	termbox2/termbox2.h	/^#define tb_select_output_mode /;"	d
+tb_send	termbox2/termbox2.h	/^int tb_send(const char *buf, size_t nbuf) {$/;"	f	typeref:typename:int
+tb_sendf	termbox2/termbox2.h	/^int tb_sendf(const char *fmt, ...) {$/;"	f	typeref:typename:int
+tb_set_cell	termbox2/termbox2.h	/^int tb_set_cell(int x, int y, uint32_t ch, uintattr_t fg, uintattr_t bg) {$/;"	f	typeref:typename:int
+tb_set_cell_ex	termbox2/termbox2.h	/^int tb_set_cell_ex(int x, int y, uint32_t *ch, size_t nch, uintattr_t fg,$/;"	f	typeref:typename:int
+tb_set_clear_attributes	termbox2/termbox2.h	/^#define tb_set_clear_attributes /;"	d
+tb_set_clear_attrs	termbox2/termbox2.h	/^int tb_set_clear_attrs(uintattr_t fg, uintattr_t bg) {$/;"	f	typeref:typename:int
+tb_set_cursor	termbox2/termbox2.h	/^int tb_set_cursor(int cx, int cy) {$/;"	f	typeref:typename:int
+tb_set_func	termbox2/termbox2.h	/^int tb_set_func(int fn_type, int (*fn)(struct tb_event *, size_t *)) {$/;"	f	typeref:typename:int
+tb_set_input_mode	termbox2/termbox2.h	/^int tb_set_input_mode(int mode) {$/;"	f	typeref:typename:int
+tb_set_output_mode	termbox2/termbox2.h	/^int tb_set_output_mode(int mode) {$/;"	f	typeref:typename:int
+tb_shutdown	termbox2/termbox2.h	/^int tb_shutdown(void) {$/;"	f	typeref:typename:int
+tb_strerror	termbox2/termbox2.h	/^const char *tb_strerror(int err) {$/;"	f	typeref:typename:const char *
+tb_utf8_char_length	termbox2/termbox2.h	/^int tb_utf8_char_length(char c) {$/;"	f	typeref:typename:int
+tb_utf8_char_to_unicode	termbox2/termbox2.h	/^int tb_utf8_char_to_unicode(uint32_t *out, const char *c) {$/;"	f	typeref:typename:int
+tb_utf8_unicode_to_char	termbox2/termbox2.h	/^int tb_utf8_unicode_to_char(char *out, uint32_t c) {$/;"	f	typeref:typename:int
+tb_version	termbox2/termbox2.h	/^const char *tb_version(void) {$/;"	f	typeref:typename:const char *
+tb_width	termbox2/termbox2.h	/^int tb_width(void) {$/;"	f	typeref:typename:int
+term.c	term.c	1;"	F	epoch:1729226471
+term.h	term.h	1;"	F	epoch:1729040561
+termbox2.h	termbox2/termbox2.h	1;"	F	epoch:1729224307
+terminfo	termbox2/termbox2.h	/^    char *terminfo;$/;"	m	struct:tb_global_t	typeref:typename:char *
+terminfo_cap_indexes	termbox2/termbox2.h	/^static const int16_t terminfo_cap_indexes[] = {$/;"	v	typeref:typename:const int16_t[]
+ttyfd	termbox2/termbox2.h	/^    int ttyfd;$/;"	m	struct:tb_global_t	typeref:typename:int
+ttyfd_open	termbox2/termbox2.h	/^    int ttyfd_open;$/;"	m	struct:tb_global_t	typeref:typename:int
+type	termbox2/termbox2.h	/^    uint8_t type; \/\/ one of `TB_EVENT_*` constants$/;"	m	struct:tb_event	typeref:typename:uint8_t
+uintattr_t	termbox2/termbox2.h	/^typedef uint64_t uintattr_t;$/;"	t	typeref:typename:uint64_t
+update_term_size	termbox2/termbox2.h	/^static int update_term_size(void) {$/;"	f	typeref:typename:int
+update_term_size_via_esc	termbox2/termbox2.h	/^static int update_term_size_via_esc(void) {$/;"	f	typeref:typename:int
+utf8_length	termbox2/termbox2.h	/^static const unsigned char utf8_length[256] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,$/;"	v	typeref:typename:const unsigned char[256]
+utf8_mask	termbox2/termbox2.h	/^static const unsigned char utf8_mask[6] = {0x7f, 0x1f, 0x0f, 0x07, 0x03, 0x01};$/;"	v	typeref:typename:const unsigned char[6]
+vLine	term.c	/^void vLine(uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, wchar_t c, uint8_t dir) {$/;"	f	typeref:typename:void
+w	termbox2/termbox2.h	/^    int32_t w;    \/\/ resize width$/;"	m	struct:tb_event	typeref:typename:int32_t
+wait_event	termbox2/termbox2.h	/^static int wait_event(struct tb_event *event, int timeout) {$/;"	f	typeref:typename:int
+wfd	termbox2/termbox2.h	/^    int wfd;$/;"	m	struct:tb_global_t	typeref:typename:int
+width	termbox2/termbox2.h	/^    int width;$/;"	m	struct:cellbuf_t	typeref:typename:int
+width	termbox2/termbox2.h	/^    int width;$/;"	m	struct:tb_global_t	typeref:typename:int
+x	term.h	/^    uint8_t x : 8;$/;"	m	struct:__anon1dd971d3030a::__anon1dd971d30408	typeref:typename:uint8_t:8
+x	termbox2/demo/keyboard.c	/^    unsigned char x;$/;"	m	struct:key	typeref:typename:unsigned char	file:
+x	termbox2/termbox2.h	/^    int32_t x;    \/\/ mouse x$/;"	m	struct:tb_event	typeref:typename:int32_t
+xterm_caps	termbox2/termbox2.h	/^static const char *xterm_caps[] = {$/;"	v	typeref:typename:const char * []
+y	termbox2/demo/keyboard.c	/^    unsigned char y;$/;"	m	struct:key	typeref:typename:unsigned char	file:
+y	termbox2/termbox2.h	/^    int32_t y;    \/\/ mouse y$/;"	m	struct:tb_event	typeref:typename:int32_t

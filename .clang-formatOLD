@@ -1,0 +1,43 @@
+﻿---
+Language: Cpp
+BasedOnStyle: LLVM
+AlignAfterOpenBracket: Align
+AlignConsecutiveMacros: 'true'
+AlignConsecutiveAssignments: 'true'
+AlignConsecutiveDeclarations: 'false'
+AlignOperands: 'true'
+AlignTrailingComments: 'true'
+AllowAllArgumentsOnNextLine: 'true'
+AllowAllConstructorInitializersOnNextLine: 'true'
+AllowShortBlocksOnASingleLine: 'true'
+AllowShortCaseLabelsOnASingleLine: 'true'
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: WithoutElse
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakAfterReturnType: None
+AlwaysBreakBeforeMultilineStrings: 'true'
+BinPackArguments: 'true'
+BinPackParameters: 'true'
+IndentCaseLabels: 'true'
+IndentWidth: '2'
+MaxEmptyLinesToKeep: '1'
+ReflowComments: 'true'
+SortIncludes: 'true'
+SpaceAfterCStyleCast: 'true'
+SpaceBeforeAssignmentOperators: 'true'
+SpaceBeforeCpp11BracedList: 'true'
+SpaceBeforeCtorInitializerColon: 'true'
+SpaceBeforeParens: ControlStatements
+SpaceBeforeCaseColon: 'true'
+SpacesInCStyleCastParentheses: 'false'
+SpacesInParentheses: 'true'
+SpaceInEmptyBlock: 'true'
+SpacesBeforeTrailingComments: '2'
+SpacesInLineCommentPrefix:
+  Minimum: '1'
+  Maximum: '1'
+TabWidth: '2'
+ColumnLimit: '108'
+UseTab: Never
+
+...

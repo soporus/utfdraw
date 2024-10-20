@@ -1,0 +1,14 @@
+add internal buffer
+	write to buffer before drawing to screen with termbox
+	this will allow control of what is on the screen after resize, cleanup, etc
+	will allow saving screen contents
+
+	buffer should store:
+		uint8_t  updateFlag (has cell changed)
+		uint16_t character
+		uint32_t fgcolor
+		uint32_t bgcolor
+		uint8_t  layer type
+				canvas
+				menu overlay
+

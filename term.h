@@ -8,6 +8,8 @@
 #define bg_R   0x00401010  // RGB status foreground color
 #define bg_G   0x00104010  // RGB status foreground color
 #define bg_B   0x00101040  // RGB status foreground color
+#define UI     0
+#define CANVAS 1
 
 typedef struct {
   wchar_t space;
@@ -38,21 +40,33 @@ typedef union {
   };
 } Color;
 
+typedef union {
+  uint32_t cell : 32;
+  struct {
+    uint32_t rgb   : 24;
+    uint8_t  block : 8;
+  };
+} Pixel;
+
 // inputs
-void checkInput(struct tb_event *restrict ev, Color *restrict color, const wchar_t **restrict c,
-                const wchar_t *restrict arr, uint16_t *restrict sX, uint16_t *restrict sY);
+void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *select,
+                const wchar_t *restrict arr, uint8_t *restrict sX, uint8_t *restrict sY,
+                Pixel buffer[256][256]);
 
 // increment value of RGB color channels until wrap to 0
 void setColor(Color *restrict color, uint32_t *restrict ch);
 
 // draw a horizontal line
-void hLine(uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, wchar_t c, uint8_t dir);
+void hLine(uint8_t layer, Pixel buffer[256][256], uint8_t x, uint8_t y, uint32_t fgCol, uint32_t bgCol,
+           uint8_t select, const wchar_t *restrict arr, uint8_t dir);
 
 // draw a vertical line
-void vLine(uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol, wchar_t c, uint8_t dir);
+void vLine(uint8_t layer, Pixel buffer[256][256], uint8_t x, uint8_t y, uint32_t fgCol, uint32_t bgCol,
+           uint8_t select, const wchar_t *restrict arr, uint8_t dir);
 
 // draw palette characters at screen bottom
-void drawPalette(const wchar_t *restrict arr, const uint8_t len, const wchar_t *restrict c);
+void drawPalette(Pixel buffer[256][256], const wchar_t *restrict arr, const uint8_t len,
+                 const uint8_t *restrict select);
 
 // draw current color settings
 void drawColorStatus(const Color *restrict color);
