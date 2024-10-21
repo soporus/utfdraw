@@ -48,6 +48,9 @@ typedef union {
   };
 } Pixel;
 
+// print custom canvas buffer
+void printBuffer(Pixel buffer[256][256], const wchar_t *restrict arr);
+
 // inputs
 void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *select,
                 const wchar_t *restrict arr, uint8_t *restrict sX, uint8_t *restrict sY,

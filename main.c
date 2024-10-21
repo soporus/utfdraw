@@ -23,14 +23,10 @@ int main(int argc, char **argv) {
              .blkBt = L'\U00002584', // ▄
              .blkMd = L'\U000025FC', // ◼
   }};
-  // Pixel(*buffer)[256][256]         = calloc(256 * 256, sizeof(*buffer));
-  // Pixel(**buffer)[256][256] = malloc(sizeof(*buffer[256][256]));
-  Pixel buffer[256][256] = {};
-
-  const blocks *restrict const st = &slot->stp; // access union as struct
-  const uint8_t  palSize          = sizeof(slot->arr) / sizeof(slot->arr[0]) - 1;
-  const wchar_t *c                = &st->fullH;
-  uint8_t        select           = 4;
+  Pixel          buffer[256][256]  = {};
+  const uint8_t  palSize           = sizeof(slot->arr) / sizeof(slot->arr[0]) - 1;
+  const wchar_t *c                 = &slot->stp.fullH;
+  uint8_t        select            = 4;
   setlocale(LC_ALL, "C.UTF-8");
   // setup termbox2
   tb_init();

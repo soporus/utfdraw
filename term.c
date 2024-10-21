@@ -1,4 +1,11 @@
 #include "term.h"
+// print custom canvas buffer
+void printBuffer(Pixel buffer[256][256], const wchar_t *restrict arr) {
+  for (uint8_t x = 0; (x < 255); x++) {
+    for (uint8_t y = 0; (y < 255); y++) { tb_set_cell(x, y, arr[buffer[x][y].block], buffer[x][y].rgb, BLACK); }
+  }
+}
+
 // inputs
 void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *select,
                 const wchar_t *restrict arr, uint8_t *restrict sX, uint8_t *restrict sY,
@@ -72,15 +79,10 @@ void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *se
   }
   // set cursor position and draw
   tb_set_cursor(*sX, *sY);
-  // if (draw == 1) { tb_set_cell(*sX, *sY, **c, color->rgb, BLACK); }
   if (draw == 1) {
     buffer[*sX][*sY].rgb   = color->rgb;
     buffer[*sX][*sY].block = *select;
-    for (uint8_t x = 0; (x < 255); x++) {
-      for (uint8_t y = 0; (y < 255); y++) {
-        tb_set_cell(x, y, arr[buffer[x][y].block], buffer[x][y].rgb, BLACK);
-      }
-    }
+    printBuffer(buffer, arr);
   }
 bypass:; // jump if no draw required
 }
