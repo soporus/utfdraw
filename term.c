@@ -11,20 +11,6 @@ void printBuffer(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr
     }
   }
 }
-// print custom canvas file.  not used, but works to output regular text file
-void printFile(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr) {
-  uint16_t temp[ bwidth ][ bheight ];
-  FILE    *f = fopen("drawing.txt", "w");
-  // TODO: bug - saved array is rotated clockwise
-  for ( uint8_t x = 0; (x < bwidth); x++ ) {
-    for ( uint8_t y = 0; (y < bheight); y++ ) {
-      temp[ x ][ y ] = arr[ buffer[ x ][ y ].block ];
-      if ( y == bheight - 1 ) { temp[ x ][ y ] = 10; } // insert newline \n at the end of each row
-    }
-  }
-  fwrite(temp, sizeof(uint16_t), bwidth * bheight, f);
-  fclose(f);
-}
 
 // print custom canvas file
 void printFileUTF(Pixel buffer[ bwidth ][ bheight ]) {
@@ -40,21 +26,6 @@ void openFileUTF(Pixel buffer[ bwidth ][ bheight ]) {
 
   fclose(f);
 }
-// open canvas file.  not used, currently broken.  will not detect characters.
-void openFile(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr) {
-  uint8_t *c = alloca(sizeof *c);
-  *c         = 0;
-  FILE *f    = fopen("drawing.txt", "r");
-  for ( uint8_t x = 0; (x < bwidth); x++ ) {
-    for ( uint8_t y = 0; (y < bheight); y++ ) {
-      for ( uint8_t z = 0; z < palSize; z++ ) { *c = ((( uint16_t ) fgetwc(f)) == arr[ z ]) ? z : 9; }
-      buffer[ x ][ y ].rgb   = 0xC0C0C0;
-      buffer[ x ][ y ].block = *c;
-    }
-  }
-  fclose(f);
-}
-
 // inputs
 void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *select,
                 const uint16_t *restrict arr, uint8_t *restrict sX, uint8_t *restrict sY,
@@ -136,9 +107,9 @@ void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *se
   if ( draw == 1 ) {
     buffer[ *sX ][ *sY ].rgb   = color->rgb;
     buffer[ *sX ][ *sY ].block = *select;
-    printBuffer(buffer, arr);
   }
-bypass:; // jump if no draw required
+bypass:
+  printBuffer(buffer, arr); // jump if no draw required
 }
 // increment value of RGB color channels until wrap to 0
 void setColor(Color *restrict color, uint32_t *restrict ch) {
@@ -238,4 +209,40 @@ void drawXYStatus(const uint8_t *restrict sX, const uint8_t *restrict sY) {
   tb_printf(tb_width() - 9, tb_height() - 1, ( uintattr_t ) fg_UI, BLACK, "%d, %d", *sX, *sY);
 }
 // TODO: create UI buffer and call all UI functions in drawUI() function
-void drawUI() {}
+// void drawUI() {}
+
+/* ------------ WIP Functions ---------
+ * functions to output human readable txt, instead of dumping the array.  Save works but not read
+ * saving and opening using internal format for now
+ *
+// print custom canvas file.  not used, but works to output regular text file
+void printFile(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr) {
+  uint16_t temp[ bwidth ][ bheight ];
+  FILE    *f = fopen("drawing.txt", "w");
+  // TODO: bug - saved array is rotated clockwise
+  for ( uint8_t x = 0; (x < bwidth); x++ ) {
+    for ( uint8_t y = 0; (y < bheight); y++ ) {
+      temp[ x ][ y ] = arr[ buffer[ x ][ y ].block ];
+      if ( y == bheight - 1 ) { temp[ x ][ y ] = 10; } // insert newline \n at the end of each row
+    }
+  }
+  fwrite(temp, sizeof(uint16_t), bwidth * bheight, f);
+  fclose(f);
+}
+
+// open canvas file.  not used, currently broken.  will not detect characters.
+void openFile(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr) {
+  uint8_t *c = alloca(sizeof *c);
+  *c         = 0;
+  FILE *f    = fopen("drawing.txt", "r");
+  for ( uint8_t x = 0; (x < bwidth); x++ ) {
+    for ( uint8_t y = 0; (y < bheight); y++ ) {
+      for ( uint8_t z = 0; z < palSize; z++ ) { *c = ((( uint16_t ) fgetwc(f)) == arr[ z ]) ? z : 9; }
+      buffer[ x ][ y ].rgb   = 0xC0C0C0;
+      buffer[ x ][ y ].block = *c;
+    }
+  }
+  fclose(f);
+}
+*/
+

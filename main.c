@@ -7,26 +7,25 @@
 
 int main(int argc, char **argv) {
   // setup memory for event loop, color value, and drawing chars
-  struct tb_event *ev               = alloca(sizeof *ev);
-  Color *restrict color             = alloca(sizeof *color);
-  color->rgb                        = 0x00c0c0c0;
-  const Slots *restrict const slot  = alloca(sizeof *slot);
-  *( Slots *restrict ) slot         = ( Slots ) {{
-            .space = L'\U000000A0', // blank
-            .shadL = L'\U00002591', // ░
-            .shadM = L'\U00002592', // ▒
-            .shadH = L'\U00002593', // ▓
-            .fullH = L'\U00002588', // █
-            .blkTp = L'\U00002580', // ▀
-            .blkHi = L'\U00002594', // ▔
-            .blkLo = L'\U00002581', // ▁
-            .blkBt = L'\U00002584', // ▄
-            .blkMd = L'\U000025FC', // ◼
+  struct tb_event *restrict const ev = alloca(sizeof *ev);
+  Pixel buffer[ bwidth ][ bheight ]  = {};
+  Color *restrict color              = alloca(sizeof *color);
+  color->rgb                         = 0x00c0c0c0;
+  const Slots *restrict const slot   = alloca(sizeof *slot);
+  *( Slots *restrict ) slot          = ( Slots ) {{
+             .space = L'\U000000A0', // blank
+             .shadL = L'\U00002591', // ░
+             .shadM = L'\U00002592', // ▒
+             .shadH = L'\U00002593', // ▓
+             .fullH = L'\U00002588', // █
+             .blkTp = L'\U00002580', // ▀
+             .blkHi = L'\U00002594', // ▔
+             .blkLo = L'\U00002581', // ▁
+             .blkBt = L'\U00002584', // ▄
+             .blkMd = L'\U000025FC', // ◼
   }};
-  Pixel buffer[ bwidth ][ bheight ] = {};
-  // const uint8_t   palSize                 = sizeof(slot->arr) / sizeof(slot->arr[0]) - 1;
-  // const uint16_t *c      = &slot->stp.fullH;
-  uint8_t select = 4;
+
+  uint8_t select = 4; // hold current slot selection
   setlocale(LC_ALL, "C.UTF-8");
   // setup termbox2
   tb_init();

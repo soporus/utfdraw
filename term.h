@@ -50,18 +50,12 @@ typedef union {
     uint8_t  block : 8;
   };
 } Pixel;
-
 // print custom canvas buffer
 void printBuffer(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr);
-
-// print custom canvas file
-void printFile(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr);
 
 void printFileUTF(Pixel buffer[ bwidth ][ bheight ]);
 
 void openFileUTF(Pixel buffer[ bwidth ][ bheight ]);
-// open canvas file
-void openFile(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr);
 
 // inputs
 void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *select,
@@ -88,3 +82,12 @@ void drawColorStatus(const Color *restrict color);
 
 // draw current cursor position
 void drawXYStatus(const uint8_t *restrict sX, const uint8_t *restrict sY);
+
+/*
+// open canvas file
+void openFile(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr);
+
+// print custom canvas file
+void printFile(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr);
+*/
+
