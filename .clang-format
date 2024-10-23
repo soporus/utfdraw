@@ -246,14 +246,14 @@ SpacesInContainerLiterals: true
 SpacesInLineCommentPrefix:
   Minimum:         1
   Maximum:         -1
-SpacesInParens:  Never
+SpacesInParens:  Custom
 SpacesInParensOptions:
-  ExceptDoubleParentheses: false
+  ExceptDoubleParentheses: true
   InCStyleCasts:   true
   InConditionalStatements: true
-  InEmptyParentheses: true
+  InEmptyParentheses: false
   Other:           false
-SpacesInSquareBrackets: false
+SpacesInSquareBrackets: true
 Standard:        Latest
 StatementAttributeLikeMacros:
   - Q_EMIT
