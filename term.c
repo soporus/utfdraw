@@ -35,6 +35,7 @@ void printFileUTF(Pixel buffer[ bwidth ][ bheight ]) {
 // print custom canvas file
 void openFileUTF(Pixel buffer[ bwidth ][ bheight ]) {
   FILE *f = fopen("drawing.utf", "r");
+  if ( f == NULL ) { return; }
   fread(&buffer[ 0 ][ 0 ], 4, bwidth * bheight, f);
 
   fclose(f);
