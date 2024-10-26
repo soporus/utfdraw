@@ -1,13 +1,13 @@
 all: main
 CC = clang
-override CFLAGS += -std=c2x -o3 -Wconversion -Wno-sign-conversion -Wdouble-promotion -ffunction-sections -flto -march=native -Wpedantic -DTB_LIB_OPTS=1 -DTB_OPT_ATTR_W=32 -DTB_OPT_PRINTF_BUF=16
+override CFLAGS += -std=gnu23 -o3 -s -Wconversion -Wno-sign-conversion -Wdouble-promotion -flto -march=native -Wpedantic -DTB_LIB_OPTS=1 -DTB_OPT_ATTR_W=32 -DTB_OPT_PRINTF_BUF=100
 
 #export ASAN_OPTIONS=strict_string_checks=1:detect_stack_use_after_return=1:check_initialization_order=1:strict_init_order=1:halt_on_error=0
 export ASAN_OPTIONS=abort_on_error=0:fast_unwind_on_malloc=0:detect_leaks=0 UBSAN_OPTIONS=print_stacktrace=1
 
 export G_SLICE=always-malloc G_DEBUG=gc-friendly
 
-LDFLAGS = $(CFLAGS)
+LDFLAGS = $(CFLAGS) -flto
 
 DBLD_FLAGS = -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment -flto
 

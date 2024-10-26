@@ -4,7 +4,7 @@
 #define DOWN  TB_KEY_ARROW_DOWN
 #define RIGHT TB_KEY_ARROW_RIGHT
 // print custom canvas buffer
-void printBuffer(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr) {
+static void printBuffer(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr) {
   for ( uint8_t x = 0; (x < bwidth); x++ ) {
     for ( uint8_t y = 0; (y < bheight); y++ ) {
       tb_set_cell(x, y, arr[ buffer[ x ][ y ].block ], buffer[ x ][ y ].rgb, BLACK);
@@ -13,17 +13,17 @@ void printBuffer(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr
 }
 
 // print custom canvas file
-void printFileUTF(Pixel buffer[ bwidth ][ bheight ]) {
+static void printFileUTF(Pixel buffer[ bwidth ][ bheight ]) {
   FILE *f = fopen("drawing.utf", "w");
+  if ( f == NULL ) { return; }
   fwrite(buffer, sizeof(uint32_t), bwidth * bheight, f);
   fclose(f);
 }
 // print custom canvas file
-void openFileUTF(Pixel buffer[ bwidth ][ bheight ]) {
+static void openFileUTF(Pixel buffer[ bwidth ][ bheight ]) {
   FILE *f = fopen("drawing.utf", "r");
   if ( f == NULL ) { return; }
   fread(&buffer[ 0 ][ 0 ], 4, bwidth * bheight, f);
-
   fclose(f);
 }
 // inputs
@@ -105,7 +105,7 @@ void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *se
   // set cursor position and draw
   tb_set_cursor(*sX, *sY);
   if ( draw == 1 ) {
-    buffer[ *sX ][ *sY ].rgb   = color->rgb;
+    buffer[ *sX ][ *sY ].cell  = color->rgb;
     buffer[ *sX ][ *sY ].block = *select;
   }
 bypass:
@@ -126,16 +126,16 @@ void setColor(Color *restrict color, uint32_t *restrict ch) {
   }
 }
 // draw horizontal line
-void hLine(uint8_t layer, Pixel buffer[ bwidth ][ bheight ], uint8_t x, uint8_t y, uint32_t fgCol,
-           uint32_t bgCol, uint8_t select, const uint16_t *restrict arr, uint8_t dir) {
+static void hLine(uint8_t layer, Pixel buffer[ bwidth ][ bheight ], uint8_t x, uint8_t y, uint32_t fgCol,
+                  uint32_t bgCol, uint8_t select, const uint16_t *restrict arr, uint8_t dir) {
   const uint8_t width = (tb_width() < bwidth) ? ( uint8_t ) tb_width() : bwidth;
   if ( dir == 1 ) {
     // draw line left to right
     for ( ; x < width; ++x ) {
       // draw to buffer
       if ( layer == 1 ) {
-        buffer[ x ][ y ].rgb   = fgCol;
-        buffer[ x ][ y ].block = select;
+        buffer[ x ][ y ].cell  = fgCol;  // instead of .rgb bitfield, just write 32bit to 32bit
+        buffer[ x ][ y ].block = select; // since this bitfield will overwrite and isn't a weird 24bit size
       }
       // draw to terminal only  (UI elements)
       tb_set_cell(x, y, arr[ select ], fgCol, bgCol);
@@ -145,7 +145,7 @@ void hLine(uint8_t layer, Pixel buffer[ bwidth ][ bheight ], uint8_t x, uint8_t 
     while ( x-- ) {
       // draw to buffer
       if ( layer == 1 ) {
-        buffer[ x ][ y ].rgb   = fgCol;
+        buffer[ x ][ y ].cell  = fgCol;
         buffer[ x ][ y ].block = select;
       }
       tb_set_cell(x, y, arr[ select ], fgCol, bgCol);
@@ -153,15 +153,15 @@ void hLine(uint8_t layer, Pixel buffer[ bwidth ][ bheight ], uint8_t x, uint8_t 
   }
 }
 // draw a vertical line
-void vLine(uint8_t layer, Pixel buffer[ bwidth ][ bheight ], uint8_t x, uint8_t y, uint32_t fgCol,
-           uint32_t bgCol, uint8_t select, const uint16_t *restrict arr, uint8_t dir) {
+static void vLine(uint8_t layer, Pixel buffer[ bwidth ][ bheight ], uint8_t x, uint8_t y, uint32_t fgCol,
+                  uint32_t bgCol, uint8_t select, const uint16_t *restrict arr, uint8_t dir) {
   const uint8_t height = (tb_height() < bheight) ? ( uint8_t ) tb_height() : bheight - 1;
   if ( dir == 1 ) {
     // draw line left to right
     for ( ; y < height; ++y ) {
       // draw to buffer
       if ( layer == 1 ) {
-        buffer[ x ][ y ].rgb   = fgCol;
+        buffer[ x ][ y ].cell  = fgCol;
         buffer[ x ][ y ].block = select;
       }
       // draw to terminal only  (UI elements)
@@ -172,7 +172,7 @@ void vLine(uint8_t layer, Pixel buffer[ bwidth ][ bheight ], uint8_t x, uint8_t 
     while ( y-- ) {
       // draw to buffer
       if ( layer == 1 ) {
-        buffer[ x ][ y ].rgb   = fgCol;
+        buffer[ x ][ y ].cell  = fgCol;
         buffer[ x ][ y ].block = select;
       }
       // draw to terminal only  (UI elements)
@@ -182,8 +182,8 @@ void vLine(uint8_t layer, Pixel buffer[ bwidth ][ bheight ], uint8_t x, uint8_t 
 }
 // draw palette characters at screen bottom
 // TODO: stop drawing to camvas buffer, move to UI buffer
-void drawPalette(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr, const uint8_t len,
-                 const uint8_t *restrict select) {
+static void drawPalette(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr, const uint8_t len,
+                        const uint8_t *restrict select) {
   static uint32_t cfg = fg_UI;
   const uint8_t   y   = ( uint8_t ) tb_height() - 1;
   // draw UI bottom bar.  in case of mouse draw over UI
@@ -195,7 +195,7 @@ void drawPalette(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr
   }
 }
 // draw current color settings
-void drawColorStatus(const Color *restrict color) {
+static void drawColorStatus(const Color *restrict color) {
   const uint8_t xloc = (tb_width() > bwidth) ? ( uint8_t ) (tb_width() * 0.5) : ( uint8_t ) (bwidth * 0.5);
   const uint8_t yloc = ( uint8_t ) (tb_height() - 1);
   // hashtag shows current color
@@ -205,11 +205,18 @@ void drawColorStatus(const Color *restrict color) {
     tb_printf(xloc - l, yloc, ( uintattr_t ) fg_UI, BLACK, "%02X", color->rgbArr[ j ]);
   }
 }
-void drawXYStatus(const uint8_t *restrict sX, const uint8_t *restrict sY) {
+static void drawXYStatus(const uint8_t *restrict sX, const uint8_t *restrict sY) {
   tb_printf(tb_width() - 9, tb_height() - 1, ( uintattr_t ) fg_UI, BLACK, "%d, %d", *sX, *sY);
 }
 // TODO: create UI buffer and call all UI functions in drawUI() function
-// void drawUI() {}
+void drawUI(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr, const uint8_t len,
+            const uint8_t *restrict select, const Color *restrict color, const uint8_t *restrict sX,
+            const uint8_t *restrict sY) {
+  drawPalette(buffer, arr, palSize, select);
+  drawXYStatus(sX, sY); // TODO: Currently leaves mess on terminal resize.  clear and redraw on resize
+  drawColorStatus(color);
+  tb_present();
+}
 
 /* ------------ WIP Functions ---------
  * functions to output human readable txt, instead of dumping the array.  Save works but not read

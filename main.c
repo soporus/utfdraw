@@ -7,11 +7,11 @@
 
 int main(int argc, char **argv) {
   // setup memory for event loop, color value, and drawing chars
-  struct tb_event *restrict const ev = alloca(sizeof *ev);
+  struct tb_event *restrict const ev = __builtin_alloca(sizeof *ev);
   Pixel buffer[ bwidth ][ bheight ]  = {};
-  Color *restrict color              = alloca(sizeof *color);
+  Color *restrict color              = __builtin_alloca(sizeof *color);
   color->rgb                         = 0x00c0c0c0;
-  const Slots *restrict const slot   = alloca(sizeof *slot);
+  const Slots *restrict const slot   = __builtin_alloca(sizeof *slot);
   *( Slots *restrict ) slot          = ( Slots ) {{
              .space = L'\U000000A0', // blank
              .shadL = L'\U00002591', // ░
@@ -37,11 +37,7 @@ int main(int argc, char **argv) {
     // status x and y coordinates
     static uint8_t sX = 0;
     static uint8_t sY = 0;
-    drawPalette(buffer, slot->arr, palSize, &select);
-    // TODO: move X,Y position status to function. Currently leaves mess on terminal resize
-    drawXYStatus(&sX, &sY);
-    drawColorStatus(color);
-    tb_present();
+    drawUI(buffer, slot->arr, palSize, &select, color, &sX, &sY);
     // wait for input, process input, only if found
     if ( tb_poll_event(ev) == TB_OK ) { checkInput(ev, color, &select, slot->arr, &sX, &sY, buffer); }
   }
