@@ -8,23 +8,21 @@
 int main(int argc, char **argv) {
   // setup memory for event loop, color value, and drawing chars
   struct tb_event *restrict const ev = __builtin_alloca(sizeof *ev);
-  Pixel buffer[ bwidth ][ bheight ]  = {}; // buffer for drawing layer
-  //  Pixel uiBuffer[ bwidth ]           = {}; // TODO buffer for UI Layer
-  Layer *layer                     = __builtin_alloca(sizeof *layer);
-  Color *restrict color            = __builtin_alloca(sizeof *color);
-  color->rgb                       = 0x00c0c0c0;
-  const Slots *restrict const slot = __builtin_alloca(sizeof *slot);
-  *( Slots *restrict ) slot        = ( Slots ) {{
-           .space = L'\U000000A0', // blank
-           .shadL = L'\U00002591', // ░
-           .shadM = L'\U00002592', // ▒
-           .shadH = L'\U00002593', // ▓
-           .fullH = L'\U00002588', // █
-           .blkTp = L'\U00002580', // ▀
-           .blkHi = L'\U00002594', // ▔
-           .blkLo = L'\U00002581', // ▁
-           .blkBt = L'\U00002584', // ▄
-           .blkMd = L'\U000025FC', // ◼
+  Layer *layer                       = __builtin_alloca(sizeof *layer);
+  Color *restrict color              = __builtin_alloca(sizeof *color);
+  color->rgb                         = 0x00c0c0c0;
+  const Slots *restrict const slot   = __builtin_alloca(sizeof *slot);
+  *( Slots *restrict ) slot          = ( Slots ) {{
+             .space = L'\U000000A0', // blank
+             .shadL = L'\U00002591', // ░
+             .shadM = L'\U00002592', // ▒
+             .shadH = L'\U00002593', // ▓
+             .fullH = L'\U00002588', // █
+             .blkTp = L'\U00002580', // ▀
+             .blkHi = L'\U00002594', // ▔
+             .blkLo = L'\U00002581', // ▁
+             .blkBt = L'\U00002584', // ▄
+             .blkMd = L'\U000025FC', // ◼
   }};
 
   uint8_t select = 4; // hold current slot selection

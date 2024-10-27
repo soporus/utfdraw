@@ -57,11 +57,11 @@ typedef struct {
 } Layer;
 
 // print custom canvas buffer
-static void printBuffer(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr);
+static void printBuffer(Layer *layer, const uint16_t *restrict arr);
 
-static void printFileUTF(Pixel buffer[ bwidth ][ bheight ]);
+static void printFileUTF(Layer *layer);
 
-static void openFileUTF(Pixel buffer[ bwidth ][ bheight ]);
+static void openFileUTF(Layer *layer);
 
 // inputs
 void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *select,

@@ -4,25 +4,25 @@
 #define DOWN  TB_KEY_ARROW_DOWN
 #define RIGHT TB_KEY_ARROW_RIGHT
 // print custom canvas buffer
-static void printBuffer(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr) {
+static void printBuffer(Layer *layer, const uint16_t *restrict arr) {
   for ( uint8_t x = 0; (x < bwidth); x++ ) {
     for ( uint8_t y = 0; (y < bheight); y++ ) {
-      tb_set_cell(x, y, arr[ buffer[ x ][ y ].block ], buffer[ x ][ y ].rgb, BLACK);
+      tb_set_cell(x, y, arr[ layer->canvas[ x ][ y ].block ], layer->canvas[ x ][ y ].rgb, BLACK);
     }
   }
 }
 // print custom canvas file
-static void printFileUTF(Pixel buffer[ bwidth ][ bheight ]) {
+static void printFileUTF(Layer *layer) {
   FILE *f = fopen("drawing.utf", "w");
   if ( f == NULL ) { return; }
-  fwrite(buffer, sizeof(uint32_t), bwidth * bheight, f);
+  fwrite(layer, sizeof(uint32_t), bwidth * bheight, f);
   fclose(f);
 }
 // print custom canvas file
-static void openFileUTF(Pixel buffer[ bwidth ][ bheight ]) {
+static void openFileUTF(Layer *layer) {
   FILE *f = fopen("drawing.utf", "r");
   if ( f == NULL ) { return; }
-  fread(&buffer[ 0 ][ 0 ], 4, bwidth * bheight, f);
+  fread(&layer->canvas[ 0 ][ 0 ], 4, bwidth * bheight, f);
   fclose(f);
 }
 // inputs
@@ -93,9 +93,9 @@ void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *se
     case TB_KEY_END  : hLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 1); break; // ▶︎
     case TB_KEY_PGUP : vLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0); break; // ▲
     case TB_KEY_PGDN : vLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 1); break; // ▼
-    case 'p'         : printFileUTF(layer->canvas); break;
+    case 'p'         : printFileUTF(layer); break;
     case 'o' :
-      openFileUTF(layer->canvas);
+      openFileUTF(layer);
       ++draw;
       break;
   }
@@ -105,7 +105,7 @@ void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *se
     layer->canvas[ *sX ][ *sY ].cell  = color->rgb;
     layer->canvas[ *sX ][ *sY ].block = *select;
   }
-  printBuffer(layer->canvas, arr); // print the draw layer
+  printBuffer(layer, arr); // print the draw layer
 }
 // increment value of RGB color channels until wrap to 0
 static void setColor(Color *restrict color, uint32_t *restrict ch) {
