@@ -11,7 +11,6 @@ static void printBuffer(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restr
     }
   }
 }
-
 // print custom canvas file
 static void printFileUTF(Pixel buffer[ bwidth ][ bheight ]) {
   FILE *f = fopen("drawing.utf", "w");
@@ -28,8 +27,7 @@ static void openFileUTF(Pixel buffer[ bwidth ][ bheight ]) {
 }
 // inputs
 void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *select,
-                const uint16_t *restrict arr, uint8_t *restrict sX, uint8_t *restrict sY,
-                Pixel buffer[ bwidth ][ bheight ]) {
+                const uint16_t *restrict arr, uint8_t *restrict sX, uint8_t *restrict sY, Layer *layer) {
   const uint32_t key = (ev->ch > 0) ? ev->ch : ( uint32_t ) ev->key;
   // flag when a draw is needed
   uint8_t draw = 0;
@@ -91,24 +89,23 @@ void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *se
       *sX = (ev->x < bwidth) ? ( uint8_t ) ev->x : bwidth - 1;
       *sY = (ev->y < bheight) ? ( uint8_t ) ev->y : bheight - 2;
       break; // draw to left, right, top, or lower boundary
-    case TB_KEY_HOME : hLine(CANVAS, buffer, *sX, *sY, color->rgb, BLACK, *select, arr, 0); break; // ◀︎
-    case TB_KEY_END  : hLine(CANVAS, buffer, *sX, *sY, color->rgb, BLACK, *select, arr, 1); break; // ▶︎
-    case TB_KEY_PGUP : vLine(CANVAS, buffer, *sX, *sY, color->rgb, BLACK, *select, arr, 0); break; // ▲
-    case TB_KEY_PGDN : vLine(CANVAS, buffer, *sX, *sY, color->rgb, BLACK, *select, arr, 1); break; // ▼
-    case 'p'         : printFileUTF(buffer); break;
+    case TB_KEY_HOME : hLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0); break; // ◀︎
+    case TB_KEY_END  : hLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 1); break; // ▶︎
+    case TB_KEY_PGUP : vLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0); break; // ▲
+    case TB_KEY_PGDN : vLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 1); break; // ▼
+    case 'p'         : printFileUTF(layer->canvas); break;
     case 'o' :
-      openFileUTF(buffer);
+      openFileUTF(layer->canvas);
       ++draw;
       break;
   }
-
   // set cursor position and draw
   tb_set_cursor(*sX, *sY);
   if ( draw == 1 ) {
-    buffer[ *sX ][ *sY ].cell  = color->rgb;
-    buffer[ *sX ][ *sY ].block = *select;
+    layer->canvas[ *sX ][ *sY ].cell  = color->rgb;
+    layer->canvas[ *sX ][ *sY ].block = *select;
   }
-  printBuffer(buffer, arr); // print the draw layer
+  printBuffer(layer->canvas, arr); // print the draw layer
 }
 // increment value of RGB color channels until wrap to 0
 static void setColor(Color *restrict color, uint32_t *restrict ch) {
@@ -125,16 +122,17 @@ static void setColor(Color *restrict color, uint32_t *restrict ch) {
   }
 }
 // draw horizontal line
-static void hLine(uint8_t layer, Pixel buffer[ bwidth ][ bheight ], uint8_t x, uint8_t y, uint32_t fgCol,
-                  uint32_t bgCol, uint8_t select, const uint16_t *restrict arr, uint8_t dir) {
+static void hLine(uint8_t which, Layer *layer, uint8_t x, uint8_t y, uint32_t fgCol, uint32_t bgCol,
+                  uint8_t select, const uint16_t *restrict arr, uint8_t dir) {
   const uint8_t width = (tb_width() < bwidth) ? ( uint8_t ) tb_width() : bwidth;
   if ( dir == 1 ) {
     // draw line left to right
     for ( ; x < width; ++x ) {
       // draw to buffer
-      if ( layer == 1 ) {
-        buffer[ x ][ y ].cell  = fgCol;  // instead of .rgb bitfield, just write 32bit to 32bit
-        buffer[ x ][ y ].block = select; // since this bitfield will overwrite and isn't a weird 24bit size
+      if ( which == 1 ) {
+        layer->canvas[ x ][ y ].cell = fgCol; // instead of .rgb bitfield, just write 32bit to 32bit
+        layer->canvas[ x ][ y ].block =
+          select; // since this bitfield will overwrite and isn't a weird 24bit size
       }
       // draw to terminal only  (UI elements)
       tb_set_cell(x, y, arr[ select ], fgCol, bgCol);
@@ -143,25 +141,25 @@ static void hLine(uint8_t layer, Pixel buffer[ bwidth ][ bheight ], uint8_t x, u
     // draw line right to left
     while ( x-- ) {
       // draw to buffer
-      if ( layer == 1 ) {
-        buffer[ x ][ y ].cell  = fgCol;
-        buffer[ x ][ y ].block = select;
+      if ( which == 1 ) {
+        layer->canvas[ x ][ y ].cell  = fgCol;
+        layer->canvas[ x ][ y ].block = select;
       }
       tb_set_cell(x, y, arr[ select ], fgCol, bgCol);
     }
   }
 }
 // draw a vertical line
-static void vLine(uint8_t layer, Pixel buffer[ bwidth ][ bheight ], uint8_t x, uint8_t y, uint32_t fgCol,
-                  uint32_t bgCol, uint8_t select, const uint16_t *restrict arr, uint8_t dir) {
+static void vLine(uint8_t which, Layer *layer, uint8_t x, uint8_t y, uint32_t fgCol, uint32_t bgCol,
+                  uint8_t select, const uint16_t *restrict arr, uint8_t dir) {
   const uint8_t height = (tb_height() < bheight) ? ( uint8_t ) tb_height() : bheight - 1;
   if ( dir == 1 ) {
     // draw line left to right
     for ( ; y < height; ++y ) {
       // draw to buffer
-      if ( layer == 1 ) {
-        buffer[ x ][ y ].cell  = fgCol;
-        buffer[ x ][ y ].block = select;
+      if ( which == 1 ) {
+        layer->canvas[ x ][ y ].cell  = fgCol;
+        layer->canvas[ x ][ y ].block = select;
       }
       // draw to terminal only  (UI elements)
       tb_set_cell(x, y, arr[ select ], fgCol, bgCol);
@@ -170,9 +168,9 @@ static void vLine(uint8_t layer, Pixel buffer[ bwidth ][ bheight ], uint8_t x, u
     // draw line right to left
     while ( y-- ) {
       // draw to buffer
-      if ( layer == 1 ) {
-        buffer[ x ][ y ].cell  = fgCol;
-        buffer[ x ][ y ].block = select;
+      if ( which == 1 ) {
+        layer->canvas[ x ][ y ].cell  = fgCol;
+        layer->canvas[ x ][ y ].block = select;
       }
       // draw to terminal only  (UI elements)
       tb_set_cell(x, y, arr[ select ], fgCol, bgCol);
@@ -181,12 +179,12 @@ static void vLine(uint8_t layer, Pixel buffer[ bwidth ][ bheight ], uint8_t x, u
 }
 // draw palette characters at screen bottom
 // TODO: stop drawing to camvas buffer, move to UI buffer
-static void drawPalette(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr, const uint8_t len,
+static void drawPalette(Layer *layer, const uint16_t *restrict arr, const uint8_t len,
                         const uint8_t *restrict select) {
   static uint32_t cfg = fg_UI;
   const uint8_t   y   = ( uint8_t ) tb_height() - 1;
   // draw UI bottom bar.  in case of mouse draw over UI
-  hLine(UI, buffer, 0, y, BLACK, BLACK, *select, arr, 1);
+  hLine(UI, layer, 0, y, BLACK, BLACK, *select, arr, 1);
   // iterate over palette array.  dim unselected blocks
   for ( uint8_t i = 0; i < len; ++i ) {
     cfg = ((arr[ i ] == arr[ *select ]) ? 0x10000000 | fg_UI : ( uint32_t ) (fg_UI * 0.5));
@@ -208,10 +206,9 @@ static void drawXYStatus(const uint8_t *restrict sX, const uint8_t *restrict sY)
   tb_printf(tb_width() - 9, tb_height() - 1, ( uintattr_t ) fg_UI, BLACK, "%d, %d", *sX, *sY);
 }
 // TODO: create UI buffer and call all UI functions in drawUI() function
-void drawUI(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr, const uint8_t len,
-            const uint8_t *restrict select, const Color *restrict color, const uint8_t *restrict sX,
-            const uint8_t *restrict sY) {
-  drawPalette(buffer, arr, palSize, select);
+void drawUI(Layer *layer, const uint16_t *restrict arr, const uint8_t len, const uint8_t *restrict select,
+            const Color *restrict color, const uint8_t *restrict sX, const uint8_t *restrict sY) {
+  drawPalette(layer, arr, palSize, select);
   drawXYStatus(sX, sY); // TODO: Currently leaves mess on terminal resize.  clear and redraw on resize
   drawColorStatus(color);
   tb_present();

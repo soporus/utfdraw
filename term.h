@@ -50,6 +50,12 @@ typedef union {
     uint8_t  block : 8;
   };
 } Pixel;
+
+typedef struct {
+  Pixel canvas[ bwidth ][ bheight ];
+  Pixel ui[ bwidth ];
+} Layer;
+
 // print custom canvas buffer
 static void printBuffer(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr);
 
@@ -59,22 +65,21 @@ static void openFileUTF(Pixel buffer[ bwidth ][ bheight ]);
 
 // inputs
 void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *select,
-                const uint16_t *restrict arr, uint8_t *restrict sX, uint8_t *restrict sY,
-                Pixel buffer[ bwidth ][ bheight ]);
+                const uint16_t *restrict arr, uint8_t *restrict sX, uint8_t *restrict sY, Layer *layer);
 
 // increment value of RGB color channels until wrap to 0
 static void setColor(Color *restrict color, uint32_t *restrict ch);
 
 // draw a horizontal line
-static void hLine(uint8_t layer, Pixel buffer[ bwidth ][ bheight ], uint8_t x, uint8_t y, uint32_t fgCol,
-                  uint32_t bgCol, uint8_t select, const uint16_t *restrict arr, uint8_t dir);
+static void hLine(uint8_t which, Layer *layer, uint8_t x, uint8_t y, uint32_t fgCol, uint32_t bgCol,
+                  uint8_t select, const uint16_t *restrict arr, uint8_t dir);
 
 // draw a vertical line
-static void vLine(uint8_t layer, Pixel buffer[ bwidth ][ bheight ], uint8_t x, uint8_t y, uint32_t fgCol,
-                  uint32_t bgCol, uint8_t select, const uint16_t *restrict arr, uint8_t dir);
+static void vLine(uint8_t which, Layer *layer, uint8_t x, uint8_t y, uint32_t fgCol, uint32_t bgCol,
+                  uint8_t select, const uint16_t *restrict arr, uint8_t dir);
 
 // draw palette characters at screen bottom
-static void drawPalette(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr, const uint8_t len,
+static void drawPalette(Layer *layer, const uint16_t *restrict arr, const uint8_t len,
                         const uint8_t *restrict select);
 
 // draw current color settings
@@ -83,9 +88,8 @@ static void drawColorStatus(const Color *restrict color);
 // draw current cursor position
 static void drawXYStatus(const uint8_t *restrict sX, const uint8_t *restrict sY);
 
-void drawUI(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr, const uint8_t len,
-            const uint8_t *restrict select, const Color *restrict color, const uint8_t *restrict sX,
-            const uint8_t *restrict sY);
+void drawUI(Layer *layer, const uint16_t *restrict arr, const uint8_t len, const uint8_t *restrict select,
+            const Color *restrict color, const uint8_t *restrict sX, const uint8_t *restrict sY);
 /*
 // open canvas file
 void openFile(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr);

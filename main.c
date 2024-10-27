@@ -10,6 +10,7 @@ int main(int argc, char **argv) {
   struct tb_event *restrict const ev = __builtin_alloca(sizeof *ev);
   Pixel buffer[ bwidth ][ bheight ]  = {}; // buffer for drawing layer
   //  Pixel uiBuffer[ bwidth ]           = {}; // TODO buffer for UI Layer
+  Layer *layer                     = __builtin_alloca(sizeof *layer);
   Color *restrict color            = __builtin_alloca(sizeof *color);
   color->rgb                       = 0x00c0c0c0;
   const Slots *restrict const slot = __builtin_alloca(sizeof *slot);
@@ -38,9 +39,9 @@ int main(int argc, char **argv) {
     // status x and y coordinates
     static uint8_t sX = 0;
     static uint8_t sY = 0;
-    drawUI(buffer, slot->arr, palSize, &select, color, &sX, &sY);
+    drawUI(layer, slot->arr, palSize, &select, color, &sX, &sY);
     // wait for input, process input, only if found
-    if ( tb_poll_event(ev) == TB_OK ) { checkInput(ev, color, &select, slot->arr, &sX, &sY, buffer); }
+    if ( tb_poll_event(ev) == TB_OK ) { checkInput(ev, color, &select, slot->arr, &sX, &sY, layer); }
   }
   // clean up terminal
   tb_shutdown();
