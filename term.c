@@ -47,54 +47,54 @@ void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *se
       ++draw;
       break;
       // movement only, but must draw to paint cursor position
-    case UP    : [[fallthrough]];                                  // ▲
-    case 'k'   : [[fallthrough]];                                  // ▲
-    case 'w'   : *sY = (*sY > 0) ? *sY - 1 : height; break;        // ▲
-    case LEFT  : [[fallthrough]];                                  // ◀︎
-    case 'h'   : [[fallthrough]];                                  // ◀︎
-    case 'a'   : *sX = (*sX > 0) ? *sX - 1 : width; break;         // ◀︎
-    case DOWN  : [[fallthrough]];                                  // ▼
-    case 'j'   : [[fallthrough]];                                  // ▼
-    case 's'   : *sY = (*sY < height) ? *sY + 1 : 0; break;        // ▼
-    case RIGHT : [[fallthrough]];                                  // ▶︎
-    case 'd'   : [[fallthrough]];                                  // ▶︎
-    case 'l'   : *sX = (*sX < width) ? *sX + 1 : 0; break;         // ▶︎
-    case 'W'   : *sY = (*sY > 0) ? *sY - (++draw) : height; break; // ▲  wasd draw
-    case 'A'   : *sX = (*sX > 0) ? *sX - (++draw) : width; break;  // ◀︎
-    case 'S'   : *sY = (*sY < height) ? *sY + (++draw) : 0; break; // ▼
-    case 'D'   : *sX = (*sX < width) ? *sX + (++draw) : 0; break;  // ▶︎
-    case 'K'   : *sY = (*sY > 0) ? *sY - (++draw) : height; break; // ▲  vi draw
-    case 'H'   : *sX = (*sX > 0) ? *sX - (++draw) : width; break;  // ◀︎
-    case 'J'   : *sY = (*sY < height) ? *sY + (++draw) : 0; break; // ▼
-    case 'L'   : *sX = (*sX < width) ? *sX + (++draw) : 0; break;  // ▶︎
-    case 'r'   : [[fallthrough]];                                  // --red    colors
-    case 'g'   : [[fallthrough]];                                  // --green
-    case 'b'   : [[fallthrough]];                                  // --blue
-    case 'R'   : [[fallthrough]];                                  // ++red
-    case 'G'   : [[fallthrough]];                                  // ++green
-    case 'B'   : setColor(color, &ev->ch); goto bypass;            // ++blue
-    case '0'   : *select = 0; goto bypass;                         // ░  char selection
-    case '1'   : *select = 1; goto bypass;                         // ▒
-    case '2'   : *select = 2; goto bypass;                         // ▓
-    case '3'   : *select = 3; goto bypass;                         // █
-    case '4'   : *select = 4; goto bypass;                         // ▀
-    case '5'   : *select = 5; goto bypass;                         // ▔
-    case '6'   : *select = 6; goto bypass;                         // ▁
-    case '7'   : *select = 7; goto bypass;                         // ▄
-    case '8'   : *select = 8; goto bypass;                         // ◼
-    case '9'   : *select = 9; goto bypass;                         // ' '
-    case 'Q'   : [[fallthrough]];                                  // tell clang fallthrough intentional
-    case 'q'   : *select != 0 ? (*select -= 1) : (*select = 9); goto bypass; // choose block to left in palette
+    case UP    : [[fallthrough]];                                      // ▲
+    case 'k'   : [[fallthrough]];                                      // ▲
+    case 'w'   : *sY = (*sY > 0) ? *sY - 1 : height; break;            // ▲
+    case LEFT  : [[fallthrough]];                                      // ◀︎
+    case 'h'   : [[fallthrough]];                                      // ◀︎
+    case 'a'   : *sX = (*sX > 0) ? *sX - 1 : width; break;             // ◀︎
+    case DOWN  : [[fallthrough]];                                      // ▼
+    case 'j'   : [[fallthrough]];                                      // ▼
+    case 's'   : *sY = (*sY < height) ? *sY + 1 : 0; break;            // ▼
+    case RIGHT : [[fallthrough]];                                      // ▶︎
+    case 'd'   : [[fallthrough]];                                      // ▶︎
+    case 'l'   : *sX = (*sX < width) ? *sX + 1 : 0; break;             // ▶︎
+    case 'W'   : *sY = (*sY > 0) ? *sY - (++draw) : height; break;     // ▲  wasd draw
+    case 'A'   : *sX = (*sX > 0) ? *sX - (++draw) : width; break;      // ◀︎
+    case 'S'   : *sY = (*sY < height) ? *sY + (++draw) : 0; break;     // ▼
+    case 'D'   : *sX = (*sX < width) ? *sX + (++draw) : 0; break;      // ▶︎
+    case 'K'   : *sY = (*sY > 0) ? *sY - (++draw) : height; break;     // ▲  vi draw
+    case 'H'   : *sX = (*sX > 0) ? *sX - (++draw) : width; break;      // ◀︎
+    case 'J'   : *sY = (*sY < height) ? *sY + (++draw) : 0; break;     // ▼
+    case 'L'   : *sX = (*sX < width) ? *sX + (++draw) : 0; break;      // ▶︎
+    case 'r'   : [[fallthrough]];                                      // --red    colors
+    case 'g'   : [[fallthrough]];                                      // --green
+    case 'b'   : [[fallthrough]];                                      // --blue
+    case 'R'   : [[fallthrough]];                                      // ++red
+    case 'G'   : [[fallthrough]];                                      // ++green
+    case 'B'   : setColor(color, &ev->ch); break;                      // ++blue
+    case '0'   : *select = 0; break;                                   // ░  char selection
+    case '1'   : *select = 1; break;                                   // ▒
+    case '2'   : *select = 2; break;                                   // ▓
+    case '3'   : *select = 3; break;                                   // █
+    case '4'   : *select = 4; break;                                   // ▀
+    case '5'   : *select = 5; break;                                   // ▔
+    case '6'   : *select = 6; break;                                   // ▁
+    case '7'   : *select = 7; break;                                   // ▄
+    case '8'   : *select = 8; break;                                   // ◼
+    case '9'   : *select = 9; break;                                   // ' '
+    case 'Q'   : [[fallthrough]];                                      // tell clang fallthrough intentional
+    case 'q'   : *select != 0 ? (*select -= 1) : (*select = 9); break; // choose block to left in palette
     case 'E'   : [[fallthrough]];
-    case 'e'   : *select != 9 ? (*select += 1) : (*select = 0); goto bypass; // choose block to right in palette
-    case TB_KEY_MOUSE_RIGHT :                                              // movement without draw
+    case 'e'   : *select != 9 ? (*select += 1) : (*select = 0); break; // choose block to right in palette
+    case TB_KEY_MOUSE_RIGHT :                                        // movement without draw
       *sX = (ev->x < bwidth) ? ( uint8_t ) ev->x : bwidth - 1;
       *sY = (ev->y < bheight) ? ( uint8_t ) ev->y : bheight - 2;
       break; // draw to left, right, top, or lower boundary
-    case TB_KEY_HOME : hLine(CANVAS, buffer, *sX, *sY, color->rgb, BLACK, *select, arr, 0); goto bypass; // ◀︎
-    case TB_KEY_END  : hLine(CANVAS, buffer, *sX, *sY, color->rgb, BLACK, *select, arr, 1); goto bypass; // ▶︎
-    case TB_KEY_PGUP : vLine(CANVAS, buffer, *sX, *sY, color->rgb, BLACK, *select, arr, 0); goto bypass; // ▲
-    case TB_KEY_PGDN : vLine(CANVAS, buffer, *sX, *sY, color->rgb, BLACK, *select, arr, 1); goto bypass; // ▼
+    case TB_KEY_HOME : hLine(CANVAS, buffer, *sX, *sY, color->rgb, BLACK, *select, arr, 0); break; // ◀︎
+    case TB_KEY_END  : hLine(CANVAS, buffer, *sX, *sY, color->rgb, BLACK, *select, arr, 1); break; // ▶︎
+    case TB_KEY_PGUP : vLine(CANVAS, buffer, *sX, *sY, color->rgb, BLACK, *select, arr, 0); break; // ▲
+    case TB_KEY_PGDN : vLine(CANVAS, buffer, *sX, *sY, color->rgb, BLACK, *select, arr, 1); break; // ▼
     case 'p'         : printFileUTF(buffer); break;
     case 'o' :
       openFileUTF(buffer);
@@ -108,11 +108,10 @@ void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *se
     buffer[ *sX ][ *sY ].cell  = color->rgb;
     buffer[ *sX ][ *sY ].block = *select;
   }
-bypass:
-  printBuffer(buffer, arr); // jump if no draw required
+  printBuffer(buffer, arr); // print the draw layer
 }
 // increment value of RGB color channels until wrap to 0
-void setColor(Color *restrict color, uint32_t *restrict ch) {
+static void setColor(Color *restrict color, uint32_t *restrict ch) {
   switch ( *ch ) {
     // decrease color
     case 'r' : color->r -= 8; break;
