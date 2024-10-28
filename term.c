@@ -122,14 +122,16 @@ static void setColor(Color *restrict color, uint32_t *restrict ch) {
   }
 }
 // draw horizontal line
-static void hLine(uint8_t which, Layer *layer, uint8_t x, uint8_t y, uint32_t fgCol, uint32_t bgCol,
+static void hLine(uint8_t which, Layer *layer, uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol,
                   uint8_t select, const uint16_t *restrict arr, uint8_t dir) {
-  const uint8_t width = (tb_width() < bwidth) ? ( uint8_t ) tb_width() : bwidth;
+  uint16_t width = 0;
+  if ( which == CANVAS ) { width = (tb_width() < bwidth) ? ( uint16_t ) tb_width() : bwidth; }
+  if ( which == UI ) { width = ( uint16_t ) tb_width(); }
   if ( dir == 1 ) {
     // draw line left to right
     for ( ; x < width; ++x ) {
       // draw to buffer
-      if ( which == 1 ) {
+      if ( which == CANVAS ) {
         layer->canvas[ x ][ y ].cell = fgCol; // instead of .rgb bitfield, just write 32bit to 32bit
         layer->canvas[ x ][ y ].block =
           select; // since this bitfield will overwrite and isn't a weird 24bit size
@@ -141,7 +143,7 @@ static void hLine(uint8_t which, Layer *layer, uint8_t x, uint8_t y, uint32_t fg
     // draw line right to left
     while ( x-- ) {
       // draw to buffer
-      if ( which == 1 ) {
+      if ( which == CANVAS ) {
         layer->canvas[ x ][ y ].cell  = fgCol;
         layer->canvas[ x ][ y ].block = select;
       }
@@ -150,14 +152,14 @@ static void hLine(uint8_t which, Layer *layer, uint8_t x, uint8_t y, uint32_t fg
   }
 }
 // draw a vertical line
-static void vLine(uint8_t which, Layer *layer, uint8_t x, uint8_t y, uint32_t fgCol, uint32_t bgCol,
+static void vLine(uint8_t which, Layer *layer, uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol,
                   uint8_t select, const uint16_t *restrict arr, uint8_t dir) {
   const uint8_t height = (tb_height() < bheight) ? ( uint8_t ) tb_height() : bheight - 1;
   if ( dir == 1 ) {
     // draw line left to right
     for ( ; y < height; ++y ) {
       // draw to buffer
-      if ( which == 1 ) {
+      if ( which == CANVAS ) {
         layer->canvas[ x ][ y ].cell  = fgCol;
         layer->canvas[ x ][ y ].block = select;
       }
@@ -168,7 +170,7 @@ static void vLine(uint8_t which, Layer *layer, uint8_t x, uint8_t y, uint32_t fg
     // draw line right to left
     while ( y-- ) {
       // draw to buffer
-      if ( which == 1 ) {
+      if ( which == CANVAS ) {
         layer->canvas[ x ][ y ].cell  = fgCol;
         layer->canvas[ x ][ y ].block = select;
       }
@@ -183,8 +185,6 @@ static void drawPalette(Layer *layer, const uint16_t *restrict arr, const uint8_
                         const uint8_t *restrict select) {
   static uint32_t cfg = fg_UI;
   const uint8_t   y   = ( uint8_t ) tb_height() - 1;
-  // draw UI bottom bar.  in case of mouse draw over UI
-  hLine(UI, layer, 0, y, BLACK, BLACK, *select, arr, 1);
   // iterate over palette array.  dim unselected blocks
   for ( uint8_t i = 0; i < len; ++i ) {
     cfg = ((arr[ i ] == arr[ *select ]) ? 0x10000000 | fg_UI : ( uint32_t ) (fg_UI * 0.5));
@@ -202,14 +202,24 @@ static void drawColorStatus(const Color *restrict color) {
     tb_printf(xloc - l, yloc, ( uintattr_t ) fg_UI, BLACK, "%02X", color->rgbArr[ j ]);
   }
 }
-static void drawXYStatus(const uint8_t *restrict sX, const uint8_t *restrict sY) {
+static void drawXYStatus(Layer *layer, const uint16_t *restrict arr, const uint8_t *restrict sX,
+                         const uint8_t *restrict sY) {
   tb_printf(tb_width() - 9, tb_height() - 1, ( uintattr_t ) fg_UI, BLACK, "%d, %d", *sX, *sY);
 }
 // TODO: create UI buffer and call all UI functions in drawUI() function
 void drawUI(Layer *layer, const uint16_t *restrict arr, const uint8_t len, const uint8_t *restrict select,
             const Color *restrict color, const uint8_t *restrict sX, const uint8_t *restrict sY) {
+  const uint8_t  y = ( uint8_t ) tb_height() - 1;
+  const uint16_t w = ( uint16_t ) tb_width();
+  // fill for off-canvas area.
+  // canvas is fixed-width, so terminal could be larger than canvas
+  if ( w > bwidth ) {
+    for ( uint16_t f = (w - bwidth); f > 0; f-- ) { vLine(UI, layer, w - f, y, 0x00202020, BLACK, 6, arr, 0); }
+  }
+  // draw UI bottom bar.  in case of mouse draw over UI
+  hLine(UI, layer, 0, y, BLACK, BLACK, 0, arr, 1);
   drawPalette(layer, arr, palSize, select);
-  drawXYStatus(sX, sY); // TODO: Currently leaves mess on terminal resize.  clear and redraw on resize
+  drawXYStatus(layer, arr, sX, sY);
   drawColorStatus(color);
   tb_present();
 }

@@ -26,6 +26,7 @@ int main(int argc, char **argv) {
   }};
 
   uint8_t select = 4; // hold current slot selection
+  memset(layer, 0, sizeof(*layer));
   setlocale(LC_ALL, "C.UTF-8");
   // setup termbox2
   tb_init();
