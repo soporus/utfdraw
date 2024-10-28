@@ -53,7 +53,6 @@ typedef union {
 
 typedef struct {
   Pixel canvas[ bwidth ][ bheight ];
-  Pixel ui[ bwidth ];
 } Layer;
 
 // print custom canvas buffer

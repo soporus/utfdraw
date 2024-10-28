@@ -94,10 +94,7 @@ void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *se
     case TB_KEY_PGUP : vLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0); break; // ▲
     case TB_KEY_PGDN : vLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 1); break; // ▼
     case 'p'         : printFileUTF(layer); break;
-    case 'o' :
-      openFileUTF(layer);
-      ++draw;
-      break;
+    case 'o'         : openFileUTF(layer); break;
   }
   // set cursor position and draw
   tb_set_cursor(*sX, *sY);
