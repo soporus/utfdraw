@@ -102,7 +102,8 @@ void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *se
     layer->canvas[ *sX ][ *sY ].cell  = color->rgb;
     layer->canvas[ *sX ][ *sY ].block = *select;
   }
-  printBuffer(layer, arr); // print the draw layer
+  // print the draw layer
+  printBuffer(layer, arr);
 }
 // increment value of RGB color channels until wrap to 0
 static void setColor(Color *restrict color, uint32_t *restrict ch) {
