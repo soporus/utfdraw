@@ -11,6 +11,7 @@ export G_SLICE=always-malloc G_DEBUG=gc-friendly
 
 LDFLAGS = $(CFLAGS) -flto=full
 
+# gcc does not seem to recognize the =full option
 GOLDFLAGS = $(GCCFLAGS) -flto
 
 DBLD_FLAGS = -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment -flto
