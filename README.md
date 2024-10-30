@@ -1,3 +1,8 @@
+## utfdraw
+a basic terminal paint program.
+
+**this is in very early stages and probably broken, unstable, etc.**
+
 ![](https://i.imgur.com/Y7Pt4GO.png)
 
 ## setup
