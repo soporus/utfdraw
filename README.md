@@ -27,10 +27,15 @@ return to main directory
 *tested with **clang 19**, though **gcc** should work.*
 
 ###### optional:
+
 get latest LLVM/clang:
-`wget https://apt.llvm.org/llvm.sh
-chmod +x llvm.sh
-sudo ./llvm.sh <version number>`
+
+`wget https://apt.llvm.org/llvm.sh`
+
+`chmod +x llvm.sh`
+
+`sudo ./llvm.sh <version number>`
+
 
 ### Build utfdraw
 compile with clang:
@@ -54,8 +59,13 @@ run the executable
 
 |action  | key|
 |------------- | -------------|
-|**movement**  | w a s d, h j k l, arrows|
-|**move** & **draw**  | W A S D, H J K L, left mouse|
+|**movement**  | w a s d  |
+| | h j k l |
+| | arrows |
+| | mouse right |
+|**move** & **draw**  | W A S D | 
+| | H J K L |
+| | mouse left|
 |**line to right edge** | END|
 |**line to left edge** | HOME|
 |**line to top edge** | PG UP|
