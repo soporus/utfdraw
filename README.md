@@ -1,9 +1,12 @@
-## utfdraw
-a basic terminal paint program.
+## utfdraw  - `basic terminal paint program`
+
 
 **this is in very early stages and probably broken, unstable, etc.**
 
 ![](https://i.imgur.com/Y7Pt4GO.png)
+
+*editor screenshot*
+
 
 ## setup
 ##### clone the repository
@@ -60,9 +63,9 @@ run the executable
 |action  | key|
 |------------- | -------------|
 |**movement**  | w a s d  |
-| | h j k l |
-| | arrows |
-| | mouse right |
+|  | h j k l |
+|  | arrows |
+|  | mouse right |
 |**move** & **draw**  | W A S D | 
 | | H J K L |
 | | mouse left|
@@ -72,7 +75,7 @@ run the executable
 |**line to bot edge** | PG DOWN|
 
 ### brush
-| block | key |
+| char | key |
 |-------|-----|
 | **blank** | 0 |
 | **░** | 1 |
@@ -84,8 +87,8 @@ run the executable
 | **▁** | 7 |
 | **▄** | 8 |
 | **◼** | 9 |
-| **next left** | q or Q |
-| **next right** | e or E |
+| **next left** | q *or* Q |
+| **next right** | e *or* E |
 
 ### color
 | action | color | key |
@@ -97,8 +100,15 @@ run the executable
 | **add** | *green* | G |
 | **add** | *blue* | B |
 
+<span style="color: #c01070">
+Color is displayed in the center of the screen as a 6 digit hex value. A of pair digits represent red, green, and blue respectively.  Use 'r' 'g' 'b' keys in upper or lowercase to adjust each color.</span>
+
+**#**<span style="color: #FF0000">Rr</span><span style="color: #00FF00">Gg</span><span style="color: #0000FF">Bb</span>
+
 ### file
 | action | key |
 |------------|---|
 | **open** | o |
 | **save** | p |
+
+<span style="color: #c01070"> File functions are not fully implemented.  Currently there is a fixed file location, `drawing.utf.`  The program will open and/or write to that file only.  An example is provided in the root directory.</span>
