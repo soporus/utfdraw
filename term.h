@@ -63,8 +63,9 @@ static void printFileUTF(Layer *layer);
 static void openFileUTF(Layer *layer);
 
 // inputs
-void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *select,
-                const uint16_t *restrict arr, uint8_t *restrict sX, uint8_t *restrict sY, Layer *layer);
+__attribute__((hot)) void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *select,
+                                     const uint16_t *restrict arr, uint8_t *restrict sX, uint8_t *restrict sY,
+                                     Layer *layer);
 
 // increment value of RGB color channels until wrap to 0
 static void setColor(Color *restrict color, uint32_t *restrict ch);

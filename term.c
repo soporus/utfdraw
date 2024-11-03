@@ -26,8 +26,9 @@ static void openFileUTF(Layer *layer) {
   fclose(f);
 }
 // inputs
-void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *select,
-                const uint16_t *restrict arr, uint8_t *restrict sX, uint8_t *restrict sY, Layer *layer) {
+__attribute__((hot)) void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *select,
+                                     const uint16_t *restrict arr, uint8_t *restrict sX, uint8_t *restrict sY,
+                                     Layer *layer) {
   const uint32_t key = (ev->ch > 0) ? ev->ch : ( uint32_t ) ev->key;
   // flag when a draw is needed
   uint8_t draw = 0;
@@ -88,7 +89,9 @@ void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *se
     case TB_KEY_MOUSE_RIGHT :                                        // movement without draw
       *sX = (ev->x < bwidth) ? ( uint8_t ) ev->x : bwidth - 1;
       *sY = (ev->y < bheight) ? ( uint8_t ) ev->y : bheight - 2;
-      break; // draw to left, right, top, or lower boundary
+      break;                            // draw to left, right, top, or lower boundary
+    case 'Y'         : [[fallthrough]]; // choose color
+    case 'y'         : color->rgb = layer->canvas[ *sX ][ *sY ].rgb; break;
     case TB_KEY_HOME : hLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0); break; // ◀︎
     case TB_KEY_END  : hLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 1); break; // ▶︎
     case TB_KEY_PGUP : vLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0); break; // ▲
