@@ -99,6 +99,7 @@ run the executable
 | **add** | *red* | R |
 | **add** | *green* | G |
 | **add** | *blue* | B |
+| **pick** | *pick color under cursor* | y or Y |
 
 <span style="color: #c01070">
 Color is displayed in the center of the screen as a 6 digit hex value. A of pair digits represent red, green, and blue respectively.  Use 'r' 'g' 'b' keys in upper or lowercase to adjust each color.</span>
