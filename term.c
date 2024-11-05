@@ -26,9 +26,9 @@ static void openFileUTF(Layer *layer) {
   fclose(f);
 }
 // inputs
-__attribute__((hot)) void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *select,
-                                     const uint16_t *restrict arr, uint8_t *restrict sX, uint8_t *restrict sY,
-                                     Layer *layer) {
+[[gnu::hot]]
+void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *select,
+                const uint16_t *restrict arr, uint8_t *restrict sX, uint8_t *restrict sY, Layer *layer) {
   const uint32_t key = (ev->ch > 0) ? ev->ch : ( uint32_t ) ev->key;
   // flag when a draw is needed
   uint8_t draw = 0;
@@ -203,6 +203,7 @@ static void drawColorStatus(const Color *restrict color) {
     tb_printf(xloc - l, yloc, ( uintattr_t ) fg_UI, BLACK, "%02X", color->rgbArr[ j ]);
   }
 }
+// draws current cursor location in bottom right corner
 static void drawXYStatus(Layer *layer, const uint16_t *restrict arr, const uint8_t *restrict sX,
                          const uint8_t *restrict sY) {
   tb_printf(tb_width() - 9, tb_height() - 1, ( uintattr_t ) fg_UI, BLACK, "%d, %d", *sX, *sY);
