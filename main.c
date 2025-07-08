@@ -7,11 +7,11 @@
 
 int main(int argc, char **argv) {
   // setup memory for event loop, color value, and drawing chars
-  struct tb_event *restrict const ev = __builtin_alloca(sizeof *ev);
-  Layer *layer                       = __builtin_alloca(sizeof *layer);
-  Color *restrict color              = __builtin_alloca(sizeof *color);
+  struct tb_event *restrict const ev = alloca(sizeof *ev);
+  Layer *layer                       = alloca(sizeof *layer);
+  Color *restrict color              = alloca(sizeof *color);
   color->rgb                         = 0x00c0c0c0;
-  const Slots *restrict const slot   = __builtin_alloca(sizeof *slot);
+  const Slots *restrict const slot   = alloca(sizeof *slot);
   *( Slots *restrict ) slot          = ( Slots ) {{
              .space = L'\U000000A0', // blank
              .shadL = L'\U00002591', // ░
