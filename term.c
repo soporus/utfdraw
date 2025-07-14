@@ -90,14 +90,14 @@ void checkInput(struct tb_event *restrict ev, Color *restrict color, uint8_t *se
       *sX = (ev->x < bwidth) ? ( uint8_t ) ev->x : bwidth - 1;
       *sY = (ev->y < bheight) ? ( uint8_t ) ev->y : bheight - 2;
       break; // draw to left, right, top, or lower boundary
-    case 'Y'         : *select = layer->canvas[ *sX ][ *sY ].block;         // choose block and fallthrough to
-    case 'y'         : color->rgb = layer->canvas[ *sX ][ *sY ].rgb; break; // choose color
-    case TB_KEY_HOME : hLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0); break; // ◀︎
-    case TB_KEY_END  : hLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 1); break; // ▶︎
-    case TB_KEY_PGUP : vLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0); break; // ▲
-    case TB_KEY_PGDN : vLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 1); break; // ▼
-    case 'p'         : printFileUTF(layer); break;
-    case 'o'         : openFileUTF(layer); break;
+    case 'Y'           : *select = layer->canvas[ *sX ][ *sY ].block;         // choose block and fallthrough to
+    case 'y'           : color->rgb = layer->canvas[ *sX ][ *sY ].rgb; break; // choose color
+    case TB_KEY_HOME   : hLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0); break; // ◀︎
+    case TB_KEY_END    : hLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 1); break; // ▶︎
+    case TB_KEY_PGUP   : vLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0); break; // ▲
+    case TB_KEY_PGDN   : vLine(CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 1); break; // ▼
+    case TB_KEY_CTRL_P : printFileUTF(layer); break;
+    case TB_KEY_CTRL_O : openFileUTF(layer); break;
   }
 
   // set cursor position and draw
