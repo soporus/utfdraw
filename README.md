@@ -109,7 +109,7 @@ Color is displayed in the center of the screen as a 6 digit hex value. A of pair
 ### file
 | action | key |
 |------------|---|
-| **open** | o |
-| **save** | p |
+| **open** | ctrl o |
+| **save** | ctrl p |
 
 <span style="color: #c01070"> File functions are not fully implemented.  Currently there is a fixed file location, `drawing.utf.`  The program will open and/or write to that file only.  An example is provided in the root directory.</span>
