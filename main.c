@@ -34,7 +34,7 @@ int main(int argc, char **argv) {
   tb_set_input_mode(TB_INPUT_MOUSE);
   // input loop (esc exits)
   ev->key = 0;
-  while ( ev->key != TB_KEY_ESC ) {
+  while ( ev->key != TB_KEY_CTRL_Q ) {
     // status x and y coordinates
     static uint8_t sX = 0;
     static uint8_t sY = 0;

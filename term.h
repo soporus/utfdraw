@@ -55,6 +55,10 @@ typedef struct {
   Pixel canvas[ bwidth ][ bheight ];
 } Layer;
 
+typedef struct {
+  Pixel canvas[ bwidth ][ 1 ];
+} UIBottom;
+
 // print custom canvas buffer
 static void printBuffer(Layer *layer, const uint16_t *restrict arr);
 
@@ -90,6 +94,7 @@ static void drawXYStatus(Layer *layer, const uint16_t *restrict arr, const uint8
                          const uint8_t *restrict sY);
 void drawUI(Layer *layer, const uint16_t *restrict arr, const uint8_t len, const uint8_t *restrict select,
             const Color *restrict color, const uint8_t *restrict sX, const uint8_t *restrict sY);
+
 /*
 // open canvas file
 void openFile(Pixel buffer[ bwidth ][ bheight ], const uint16_t *restrict arr);
