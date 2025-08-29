@@ -36,7 +36,6 @@ static void openFileUTF( Layer *restrict layer ) {
   fclose( f );
 }
 // inputs
-// TODO: remove this line of the comment
 [[gnu::hot]]
 void checkInput( struct tb_event *restrict ev, Color *restrict color, uint8_t *select,
                  const uint16_t *restrict arr, uint8_t *restrict sX, uint8_t *restrict sY,
