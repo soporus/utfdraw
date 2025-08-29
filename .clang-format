@@ -245,14 +245,14 @@ SpacesInAngles:  Never
 SpacesInContainerLiterals: true
 SpacesInLineCommentPrefix:
   Minimum:         1
-  Maximum:         -1
+  Maximum:         1
 SpacesInParens:  Custom
 SpacesInParensOptions:
   ExceptDoubleParentheses: true
   InCStyleCasts:   true
   InConditionalStatements: true
   InEmptyParentheses: false
-  Other:           false
+  Other:           true
 SpacesInSquareBrackets: true
 Standard:        Latest
 StatementAttributeLikeMacros:
