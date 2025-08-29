@@ -1,7 +1,6 @@
 #define _XOPEN_SOURCE
 #define _DEFAULT_SOURCE
 #define TB_IMPL
-#define TB_OPT_TRUECOLOR
 #include "term.h"
 #include <locale.h>
 
@@ -24,8 +23,8 @@ int main(int argc, char **argv) {
              .blkBt = L'\U00002584', // ▄
              .blkMd = L'\U000025FC', // ◼
   }};
-
-  uint8_t select = 4; // hold current slot selection
+  // hold current slot selection
+  uint8_t select = 4;
   memset(layer, 0, sizeof(*layer));
   setlocale(LC_ALL, "C.UTF-8");
   // setup termbox2
