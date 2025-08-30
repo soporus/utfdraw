@@ -43,8 +43,8 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, uint8_t *s
   // flag when a draw is needed
   uint8_t draw = 0;
   // setup boundaries for movement, and check within boundary after resize
-  const uint8_t width  = ( tb_width() < bwidth ) ? ( uint8_t ) ( tb_width() - 1 ) : bwidth - 1;
-  const uint8_t height = ( tb_height() < bheight ) ? ( uint8_t ) ( tb_height() - 2 ) : bheight - 2;
+  const uint8_t width  = ( tb_width() < bwidth ) ? (uint8_t) ( tb_width() - 1 ) : bwidth - 1;
+  const uint8_t height = ( tb_height() < bheight ) ? (uint8_t) ( tb_height() - 2 ) : bheight - 2;
   // ----------------------------------------------------------------------
   // TODO: add logic for when bottom UI is not overlapping canvas
   // currently the cursor is moved up 1 cell, assuming the UI is there.
@@ -53,11 +53,11 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, uint8_t *s
   *sX = ( *sX < width ) ? *sX : width;
   *sY = ( *sY < height ) ? *sY : height;
 
-  switch ( ( ev->ch > 0 ) ? ev->ch : ( uint32_t ) ev->key ) {
+  switch ( ( ev->ch > 0 ) ? ev->ch : (uint32_t) ev->key ) {
     // movement and paints character
     case TB_KEY_MOUSE_LEFT :
-      *sX = ( ev->x < width ) ? ( uint8_t ) ev->x : width;
-      *sY = ( ev->y < height ) ? ( uint8_t ) ev->y : height;
+      *sX = ( ev->x < width ) ? (uint8_t) ev->x : width;
+      *sY = ( ev->y < height ) ? (uint8_t) ev->y : height;
       ++draw;
       break;
     // movement only, but must draw to paint cursor position
@@ -106,12 +106,16 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, uint8_t *s
     case '='   : [[fallthrough]];
     case '+'   : setColor( color, &ev->ch ); break;
     case TB_KEY_MOUSE_RIGHT : // movement without draw
-      *sX = ( ev->x < width ) ? ( uint8_t ) ev->x : width;
-      *sY = ( ev->y < height ) ? ( uint8_t ) ev->y : height;
+      *sX = ( ev->x < width ) ? (uint8_t) ev->x : width;
+      *sY = ( ev->y < height ) ? (uint8_t) ev->y : height;
       break;
     // draw to left, right, top, or lower boundary
-    case 'Y'           : *select = layer->canvas[ *sX ][ *sY ].block;         // choose block and fallthrough to
-    case 'y'           : color->rgb = layer->canvas[ *sX ][ *sY ].rgb; break; // choose color
+    case 'Y' : *select = layer->canvas[ *sX ][ *sY ].block; // choose block and fallthrough to
+    case 'y' :
+      color->rgb = layer->canvas[ *sX ][ *sY ].rgb;
+      break; // choose color
+
+    // draw lines to edge of canvas
     case TB_KEY_HOME   : hLine( CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0 ); break; // ◀︎
     case TB_KEY_END    : hLine( CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 1 ); break; // ▶︎
     case TB_KEY_PGUP   : vLine( CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0 ); break; // ▲
@@ -141,8 +145,7 @@ uint8_t min3( const Color *restrict color ) {
 }
 // increment value of RGB color channels until wrap to 0
 static void setColor( Color *restrict color, uint32_t *restrict ch ) {
-  uint8_t max = 255;
-  uint8_t min = 0;
+  uint8_t *limit = alloca( sizeof *limit );
   switch ( *ch ) {
     // decrease color
     case 'r' : color->r -= 5; break;
@@ -156,17 +159,17 @@ static void setColor( Color *restrict color, uint32_t *restrict ch ) {
     // preserve color balance.  find max and min value, as relative floor and ceiling
     case '_' : [[fallthrough]];
     case '-' :
-      min      = min3( color );
-      color->r = ( color->r >= 5 + ( color->r - min ) ) ? color->r - 5 : 0 + ( color->r - min );
-      color->g = ( color->g >= 5 + ( color->g - min ) ) ? color->g - 5 : 0 + ( color->g - min );
-      color->b = ( color->b >= 5 + ( color->b - min ) ) ? color->b - 5 : 0 + ( color->b - min );
+      *limit   = min3( color );
+      color->r = ( color->r >= 5 + ( color->r - *limit ) ) ? color->r - 5 : 0 + ( color->r - *limit );
+      color->g = ( color->g >= 5 + ( color->g - *limit ) ) ? color->g - 5 : 0 + ( color->g - *limit );
+      color->b = ( color->b >= 5 + ( color->b - *limit ) ) ? color->b - 5 : 0 + ( color->b - *limit );
       break;
     case '=' : [[fallthrough]];
     case '+' :
-      max      = max3( color );
-      color->r = ( color->r <= 250 - ( max - color->r ) ) ? color->r + 5 : 255 - ( max - color->r );
-      color->g = ( color->g <= 250 - ( max - color->g ) ) ? color->g + 5 : 255 - ( max - color->g );
-      color->b = ( color->b <= 250 - ( max - color->b ) ) ? color->b + 5 : 255 - ( max - color->b );
+      *limit   = max3( color );
+      color->r = ( color->r <= 250 - ( *limit - color->r ) ) ? color->r + 5 : 255 - ( *limit - color->r );
+      color->g = ( color->g <= 250 - ( *limit - color->g ) ) ? color->g + 5 : 255 - ( *limit - color->g );
+      color->b = ( color->b <= 250 - ( *limit - color->b ) ) ? color->b + 5 : 255 - ( *limit - color->b );
       break;
     default : break;
   }
@@ -175,8 +178,8 @@ static void setColor( Color *restrict color, uint32_t *restrict ch ) {
 static void hLine( uint8_t which, Layer *restrict layer, uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol,
                    uint8_t sel, const uint16_t *restrict arr, uint8_t dir ) {
   uint16_t width = 0;
-  if ( which == CANVAS ) { width = ( tb_width() < bwidth ) ? ( uint16_t ) tb_width() : bwidth; }
-  if ( which == UI ) { width = ( uint16_t ) tb_width(); }
+  if ( which == CANVAS ) { width = ( tb_width() < bwidth ) ? (uint16_t) tb_width() : bwidth; }
+  if ( which == UI ) { width = (uint16_t) tb_width(); }
   if ( dir == 1 ) {
     // draw line left to right
     for ( ; x < width; ++x ) {
@@ -203,7 +206,7 @@ static void hLine( uint8_t which, Layer *restrict layer, uint16_t x, uint16_t y,
 // draw a vertical line
 static void vLine( uint8_t which, Layer *restrict layer, uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol,
                    uint8_t sel, const uint16_t *restrict arr, uint8_t dir ) {
-  const uint8_t height = ( tb_height() < bheight ) ? ( uint8_t ) tb_height() : bheight - 1;
+  const uint8_t height = ( tb_height() < bheight ) ? (uint8_t) tb_height() : bheight - 1;
   if ( dir == 1 ) {
     // draw line top to bottom
     for ( ; y < height; ++y ) {
@@ -233,18 +236,17 @@ static void vLine( uint8_t which, Layer *restrict layer, uint16_t x, uint16_t y,
 static void drawPalette( Layer *restrict layer, const uint16_t *restrict arr, const uint8_t len,
                          const uint8_t *restrict select ) {
   static uint32_t cfg = fg_UI;
-  const uint8_t   y   = ( uint8_t ) tb_height() - 1;
+  const uint8_t   y   = (uint8_t) tb_height() - 1;
   // iterate over palette array.  dim unselected blocks
   for ( uint8_t i = 0; i < len; ++i ) {
-    cfg = ( ( arr[ i ] == arr[ *select ] ) ? 0x10000000 | fg_UI : ( uint32_t ) ( fg_UI * 0.5 ) );
+    cfg = ( ( arr[ i ] == arr[ *select ] ) ? 0x10000000 | fg_UI : (uint32_t) ( fg_UI * 0.5 ) );
     tb_set_cell( i, y, arr[ i ], cfg, BLACK );
   }
 }
 // draw current color settings
 static void drawColorStatus( const Color *restrict color ) {
-  const uint8_t xloc =
-    ( tb_width() > bwidth ) ? ( uint8_t ) ( tb_width() * 0.5 ) : ( uint8_t ) ( bwidth * 0.5 );
-  const uint8_t yloc = ( uint8_t ) ( tb_height() - 1 );
+  const uint8_t xloc = ( tb_width() > bwidth ) ? (uint8_t) ( tb_width() * 0.5 ) : (uint8_t) ( bwidth * 0.5 );
+  const uint8_t yloc = (uint8_t) ( tb_height() - 1 );
   // hashtag shows current color
   if ( color->rgb != 0x000000 ) {
     tb_set_cell( xloc - 5, yloc, '#', 0x01000000 | color->rgb, BLACK );
@@ -253,20 +255,20 @@ static void drawColorStatus( const Color *restrict color ) {
   }
   // print RGB hex values.  screen bottom, and centered
   for ( uint8_t l = 0, j = 0; j < 3; l += 2, j++ ) {
-    tb_printf( xloc - l, yloc, ( uintattr_t ) fg_UI, BLACK, "%02X", color->rgbArr[ j ] );
+    tb_printf( xloc - l, yloc, (uintattr_t) fg_UI, BLACK, "%02X", color->rgbArr[ j ] );
   }
 }
 // draws current cursor location in bottom right corner
 static void drawXYStatus( Layer *restrict layer, const uint16_t *restrict arr, const uint8_t *restrict sX,
                           const uint8_t *restrict sY ) {
-  tb_printf( tb_width() - 9, tb_height() - 1, ( uintattr_t ) fg_UI, BLACK, "%d, %d", *sX, *sY );
+  tb_printf( tb_width() - 9, tb_height() - 1, (uintattr_t) fg_UI, BLACK, "%d, %d", *sX, *sY );
 }
 // TODO: create UI buffer and call all UI functions in drawUI() function
 void drawUI( Layer *restrict layer, const uint16_t *restrict arr, const uint8_t len,
              const uint8_t *restrict select, const Color *restrict color, const uint8_t *restrict sX,
              const uint8_t *restrict sY ) {
-  const uint8_t  y = ( uint8_t ) tb_height() - 1;
-  const uint16_t w = ( uint16_t ) tb_width();
+  const uint8_t  y = (uint8_t) tb_height() - 1;
+  const uint16_t w = (uint16_t) tb_width();
   // fill for off-canvas area.
   // canvas is fixed-width, so terminal could be larger than canvas
   if ( w > bwidth ) {

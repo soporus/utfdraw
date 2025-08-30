@@ -249,7 +249,7 @@ SpacesInLineCommentPrefix:
 SpacesInParens:  Custom
 SpacesInParensOptions:
   ExceptDoubleParentheses: true
-  InCStyleCasts:   true
+  InCStyleCasts:   false
   InConditionalStatements: true
   InEmptyParentheses: false
   Other:           true
