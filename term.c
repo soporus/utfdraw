@@ -134,12 +134,12 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, uint8_t *s
 }
 
 // find highest value of RGB channels
-uint8_t max3( const Color *restrict color ) {
+static const uint8_t max3( const Color *restrict color ) {
   return color->r > color->g ? ( color->r > color->b ? color->r : color->b ) :
                                ( color->g > color->b ? color->g : color->b );
 }
 // find lowest value of RGB channels
-uint8_t min3( const Color *restrict color ) {
+static const uint8_t min3( const Color *restrict color ) {
   return color->r < color->g ? ( color->r < color->b ? color->r : color->b ) :
                                ( color->g < color->b ? color->g : color->b );
 }
@@ -267,19 +267,19 @@ static void drawXYStatus( Layer *restrict layer, const uint16_t *restrict arr, c
 void drawUI( Layer *restrict layer, const uint16_t *restrict arr, const uint8_t len,
              const uint8_t *restrict select, const Color *restrict color, const uint8_t *restrict sX,
              const uint8_t *restrict sY ) {
-  const uint8_t  y = (uint8_t) tb_height() - 1;
+  const uint8_t  h = (uint8_t) tb_height() - 1;
   const uint16_t w = (uint16_t) tb_width();
   // fill for off-canvas area.
   // canvas is fixed-width, so terminal could be larger than canvas
   if ( w > bwidth ) {
-    for ( uint16_t f = ( w - bwidth ); f > 0; f-- ) { vLine( UI, layer, w - f, y, GUTTER, BLACK, 6, arr, 0 ); }
+    for ( uint16_t f = ( w - bwidth ); f > 0; f-- ) { vLine( UI, layer, w - f, h, GUTTER, BLACK, 6, arr, 0 ); }
   }
   // fill for area below canvas
-  if ( y > bheight ) {
-    for ( uint16_t f = ( y - bheight ); f > 0; f-- ) { hLine( UI, layer, 0, y - f, GUTTER, BLACK, 6, arr, 1 ); }
+  if ( h > bheight ) {
+    for ( uint16_t f = ( h - bheight ); f > 0; f-- ) { hLine( UI, layer, 0, h - f, GUTTER, BLACK, 6, arr, 1 ); }
   }
   // draw UI bottom bar.  in case of mouse draw over UI
-  hLine( UI, layer, 0, y, BLACK, BLACK, 0, arr, 1 );
+  hLine( UI, layer, 0, h, BLACK, BLACK, 0, arr, 1 );
   drawPalette( layer, arr, palSize, select );
   drawXYStatus( layer, arr, sX, sY );
   drawColorStatus( color );

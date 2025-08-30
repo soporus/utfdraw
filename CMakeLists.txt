@@ -9,7 +9,7 @@ add_executable(utfdraw
 )
 add_compile_options($(PROJECT_NAME)
   -std=gnu23
-  -o2 
+  -O2 
   -s 
   -Wconversion 
   -Wno-sign-conversion 
@@ -23,7 +23,7 @@ add_compile_options($(PROJECT_NAME)
 )
 add_link_options($(PROJECT_NAME)
   -std=gnu23
-  -o2 
+  -O2 
   -s 
   -Wconversion 
   -Wno-sign-conversion 
