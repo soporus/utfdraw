@@ -104,6 +104,5 @@ static void drawColorStatus( const Color *restrict color );
 static void drawXYStatus( Layer *restrict layer, const uint16_t *restrict arr, const uint8_t *restrict sX,
                           const uint8_t *restrict sY );
 
-void drawUI( Layer *restrict layer, const uint16_t *restrict arr, const uint8_t len,
-             const uint8_t *restrict select, const Color *restrict color, const uint8_t *restrict sX,
-             const uint8_t *restrict sY );
+void drawUI( Layer *restrict layer, const uint16_t *restrict arr, const uint8_t *restrict select,
+             const Color *restrict color, const uint8_t *restrict sX, const uint8_t *restrict sY );

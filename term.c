@@ -41,10 +41,11 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, uint8_t *s
                  const uint16_t *restrict arr, uint8_t *restrict sX, uint8_t *restrict sY,
                  Layer *restrict layer ) {
   // flag when a draw is needed
-  uint8_t draw = 0;
+  uint8_t draw      = 0;
+  uint8_t palOffset = ( tb_height() > bheight ) ? 1 : 2;
   // setup boundaries for movement, and check within boundary after resize
   const uint8_t width  = ( tb_width() < bwidth ) ? (uint8_t) ( tb_width() - 1 ) : bwidth - 1;
-  const uint8_t height = ( tb_height() < bheight ) ? (uint8_t) ( tb_height() - 2 ) : bheight - 2;
+  const uint8_t height = ( tb_height() < bheight ) ? (uint8_t) ( tb_height() - 2 ) : bheight - palOffset;
   // ----------------------------------------------------------------------
   // TODO: add logic for when bottom UI is not overlapping canvas
   // currently the cursor is moved up 1 cell, assuming the UI is there.
@@ -53,75 +54,83 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, uint8_t *s
   *sX = ( *sX < width ) ? *sX : width;
   *sY = ( *sY < height ) ? *sY : height;
 
-  switch ( ( ev->ch > 0 ) ? ev->ch : (uint32_t) ev->key ) {
-    // movement and paints character
-    case TB_KEY_MOUSE_LEFT :
-      *sX = ( ev->x < width ) ? (uint8_t) ev->x : width;
-      *sY = ( ev->y < height ) ? (uint8_t) ev->y : height;
-      ++draw;
-      break;
-    // movement only, but must draw to paint cursor position
-    case UP    : [[fallthrough]];                                          // ▲
-    case 'k'   : [[fallthrough]];                                          // ▲
-    case 'w'   : *sY = ( *sY > 0 ) ? *sY - 1 : height; break;              // ▲
-    case LEFT  : [[fallthrough]];                                          // ◀︎
-    case 'h'   : [[fallthrough]];                                          // ◀︎
-    case 'a'   : *sX = ( *sX > 0 ) ? *sX - 1 : width; break;               // ◀︎
-    case DOWN  : [[fallthrough]];                                          // ▼
-    case 'j'   : [[fallthrough]];                                          // ▼
-    case 's'   : *sY = ( *sY < height ) ? *sY + 1 : 0; break;              // ▼
-    case RIGHT : [[fallthrough]];                                          // ▶︎
-    case 'd'   : [[fallthrough]];                                          // ▶︎
-    case 'l'   : *sX = ( *sX < width ) ? *sX + 1 : 0; break;               // ▶︎
-    case 'W'   : *sY = ( *sY > 0 ) ? *sY - ( ++draw ) : height; break;     // ▲  wasd draw
-    case 'A'   : *sX = ( *sX > 0 ) ? *sX - ( ++draw ) : width; break;      // ◀︎
-    case 'S'   : *sY = ( *sY < height ) ? *sY + ( ++draw ) : 0; break;     // ▼
-    case 'D'   : *sX = ( *sX < width ) ? *sX + ( ++draw ) : 0; break;      // ▶︎
-    case 'K'   : *sY = ( *sY > 0 ) ? *sY - ( ++draw ) : height; break;     // ▲  vi draw
-    case 'H'   : *sX = ( *sX > 0 ) ? *sX - ( ++draw ) : width; break;      // ◀︎
-    case 'J'   : *sY = ( *sY < height ) ? *sY + ( ++draw ) : 0; break;     // ▼
-    case 'L'   : *sX = ( *sX < width ) ? *sX + ( ++draw ) : 0; break;      // ▶︎
-    case 'r'   : [[fallthrough]];                                          // --red    colors
-    case 'g'   : [[fallthrough]];                                          // --green
-    case 'b'   : [[fallthrough]];                                          // --blue
-    case 'R'   : [[fallthrough]];                                          // ++red
-    case 'G'   : [[fallthrough]];                                          // ++green
-    case 'B'   : setColor( color, &ev->ch ); break;                        // ++blue
-    case '0'   : *select = 0; break;                                       // ░  char selection
-    case '1'   : *select = 1; break;                                       // ▒
-    case '2'   : *select = 2; break;                                       // ▓
-    case '3'   : *select = 3; break;                                       // █
-    case '4'   : *select = 4; break;                                       // ▀
-    case '5'   : *select = 5; break;                                       // ▔
-    case '6'   : *select = 6; break;                                       // ▁
-    case '7'   : *select = 7; break;                                       // ▄
-    case '8'   : *select = 8; break;                                       // ◼
-    case '9'   : *select = 9; break;                                       // ' '
-    case 'Q'   : [[fallthrough]];                                          // tell clang fallthrough intentional
-    case 'q'   : *select != 0 ? ( *select -= 1 ) : ( *select = 9 ); break; // choose block to left in palette
-    case 'E'   : [[fallthrough]];
-    case 'e'   : *select != 9 ? ( *select += 1 ) : ( *select = 0 ); break; // choose block to right in palette
-    case '_'   : [[fallthrough]];
-    case '-'   : setColor( color, &ev->ch ); break;
-    case '='   : [[fallthrough]];
-    case '+'   : setColor( color, &ev->ch ); break;
-    case TB_KEY_MOUSE_RIGHT : // movement without draw
-      *sX = ( ev->x < width ) ? (uint8_t) ev->x : width;
-      *sY = ( ev->y < height ) ? (uint8_t) ev->y : height;
-      break;
-    // draw to left, right, top, or lower boundary
-    case 'Y' : *select = layer->canvas[ *sX ][ *sY ].block; // choose block and fallthrough to
-    case 'y' :
-      color->rgb = layer->canvas[ *sX ][ *sY ].rgb;
-      break; // choose color
-
-    // draw lines to edge of canvas
-    case TB_KEY_HOME   : hLine( CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0 ); break; // ◀︎
-    case TB_KEY_END    : hLine( CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 1 ); break; // ▶︎
-    case TB_KEY_PGUP   : vLine( CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0 ); break; // ▲
-    case TB_KEY_PGDN   : vLine( CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 1 ); break; // ▼
-    case TB_KEY_CTRL_P : printFileUTF( layer ); break;
-    case TB_KEY_CTRL_O : openFileUTF( layer ); break;
+  if ( ev->ch > 0 ) {
+    switch ( ev->ch ) {
+      // movement only, but must draw to paint cursor position
+      case 'k' : [[fallthrough]];                                          // ▲
+      case 'w' : *sY = ( *sY > 0 ) ? *sY - 1 : height; break;              // ▲
+      case 'h' : [[fallthrough]];                                          // ◀︎
+      case 'a' : *sX = ( *sX > 0 ) ? *sX - 1 : width; break;               // ◀︎
+      case 'j' : [[fallthrough]];                                          // ▼
+      case 's' : *sY = ( *sY < height ) ? *sY + 1 : 0; break;              // ▼
+      case 'd' : [[fallthrough]];                                          // ▶︎
+      case 'l' : *sX = ( *sX < width ) ? *sX + 1 : 0; break;               // ▶︎
+      case 'W' : *sY = ( *sY > 0 ) ? *sY - ( ++draw ) : height; break;     // ▲  wasd draw
+      case 'A' : *sX = ( *sX > 0 ) ? *sX - ( ++draw ) : width; break;      // ◀︎
+      case 'S' : *sY = ( *sY < height ) ? *sY + ( ++draw ) : 0; break;     // ▼
+      case 'D' : *sX = ( *sX < width ) ? *sX + ( ++draw ) : 0; break;      // ▶︎
+      case 'K' : *sY = ( *sY > 0 ) ? *sY - ( ++draw ) : height; break;     // ▲  vi draw
+      case 'H' : *sX = ( *sX > 0 ) ? *sX - ( ++draw ) : width; break;      // ◀︎
+      case 'J' : *sY = ( *sY < height ) ? *sY + ( ++draw ) : 0; break;     // ▼
+      case 'L' : *sX = ( *sX < width ) ? *sX + ( ++draw ) : 0; break;      // ▶︎
+      case 'r' : [[fallthrough]];                                          // --red    colors
+      case 'g' : [[fallthrough]];                                          // --green
+      case 'b' : [[fallthrough]];                                          // --blue
+      case 'R' : [[fallthrough]];                                          // ++red
+      case 'G' : [[fallthrough]];                                          // ++green
+      case 'B' : setColor( color, &ev->ch ); break;                        // ++blue
+      case '0' : *select = 0; break;                                       // ░  char selection
+      case '1' : *select = 1; break;                                       // ▒
+      case '2' : *select = 2; break;                                       // ▓
+      case '3' : *select = 3; break;                                       // █
+      case '4' : *select = 4; break;                                       // ▀
+      case '5' : *select = 5; break;                                       // ▔
+      case '6' : *select = 6; break;                                       // ▁
+      case '7' : *select = 7; break;                                       // ▄
+      case '8' : *select = 8; break;                                       // ◼
+      case '9' : *select = 9; break;                                       // ' '
+      case 'Q' : [[fallthrough]];                                          // tell clang fallthrough intentional
+      case 'q' : *select != 0 ? ( *select -= 1 ) : ( *select = 9 ); break; // choose block to left in palette
+      case 'E' : [[fallthrough]];
+      case 'e' : *select != 9 ? ( *select += 1 ) : ( *select = 0 ); break; // choose block to right in palette
+      case '_' : [[fallthrough]];
+      case '-' : setColor( color, &ev->ch ); break;
+      case '=' : [[fallthrough]];
+      case '+' : setColor( color, &ev->ch ); break;
+      // draw to left, right, top, or lower boundary
+      case 'Y' : *select = layer->canvas[ *sX ][ *sY ].block;         // choose block and fallthrough to
+      case 'y' : color->rgb = layer->canvas[ *sX ][ *sY ].rgb; break; // choose color
+    }
+  } else {
+    switch ( ev->key ) {
+      // movement and paints character
+      case TB_KEY_MOUSE_LEFT :
+        *sX = ( ev->x < width ) ? (uint8_t) ev->x : width;
+        *sY = ( ev->y < height ) ? (uint8_t) ev->y : height;
+        ++draw;
+        break;
+      case TB_KEY_MOUSE_RIGHT : // movement without draw
+        *sX = ( ev->x < width ) ? (uint8_t) ev->x : width;
+        *sY = ( ev->y < height ) ? (uint8_t) ev->y : height;
+        break;
+      // movement only, but must draw to paint cursor position
+      case UP   : *sY = ( *sY > 0 ) ? *sY - 1 : height; break; // ▲
+      case LEFT : *sX = ( *sX > 0 ) ? *sX - 1 : width; break;  // ◀︎
+      case DOWN : *sY = ( *sY < height ) ? *sY + 1 : 0; break; // ▼
+      case RIGHT :
+        *sX = ( *sX < width ) ? *sX + 1 : 0;
+        break; // ▶︎
+      // draw lines to edge of canvas
+      case TB_KEY_HOME   : hLine( CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0 ); break; // ◀︎
+      case TB_KEY_END    : hLine( CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 1 ); break; // ▶︎
+      case TB_KEY_PGUP   : vLine( CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0 ); break; // ▲
+      case TB_KEY_PGDN   : vLine( CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 1 ); break; // ▼
+      case TB_KEY_CTRL_P : printFileUTF( layer ); break;
+      case TB_KEY_CTRL_O :
+        openFileUTF( layer );
+        break;
+        //
+    }
   }
   // set cursor position and draw
   tb_set_cursor( *sX, *sY );
@@ -264,9 +273,8 @@ static void drawXYStatus( Layer *restrict layer, const uint16_t *restrict arr, c
   tb_printf( tb_width() - 9, tb_height() - 1, (uintattr_t) fg_UI, BLACK, "%d, %d", *sX, *sY );
 }
 // TODO: create UI buffer and call all UI functions in drawUI() function
-void drawUI( Layer *restrict layer, const uint16_t *restrict arr, const uint8_t len,
-             const uint8_t *restrict select, const Color *restrict color, const uint8_t *restrict sX,
-             const uint8_t *restrict sY ) {
+void drawUI( Layer *restrict layer, const uint16_t *restrict arr, const uint8_t *restrict select,
+             const Color *restrict color, const uint8_t *restrict sX, const uint8_t *restrict sY ) {
   const uint8_t  h = (uint8_t) tb_height() - 1;
   const uint16_t w = (uint16_t) tb_width();
   // fill for off-canvas area.
@@ -285,4 +293,59 @@ void drawUI( Layer *restrict layer, const uint16_t *restrict arr, const uint8_t 
   drawColorStatus( color );
   tb_present();
 }
+// TODO: implement fill tool
+/* span filling method
+//It's possible to optimize things further by working primarily with spans, a row with constant y. The first
+published complete example works on the following basic principle.[1]
+
+    Starting with a seed point, fill left and right. Keep track of the leftmost filled point lx and rightmost
+filled point rx. This defines the span. Scan from lx to rx above and below the seed point, searching for new
+seed points to continue with.
+
+As an optimisation, the scan algorithm does not need restart from every seed point, but only those at the start
+of the next span. Using a stack explores spans depth first, whilst a queue explores spans breadth first.
+
+Over time, the following optimizations were realized:
+
+    When a new scan would be entirely within a grandparent span, it would certainly only find filled pixels, and
+so wouldn't need queueing.[1][6][3] Further, when a new scan overlaps a grandparent span, only the overhangs
+(U-turns and W-turns) need to be scanned.[3] It's possible to fill while scanning for seeds [6]
+
+The final, combined-scan-and-fill span filler was then published in 1990. In pseudo-code form:
+
+*/
+// pseudo code implementation:
+/* fn fill(x, y):
+    if not Inside(x, y) then return
+    let s = new empty queue or stack
+    Add (x, x, y, 1) to s
+    Add (x, x, y - 1, -1) to s
+    while s is not empty:
+        Remove an (x1, x2, y, dy) from s
+        let x = x1
+        if Inside(x, y):
+            while Inside(x - 1, y):
+                Set(x - 1, y)
+                x = x - 1
+            if x < x1:
+                Add (x, x1 - 1, y - dy, -dy) to s
+        while x1 <= x2:
+            while Inside(x1, y):
+                Set(x1, y)
+                x1 = x1 + 1
+            if x1 > x:
+                Add (x, x1 - 1, y + dy, dy) to s
+            if x1 - 1 > x2:
+                Add (x2 + 1, x1 - 1, y - dy, -dy) to s
+            x1 = x1 + 1
+            while x1 < x2 and not Inside(x1, y):
+                x1 = x1 + 1
+            x = x1
+ */
+/*
+static void fill( Layer *restrict layer, const uint8_t *restrict sX, const uint8_t *restrict sY,
+                  const uint8_t *restrict select, const Color *restrict color, const uint16_t *restrict arr ) {
+  Layer *layer2 = alloca( sizeof *layer );
+}
+*/
 
