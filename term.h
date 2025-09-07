@@ -86,23 +86,23 @@ void checkInput( struct tb_event *restrict ev, Color *restrict color, uint8_t *s
 static void setColor( Color *restrict color, uint32_t *restrict ch );
 
 // draw a horizontal line
-static void hLine( uint8_t which, Layer *restrict layer, uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol,
-                   uint8_t sel, const uint16_t *restrict arr, uint8_t dir );
+static inline void hLine( uint8_t which, Layer *restrict layer, uint16_t x, uint16_t y, uint32_t fgCol,
+                          uint32_t bgCol, uint8_t sel, const uint16_t *restrict arr, uint8_t dir );
 
 // draw a vertical line
-static void vLine( uint8_t which, Layer *restrict layer, uint16_t x, uint16_t y, uint32_t fgCol, uint32_t bgCol,
-                   uint8_t sel, const uint16_t *restrict arr, uint8_t dir );
+static inline void vLine( uint8_t which, Layer *restrict layer, uint16_t x, uint16_t y, uint32_t fgCol,
+                          uint32_t bgCol, uint8_t sel, const uint16_t *restrict arr, uint8_t dir );
 
 // draw palette characters at screen bottom
-static void drawPalette( Layer *restrict layer, const uint16_t *restrict arr, const uint8_t len,
-                         const uint8_t *restrict select );
+static inline void drawPalette( Layer *restrict layer, const uint16_t *restrict arr, const uint8_t len,
+                                const uint8_t *restrict select );
 
 // draw current color settings
-static void drawColorStatus( const Color *restrict color );
+static inline void drawColorStatus( const Color *restrict color );
 
 // draws current cursor location in bottom right corner
-static void drawXYStatus( Layer *restrict layer, const uint16_t *restrict arr, const uint8_t *restrict sX,
-                          const uint8_t *restrict sY );
+static inline void drawXYStatus( Layer *restrict layer, const uint16_t *restrict arr,
+                                 const uint8_t *restrict sX, const uint8_t *restrict sY );
 
 void drawUI( Layer *restrict layer, const uint16_t *restrict arr, const uint8_t *restrict select,
              const Color *restrict color, const uint8_t *restrict sX, const uint8_t *restrict sY );

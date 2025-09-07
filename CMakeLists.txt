@@ -19,7 +19,7 @@ add_compile_options($(PROJECT_NAME)
   -Wpedantic 
   -DTB_LIB_OPTS=1 
   -DTB_OPT_ATTR_W=32 
-  -DTB_OPT_PRINTF_BUF=320
+  -DTB_OPT_PRINTF_BUF=512
 )
 add_link_options($(PROJECT_NAME)
   -std=gnu23
@@ -33,6 +33,6 @@ add_link_options($(PROJECT_NAME)
   -Wpedantic 
   -DTB_LIB_OPTS=1 
   -DTB_OPT_ATTR_W=32 
-  -DTB_OPT_PRINTF_BUF=320
+  -DTB_OPT_PRINTF_BUF=512
 )
 
