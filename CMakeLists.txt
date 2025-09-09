@@ -16,10 +16,18 @@ add_compile_options($(PROJECT_NAME)
   -Wdouble-promotion 
   -flto=full 
   -march=native 
-  -Wpedantic 
+  -Wpedantic
+  -ffast-math
+  -fwhole-program-vtables
+  -funique-source-file-names
+  -fcodegen-data-use
+  -fstrict-aliasing
   -DTB_LIB_OPTS=1 
   -DTB_OPT_ATTR_W=32 
   -DTB_OPT_PRINTF_BUF=512
+  --extra-warnings
+  -floop-interchange
+  -fmerge-all-constants
 )
 add_link_options($(PROJECT_NAME)
   -std=gnu23
@@ -31,8 +39,16 @@ add_link_options($(PROJECT_NAME)
   -flto=full 
   -march=native 
   -Wpedantic 
+  -ffast-math
+  -fwhole-program-vtables
+  -funique-source-file-names
+  -fcodegen-data-use
+  -fstrict-aliasing
   -DTB_LIB_OPTS=1 
   -DTB_OPT_ATTR_W=32 
   -DTB_OPT_PRINTF_BUF=512
+  --extra-warnings
+  -floop-interchange
+  -fmerge-all-constants
 )
 
