@@ -1,17 +1,23 @@
+#ifndef _XOPEN_SOURCE
+#define _XOPEN_SOURCE
+#endif
+#ifndef _DEFAULT_SOURCE
+#define _DEFAULT_SOURCE
+#endif
 #define TB_OPT_ATTR_W 32
 #include "termbox2/termbox2.h"
 
 #define fg_UI   0x00808080
-#define bg_UI   0x00101010
+#define bg_UI   0x00101018
 #define BLACK   TB_HI_BLACK // use termbox definition of black for portability
-#define WHITE   0x00F0F0F0  // off-white
-#define fg_RGB  0x00C0C0C0  // RGB status foreground color
-#define GUTTER  0x00202020  // right gutter foreground color
+#define WHITE   0x00e0e6F0  // off-white
+#define fg_RGB  0x00C0C6D0  // RGB status foreground color
+#define GUTTER  0x00101620  // right gutter foreground color
 #define UI      0           // layer for UI elements
 #define CANVAS  1           // layer for drawing buffer
 #define bwidth  100         // drawing buffer width
 #define bheight 71          // drawing buffer height
-#define palSize 10          // size of the block character palette array
+#define palSize 18          // size of the block character palette array
 
 typedef struct {
   uint16_t space;
@@ -24,11 +30,19 @@ typedef struct {
   uint16_t blkLo;
   uint16_t blkBt;
   uint16_t blkMd;
+  uint16_t tallHalfL;
+  uint16_t tallThinL;
+  uint16_t smUpperR;
+  uint16_t smLoL;
+  uint16_t smLoR;
+  uint16_t smUpperL;
+  uint16_t tallThinR;
+  uint16_t tallHalfR;
 } blocks;
 
 typedef union {
   blocks   stp;
-  uint16_t arr[ 10 ];
+  uint16_t arr[ palSize ];
 } Slots;
 
 // current foreground color: 32bit value
@@ -46,7 +60,7 @@ typedef union {
 } Color;
 
 typedef union {
-  uint32_t cell : 32;
+  uint32_t cell : 32; // XX:RRGGBB:CC
   struct {
     uint32_t rgb   : 24;
     uint8_t  block : 8;
@@ -78,20 +92,20 @@ static const uint8_t min3( const Color *restrict color );
 
 // inputs
 [[gnu::hot]]
-void checkInput( struct tb_event *restrict ev, Color *restrict color, uint8_t *select,
-                 const uint16_t *restrict arr, uint8_t *restrict sX, uint8_t *restrict sY,
-                 Layer *restrict layer );
+void checkInput( struct tb_event *restrict ev, Color *restrict color, uint8_t *restrict rmode,
+                 uint8_t *restrict select, const uint16_t *restrict arr, uint8_t *restrict sX,
+                 uint8_t *restrict sY, Layer *restrict layer );
 
 // increment value of RGB color channels until wrap to 0
 static void setColor( Color *restrict color, uint32_t *restrict ch );
 
 // draw a horizontal line
-static inline void hLine( uint8_t which, Layer *restrict layer, uint16_t x, uint16_t y, uint32_t fgCol,
-                          uint32_t bgCol, uint8_t sel, const uint16_t *restrict arr, uint8_t dir );
+static inline void hLine( uint8_t which, Layer *restrict layer, uint16_t x, uint16_t y, uint32_t fg,
+                          uint32_t bg, uint8_t sel, const uint16_t *restrict arr, uint8_t dir );
 
 // draw a vertical line
-static inline void vLine( uint8_t which, Layer *restrict layer, uint16_t x, uint16_t y, uint32_t fgCol,
-                          uint32_t bgCol, uint8_t sel, const uint16_t *restrict arr, uint8_t dir );
+static inline void vLine( uint8_t which, Layer *restrict layer, uint16_t x, uint16_t y, uint32_t fg,
+                          uint32_t bg, uint8_t sel, const uint16_t *restrict arr, uint8_t dir );
 
 // draw palette characters at screen bottom
 static inline void drawPalette( Layer *restrict layer, const uint16_t *restrict arr, const uint8_t len,
@@ -105,4 +119,5 @@ static inline void drawXYStatus( Layer *restrict layer, const uint16_t *restrict
                                  const uint8_t *restrict sX, const uint8_t *restrict sY );
 
 void drawUI( Layer *restrict layer, const uint16_t *restrict arr, const uint8_t *restrict select,
-             const Color *restrict color, const uint8_t *restrict sX, const uint8_t *restrict sY );
+             const Color *restrict color, const uint8_t *restrict sX, const uint8_t *restrict sY,
+             uint8_t *restrict rmode );

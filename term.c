@@ -1,4 +1,6 @@
 #include "term.h"
+#include <stdint.h>
+// #include <sys/select.h>
 #define UP    TB_KEY_ARROW_UP
 #define LEFT  TB_KEY_ARROW_LEFT
 #define DOWN  TB_KEY_ARROW_DOWN
@@ -15,9 +17,7 @@ inline static void printBuffer( Layer *restrict layer, const uint16_t *restrict 
       // In TrueColor mode 0x000000 is Default color, usually off-white
       // Use 0x20000000 for TrueColor black, defined as TB_HI_BLACK
       tb_set_cell( x, y, arr[ layer->canvas[ x ][ y ].block ],
-                   // swap to TB_HI_BLACK color if 0x000000
-                   ( layer->canvas[ x ][ y ].rgb == 0x0000000 ) ? TB_HI_BLACK : layer->canvas[ x ][ y ].rgb,
-                   BLACK );
+                   ( layer->canvas[ x ][ y ].rgb == 0x0000000 ) ? BLACK : layer->canvas[ x ][ y ].rgb, BLACK );
     }
   }
 }
@@ -37,9 +37,9 @@ static void openFileUTF( Layer *restrict layer ) {
 }
 // inputs
 [[gnu::hot]]
-inline void checkInput( struct tb_event *restrict ev, Color *restrict color, uint8_t *select,
-                        const uint16_t *restrict arr, uint8_t *restrict sX, uint8_t *restrict sY,
-                        Layer *restrict layer ) {
+void checkInput( struct tb_event *restrict ev, Color *restrict color, uint8_t *restrict rmode,
+                 uint8_t *restrict select, const uint16_t *restrict arr, uint8_t *restrict sX,
+                 uint8_t *restrict sY, Layer *restrict layer ) {
   // flag when a screen draw is needed
   uint8_t draw = 0;
   // finds the bottom edge of canvas.  If UI overlaps canvas or not.
@@ -53,49 +53,58 @@ inline void checkInput( struct tb_event *restrict ev, Color *restrict color, uin
   if ( ev->ch > 0 ) {
     switch ( ev->ch ) {
       // movement only, but must draw to paint cursor position
-      case 'k' : [[fallthrough]];                                          // ▲
-      case 'w' : *sY = ( *sY > 0 ) ? *sY - 1 : height; break;              // ▲
-      case 'h' : [[fallthrough]];                                          // ◀︎
-      case 'a' : *sX = ( *sX > 0 ) ? *sX - 1 : width; break;               // ◀︎
-      case 'j' : [[fallthrough]];                                          // ▼
-      case 's' : *sY = ( *sY < height ) ? *sY + 1 : 0; break;              // ▼
-      case 'd' : [[fallthrough]];                                          // ▶︎
-      case 'l' : *sX = ( *sX < width ) ? *sX + 1 : 0; break;               // ▶︎
-      case 'W' : *sY = ( *sY > 0 ) ? *sY - ( ++draw ) : height; break;     // ▲  wasd draw
-      case 'A' : *sX = ( *sX > 0 ) ? *sX - ( ++draw ) : width; break;      // ◀︎
-      case 'S' : *sY = ( *sY < height ) ? *sY + ( ++draw ) : 0; break;     // ▼
-      case 'D' : *sX = ( *sX < width ) ? *sX + ( ++draw ) : 0; break;      // ▶︎
-      case 'K' : *sY = ( *sY > 0 ) ? *sY - ( ++draw ) : height; break;     // ▲  vi draw
-      case 'H' : *sX = ( *sX > 0 ) ? *sX - ( ++draw ) : width; break;      // ◀︎
-      case 'J' : *sY = ( *sY < height ) ? *sY + ( ++draw ) : 0; break;     // ▼
-      case 'L' : *sX = ( *sX < width ) ? *sX + ( ++draw ) : 0; break;      // ▶︎
-      case 'r' : [[fallthrough]];                                          // --red    colors
-      case 'g' : [[fallthrough]];                                          // --green
-      case 'b' : [[fallthrough]];                                          // --blue
-      case 'R' : [[fallthrough]];                                          // ++red
-      case 'G' : [[fallthrough]];                                          // ++green
-      case 'B' : setColor( color, &ev->ch ); break;                        // ++blue
-      case '0' : *select = 0; break;                                       // ░  char selection
-      case '1' : *select = 1; break;                                       // ▒
-      case '2' : *select = 2; break;                                       // ▓
-      case '3' : *select = 3; break;                                       // █
-      case '4' : *select = 4; break;                                       // ▀
-      case '5' : *select = 5; break;                                       // ▔
-      case '6' : *select = 6; break;                                       // ▁
-      case '7' : *select = 7; break;                                       // ▄
-      case '8' : *select = 8; break;                                       // ◼
-      case '9' : *select = 9; break;                                       // ' '
-      case 'Q' : [[fallthrough]];                                          // tell clang fallthrough intentional
-      case 'q' : *select != 0 ? ( *select -= 1 ) : ( *select = 9 ); break; // choose block to left in palette
+      case 'k' : [[fallthrough]];                                      // ▲
+      case 'w' : *sY = ( *sY > 0 ) ? *sY - 1 : height; break;          // ▲
+      case 'h' : [[fallthrough]];                                      // ◀︎
+      case 'a' : *sX = ( *sX > 0 ) ? *sX - 1 : width; break;           // ◀︎
+      case 'j' : [[fallthrough]];                                      // ▼
+      case 's' : *sY = ( *sY < height ) ? *sY + 1 : 0; break;          // ▼
+      case 'd' : [[fallthrough]];                                      // ▶︎
+      case 'l' : *sX = ( *sX < width ) ? *sX + 1 : 0; break;           // ▶︎
+      case 'W' : *sY = ( *sY > 0 ) ? *sY - ( ++draw ) : height; break; // ▲  wasd draw
+      case 'A' : *sX = ( *sX > 0 ) ? *sX - ( ++draw ) : width; break;  // ◀︎
+      case 'S' : *sY = ( *sY < height ) ? *sY + ( ++draw ) : 0; break; // ▼
+      case 'D' : *sX = ( *sX < width ) ? *sX + ( ++draw ) : 0; break;  // ▶︎
+      case 'K' : *sY = ( *sY > 0 ) ? *sY - ( ++draw ) : height; break; // ▲  vi draw
+      case 'H' : *sX = ( *sX > 0 ) ? *sX - ( ++draw ) : width; break;  // ◀︎
+      case 'J' : *sY = ( *sY < height ) ? *sY + ( ++draw ) : 0; break; // ▼
+      case 'L' : *sX = ( *sX < width ) ? *sX + ( ++draw ) : 0; break;  // ▶︎
+      case 'r' : [[fallthrough]];                                      // --red    colors
+      case 'g' : [[fallthrough]];                                      // --green
+      case 'b' : [[fallthrough]];                                      // --blue
+      case 'R' : [[fallthrough]];                                      // ++red
+      case 'G' : [[fallthrough]];                                      // ++green
+      case 'B' : setColor( color, &ev->ch ); break;                    // ++blue
+      case '0' : *select = 0; break;                                   // ░  char selection
+      case '1' : *select = 1; break;                                   // ▒
+      case '2' : *select = 2; break;                                   // ▓
+      case '3' : *select = 3; break;                                   // █
+      case '4' : *select = 4; break;                                   // ▀
+      case '5' : *select = 5; break;                                   // ▔
+      case '6' : *select = 6; break;                                   // ▁
+      case '7' : *select = 7; break;                                   // ▄
+      case '8' : *select = 8; break;                                   // ◼
+      case '9' : *select = 9; break;                                   // ' '
+      case 'Q' : [[fallthrough]];                                      // tell clang fallthrough intentional
+      case 'q' :
+        *select != 0 ? ( *select -= 1 ) : ( *select = palSize - 1 );
+        break; // choose block to left in palette
       case 'E' : [[fallthrough]];
-      case 'e' : *select != 9 ? ( *select += 1 ) : ( *select = 0 ); break; // choose block to right in palette
+      case 'e' :
+        *select != palSize - 1 ? ( *select += 1 ) : ( *select = 0 );
+        break; // choose block to right in palette
       case '_' : [[fallthrough]];
       case '-' : setColor( color, &ev->ch ); break;
       case '=' : [[fallthrough]];
       case '+' : setColor( color, &ev->ch ); break;
-      // draw to left, right, top, or lower boundary
       case 'Y' : *select = layer->canvas[ *sX ][ *sY ].block;         // choose block and fallthrough to
       case 'y' : color->rgb = layer->canvas[ *sX ][ *sY ].rgb; break; // choose color
+      case 'z' : [[fallthrough]];
+      case 'Z' : *rmode = 0; break; // normal mode
+      case 'c' : [[fallthrough]];
+      case 'C' : *rmode = 1; break; // C: replace color
+      case 'x' : [[fallthrough]];
+      case 'X' : *rmode = 2; break; // X: replace block
     }
   } else {
     switch ( ev->key ) {
@@ -117,28 +126,39 @@ inline void checkInput( struct tb_event *restrict ev, Color *restrict color, uin
         *sX = ( *sX < width ) ? *sX + 1 : 0;
         break; // ▶︎
       // draw lines to edge of canvas
-      case TB_KEY_HOME : hLine( CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0 ); break; // ◀︎
-      case TB_KEY_END  : hLine( CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 1 ); break; // ▶︎
-      case TB_KEY_PGUP : vLine( CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0 ); break; // ▲
-      case TB_KEY_PGDN :
-        vLine( CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 1 );
-        break; // ▼
-      // write buffer to file
-      case TB_KEY_CTRL_P : printFileUTF( layer ); break;
-      // open file to buffer
-      case TB_KEY_CTRL_O : openFileUTF( layer ); break;
+      case TB_KEY_HOME   : hLine( CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0 ); break; // ◀︎
+      case TB_KEY_END    : hLine( CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 1 ); break; // ▶︎
+      case TB_KEY_PGUP   : vLine( CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 0 ); break; // ▲
+      case TB_KEY_PGDN   : vLine( CANVAS, layer, *sX, *sY, color->rgb, BLACK, *select, arr, 1 ); break; // ▼
+      case TB_KEY_CTRL_P : printFileUTF( layer ); break; // write buffer to file
+      case TB_KEY_CTRL_O : openFileUTF( layer ); break;  // open file to buffer
     }
   }
   // set cursor position and draw
-  tb_set_cursor( *sX, *sY );
-  if ( draw == 1 ) {
-    layer->canvas[ *sX ][ *sY ].cell  = color->rgb;
-    layer->canvas[ *sX ][ *sY ].block = *select;
+  if ( *rmode == 0 ) {
+    tb_set_cursor( *sX, *sY );
+    if ( draw == 1 ) {
+      layer->canvas[ *sX ][ *sY ].cell  = color->rgb;
+      layer->canvas[ *sX ][ *sY ].block = *select;
+    }
+  } else if ( *rmode == 1 ) {
+    tb_set_cursor( *sX, *sY );
+    if ( draw == 1 ) {
+      // C: replace color
+      layer->canvas[ *sX ][ *sY ].rgb = color->rgb;
+    }
+  } else if ( *rmode == 2 ) {
+    tb_set_cursor( *sX, *sY );
+    if ( draw == 1 ) {
+      // X: replace block
+      layer->canvas[ *sX ][ *sY ].block = *select;
+    }
+  } else {
+    ;
   }
   // print the draw layer
   printBuffer( layer, arr );
 }
-
 // find highest value of RGB channels
 static const uint8_t max3( const Color *restrict color ) {
   return color->r > color->g ? ( color->r > color->b ? color->r : color->b ) :
@@ -181,8 +201,8 @@ static void setColor( Color *restrict color, uint32_t *restrict ch ) {
   }
 }
 // draw horizontal line
-static inline void hLine( uint8_t which, Layer *restrict layer, uint16_t x, uint16_t y, uint32_t fgCol,
-                          uint32_t bgCol, uint8_t sel, const uint16_t *restrict arr, uint8_t dir ) {
+static inline void hLine( uint8_t which, Layer *restrict layer, uint16_t x, uint16_t y, uint32_t fg,
+                          uint32_t bg, uint8_t sel, const uint16_t *restrict arr, uint8_t dir ) {
   uint16_t width = 0;
   if ( which == CANVAS ) { width = ( tb_width() < bwidth ) ? (uint16_t) tb_width() : bwidth; }
   if ( which == UI ) { width = (uint16_t) tb_width(); }
@@ -191,49 +211,49 @@ static inline void hLine( uint8_t which, Layer *restrict layer, uint16_t x, uint
     for ( ; x < width; ++x ) {
       // draw to buffer
       if ( which == CANVAS ) {
-        layer->canvas[ x ][ y ].cell  = fgCol; // instead of .rgb bitfield, just write 32bit to 32bit
+        layer->canvas[ x ][ y ].cell  = fg;  // instead of .rgb bitfield, just write 32bit to 32bit
         layer->canvas[ x ][ y ].block = sel; // -since this bitfield will overwrite and isn't a weird 24bit size
       }
       // draw to terminal only  (UI elements)
-      tb_set_cell( x, y, arr[ sel ], fgCol, bgCol );
+      tb_set_cell( x, y, arr[ sel ], fg, bg );
     }
   } else {
     // draw line right to left
     while ( x-- ) {
       // draw to buffer
       if ( which == CANVAS ) {
-        layer->canvas[ x ][ y ].cell  = fgCol;
+        layer->canvas[ x ][ y ].cell  = fg;
         layer->canvas[ x ][ y ].block = sel;
       }
-      tb_set_cell( x, y, arr[ sel ], fgCol, bgCol );
+      tb_set_cell( x, y, arr[ sel ], fg, bg );
     }
   }
 }
 // draw a vertical line
-static inline void vLine( uint8_t which, Layer *restrict layer, uint16_t x, uint16_t y, uint32_t fgCol,
-                          uint32_t bgCol, uint8_t sel, const uint16_t *restrict arr, uint8_t dir ) {
+static inline void vLine( uint8_t which, Layer *restrict layer, uint16_t x, uint16_t y, uint32_t fg,
+                          uint32_t bg, uint8_t sel, const uint16_t *restrict arr, uint8_t dir ) {
   const uint8_t height = ( tb_height() < bheight ) ? (uint8_t) tb_height() : bheight - 1;
   if ( dir == 1 ) {
     // draw line top to bottom
     for ( ; y < height; ++y ) {
       // draw to buffer
       if ( which == CANVAS ) {
-        layer->canvas[ x ][ y ].cell  = fgCol;
+        layer->canvas[ x ][ y ].cell  = fg;
         layer->canvas[ x ][ y ].block = sel;
       }
       // draw to terminal only  (UI elements)
-      tb_set_cell( x, y, arr[ sel ], fgCol, bgCol );
+      tb_set_cell( x, y, arr[ sel ], fg, bg );
     }
   } else {
     // draw line bottom to top
     while ( y-- ) {
       // draw to buffer
       if ( which == CANVAS ) {
-        layer->canvas[ x ][ y ].cell  = fgCol;
+        layer->canvas[ x ][ y ].cell  = fg;
         layer->canvas[ x ][ y ].block = sel;
       }
       // draw to terminal only  (UI elements)
-      tb_set_cell( x, y, arr[ sel ], fgCol, bgCol );
+      tb_set_cell( x, y, arr[ sel ], fg, bg );
     }
   }
 }
@@ -244,25 +264,23 @@ static inline void drawPalette( Layer *restrict layer, const uint16_t *restrict 
   static uint32_t cfg = fg_UI;
   const uint8_t   y   = (uint8_t) tb_height() - 1;
   // iterate over palette array.  dim unselected blocks
-  for ( uint8_t i = 0; i < len; ++i ) {
-    cfg = ( ( arr[ i ] == arr[ *select ] ) ? 0x10000000 | fg_UI : (uint32_t) ( fg_UI * 0.5 ) );
-    tb_set_cell( i, y, arr[ i ], cfg, BLACK );
+#define offset 22
+  for ( uint8_t i = offset; i - offset < len; ++i ) {
+    cfg = ( ( arr[ i - offset ] == arr[ *select ] ) ? 0x10000000 | fg_UI : (uint32_t) ( fg_UI * 0.5 ) );
+    tb_set_cell( i, y, arr[ i - offset ], cfg, BLACK );
   }
 }
 // draw current color settings
 static inline void drawColorStatus( const Color *restrict color ) {
   const uint8_t xloc = ( tb_width() > bwidth ) ? (uint8_t) ( tb_width() * 0.5 ) : (uint8_t) ( bwidth * 0.5 );
   const uint8_t yloc = (uint8_t) ( tb_height() - 1 );
-  // hashtag shows current color
-  if ( color->rgb != 0x000000 ) {
-    tb_set_cell( xloc - 5, yloc, '#', 0x01000000 | color->rgb, BLACK );
-  } else {
-    tb_set_cell( xloc - 5, yloc, '#', 0x01000000 | TB_HI_BLACK, BLACK );
-  }
+  // hashtag shows current colo
+  tb_set_cell( xloc - 5, yloc, '#', ( color->rgb != 0x000000 ) ? 0x01000000 | color->rgb : BLACK, BLACK );
   // print RGB hex values.  screen bottom, and centered
   for ( uint8_t l = 0, j = 0; j < 3; l += 2, j++ ) {
     tb_printf( xloc - l, yloc, (uintattr_t) fg_UI, BLACK, "%02X", color->rgbArr[ j ] );
   }
+  // 20
 }
 // draws current cursor location in bottom right corner
 static void drawXYStatus( Layer *restrict layer, const uint16_t *restrict arr, const uint8_t *restrict sX,
@@ -271,7 +289,8 @@ static void drawXYStatus( Layer *restrict layer, const uint16_t *restrict arr, c
 }
 // TODO: create UI buffer and call all UI functions in drawUI() function
 inline void drawUI( Layer *restrict layer, const uint16_t *restrict arr, const uint8_t *restrict select,
-                    const Color *restrict color, const uint8_t *restrict sX, const uint8_t *restrict sY ) {
+                    const Color *restrict color, const uint8_t *restrict sX, const uint8_t *restrict sY,
+                    uint8_t *restrict rmode ) {
   const uint8_t  h = (uint8_t) tb_height() - 1;
   const uint16_t w = (uint16_t) tb_width();
   // fill for off-canvas area.
@@ -288,6 +307,12 @@ inline void drawUI( Layer *restrict layer, const uint16_t *restrict arr, const u
   drawPalette( layer, arr, palSize, select );
   drawXYStatus( layer, arr, sX, sY );
   drawColorStatus( color );
+  tb_print( 0, (uint8_t) tb_height() - 1, fg_UI, BLACK, "mode: " );
+  switch ( *rmode ) {
+    case 0 : tb_print( 5, (uint8_t) tb_height() - 1, 0x2078a8, BLACK, "normal" ); break;
+    case 1 : tb_print( 5, (uint8_t) tb_height() - 1, 0x2078a8, BLACK, "color replace" ); break;
+    case 2 : tb_print( 5, (uint8_t) tb_height() - 1, 0x2078a8, BLACK, "char replace" ); break;
+  }
   tb_present();
 }
 // TODO: implement fill tool
